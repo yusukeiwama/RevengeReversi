@@ -22,6 +22,8 @@
 		430682FB186360C90038F9C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430682DA186360C90038F9C8 /* UIKit.framework */; };
 		43068303186360C90038F9C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43068301186360C90038F9C8 /* InfoPlist.strings */; };
 		43068305186360C90038F9C8 /* RevengeReversiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43068304186360C90038F9C8 /* RevengeReversiTests.m */; };
+		43B649A01863D4DB00D1396F /* USKReversi.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B6499F1863D4DB00D1396F /* USKReversi.m */; };
+		43B649A21863EE1A00D1396F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B649A11863EE1A00D1396F /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,9 @@
 		43068300186360C90038F9C8 /* RevengeReversiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RevengeReversiTests-Info.plist"; sourceTree = "<group>"; };
 		43068302186360C90038F9C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		43068304186360C90038F9C8 /* RevengeReversiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevengeReversiTests.m; sourceTree = "<group>"; };
+		43B6499E1863D4DB00D1396F /* USKReversi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversi.h; sourceTree = "<group>"; };
+		43B6499F1863D4DB00D1396F /* USKReversi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKReversi.m; sourceTree = "<group>"; };
+		43B649A11863EE1A00D1396F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43B649A21863EE1A00D1396F /* QuartzCore.framework in Frameworks */,
 				430682D9186360C90038F9C8 /* CoreGraphics.framework in Frameworks */,
 				430682DB186360C90038F9C8 /* UIKit.framework in Frameworks */,
 				430682D7186360C90038F9C8 /* Foundation.framework in Frameworks */,
@@ -103,6 +109,7 @@
 		430682D5186360C90038F9C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43B649A11863EE1A00D1396F /* QuartzCore.framework */,
 				430682D6186360C90038F9C8 /* Foundation.framework */,
 				430682D8186360C90038F9C8 /* CoreGraphics.framework */,
 				430682DA186360C90038F9C8 /* UIKit.framework */,
@@ -114,6 +121,7 @@
 		430682DC186360C90038F9C8 /* RevengeReversi */ = {
 			isa = PBXGroup;
 			children = (
+				43B6499D1863D4BC00D1396F /* Model */,
 				430682E5186360C90038F9C8 /* USKAppDelegate.h */,
 				430682E6186360C90038F9C8 /* USKAppDelegate.m */,
 				430682E8186360C90038F9C8 /* Main_iPhone.storyboard */,
@@ -153,6 +161,15 @@
 				43068301186360C90038F9C8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		43B6499D1863D4BC00D1396F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				43B6499E1863D4DB00D1396F /* USKReversi.h */,
+				43B6499F1863D4DB00D1396F /* USKReversi.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +273,7 @@
 			files = (
 				430682F0186360C90038F9C8 /* USKViewController.m in Sources */,
 				430682E7186360C90038F9C8 /* USKAppDelegate.m in Sources */,
+				43B649A01863D4DB00D1396F /* USKReversi.m in Sources */,
 				430682E3186360C90038F9C8 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +493,7 @@
 				4306830A186360C90038F9C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4306830B186360C90038F9C8 /* Build configuration list for PBXNativeTarget "RevengeReversiTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +502,7 @@
 				4306830D186360C90038F9C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
