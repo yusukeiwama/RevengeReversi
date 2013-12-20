@@ -16,17 +16,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YzZ-2V-KRE">
-                                <rect key="frame" x="64" y="192" width="640" height="640"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="desk_gray.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="AJt-FR-E4f">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJH-EM-KZu">
+                                <rect key="frame" x="16" y="144" width="736" height="736"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="640" id="CU9-02-heC"/>
-                                    <constraint firstAttribute="width" constant="640" id="lBs-sY-puR"/>
+                                    <constraint firstAttribute="width" constant="736" id="aQF-Vl-Jga"/>
+                                    <constraint firstAttribute="height" constant="736" id="nLn-Ze-Fm1"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Black: 32" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVO-5F-A6E">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="White: 32" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVO-5F-A6E">
                                 <rect key="frame" x="20" y="20" width="240" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -37,38 +40,78 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="White: 37" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCF-Yb-PbR">
-                                <rect key="frame" x="508" y="884" width="240" height="120"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Black: 37" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCF-Yb-PbR">
+                                <rect key="frame" x="508" y="20" width="240" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="DlG-3c-Ryn"/>
-                                    <constraint firstAttribute="height" constant="120" id="Y1e-qv-xqy"/>
+                                    <constraint firstAttribute="width" constant="240" id="B27-kj-FXd"/>
+                                    <constraint firstAttribute="height" constant="120" id="NZE-nA-iSV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="32"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="ZJJ-Oa-Ngg">
+                                <rect key="frame" x="184" y="20" width="400" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="7hj-1a-3Qx"/>
+                                    <constraint firstAttribute="height" constant="120" id="OKR-cw-dtb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="48"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kelly-green-canvas-fabric-texture.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aSa-2P-gq7">
+                                <rect key="frame" x="24" y="152" width="720" height="720"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="720" id="MCq-dZ-SoV"/>
+                                    <constraint firstAttribute="width" constant="720" id="l0X-jY-Hds"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFD-c4-xWo">
+                                <rect key="frame" x="245" y="888" width="279" height="116"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Grand Cross">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="grandCrossButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PVa-ym-Plk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="GVO-5F-A6E" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="1FM-RP-UEJ"/>
-                            <constraint firstAttribute="centerY" secondItem="YzZ-2V-KRE" secondAttribute="centerY" id="394-ZC-5cK"/>
-                            <constraint firstAttribute="centerX" secondItem="YzZ-2V-KRE" secondAttribute="centerX" id="9w7-mJ-B9X"/>
-                            <constraint firstItem="CNM-zY-hTH" firstAttribute="top" secondItem="eCF-Yb-PbR" secondAttribute="bottom" constant="20" id="Hed-YP-5jX"/>
-                            <constraint firstAttribute="trailing" secondItem="eCF-Yb-PbR" secondAttribute="trailing" constant="20" id="L4k-lD-Iyo"/>
+                            <constraint firstItem="ZJJ-Oa-Ngg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="2Pd-WK-o3c"/>
+                            <constraint firstItem="eCF-Yb-PbR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="7B0-Dz-4bG"/>
+                            <constraint firstAttribute="centerX" secondItem="aSa-2P-gq7" secondAttribute="centerX" id="DkA-t3-Pa6"/>
+                            <constraint firstAttribute="centerX" secondItem="ZJJ-Oa-Ngg" secondAttribute="centerX" id="EBe-4k-Pk5"/>
+                            <constraint firstAttribute="centerY" secondItem="BJH-EM-KZu" secondAttribute="centerY" id="QkO-3Y-p6C"/>
+                            <constraint firstAttribute="trailing" secondItem="eCF-Yb-PbR" secondAttribute="trailing" constant="20" id="khY-Ih-PtB"/>
                             <constraint firstItem="GVO-5F-A6E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="mbP-aA-gbD"/>
+                            <constraint firstAttribute="centerX" secondItem="BJH-EM-KZu" secondAttribute="centerX" id="xid-ew-fkg"/>
+                            <constraint firstAttribute="centerY" secondItem="aSa-2P-gq7" secondAttribute="centerY" id="yyK-hn-gKT"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="blackScoreLabel" destination="GVO-5F-A6E" id="yHG-Ks-5CU"/>
-                        <outlet property="boardView" destination="YzZ-2V-KRE" id="N66-y4-Mg8"/>
-                        <outlet property="whiteScoreLabel" destination="eCF-Yb-PbR" id="J8J-ni-zVW"/>
+                        <outlet property="backgroundImageView" destination="AJt-FR-E4f" id="Kpn-g8-VFC"/>
+                        <outlet property="blackScoreLabel" destination="eCF-Yb-PbR" id="lXU-tl-RfG"/>
+                        <outlet property="boardImageView" destination="aSa-2P-gq7" id="Fsi-V4-dzB"/>
+                        <outlet property="helpLabel" destination="ZJJ-Oa-Ngg" id="0Ru-yc-Jvn"/>
+                        <outlet property="whiteScoreLabel" destination="GVO-5F-A6E" id="WbN-bL-LG1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="desk_gray.jpg" width="1536" height="2048"/>
+        <image name="kelly-green-canvas-fabric-texture.jpg" width="1440" height="1440"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
         <simulatedOrientationMetrics key="orientation"/>

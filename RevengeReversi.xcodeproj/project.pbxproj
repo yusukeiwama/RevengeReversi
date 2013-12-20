@@ -22,6 +22,11 @@
 		430682FB186360C90038F9C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430682DA186360C90038F9C8 /* UIKit.framework */; };
 		43068303186360C90038F9C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43068301186360C90038F9C8 /* InfoPlist.strings */; };
 		43068305186360C90038F9C8 /* RevengeReversiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43068304186360C90038F9C8 /* RevengeReversiTests.m */; };
+		4344B350186443BC009E28CB /* board.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4344B34F186443BC009E28CB /* board.jpg */; };
+		4344B353186445D3009E28CB /* desk_gray.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4344B352186445D3009E28CB /* desk_gray.jpg */; };
+		4344B355186447B5009E28CB /* forest-green-cloth-light.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4344B354186447B5009E28CB /* forest-green-cloth-light.jpeg */; };
+		4344B35C18644935009E28CB /* USKDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4344B35B18644935009E28CB /* USKDiskView.m */; };
+		4344B35E18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4344B35D18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg */; };
 		43B649A01863D4DB00D1396F /* USKReversi.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B6499F1863D4DB00D1396F /* USKReversi.m */; };
 		43B649A21863EE1A00D1396F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B649A11863EE1A00D1396F /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +62,12 @@
 		43068300186360C90038F9C8 /* RevengeReversiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RevengeReversiTests-Info.plist"; sourceTree = "<group>"; };
 		43068302186360C90038F9C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		43068304186360C90038F9C8 /* RevengeReversiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevengeReversiTests.m; sourceTree = "<group>"; };
+		4344B34F186443BC009E28CB /* board.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = board.jpg; path = RevengeReversi/board.jpg; sourceTree = "<group>"; };
+		4344B352186445D3009E28CB /* desk_gray.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = desk_gray.jpg; path = RevengeReversi/desk_gray.jpg; sourceTree = "<group>"; };
+		4344B354186447B5009E28CB /* forest-green-cloth-light.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "forest-green-cloth-light.jpeg"; path = "RevengeReversi/forest-green-cloth-light.jpeg"; sourceTree = "<group>"; };
+		4344B35A18644935009E28CB /* USKDiskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKDiskView.h; sourceTree = "<group>"; };
+		4344B35B18644935009E28CB /* USKDiskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKDiskView.m; sourceTree = "<group>"; };
+		4344B35D18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "kelly-green-canvas-fabric-texture.jpg"; path = "RevengeReversi/kelly-green-canvas-fabric-texture.jpg"; sourceTree = "<group>"; };
 		43B6499E1863D4DB00D1396F /* USKReversi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversi.h; sourceTree = "<group>"; };
 		43B6499F1863D4DB00D1396F /* USKReversi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKReversi.m; sourceTree = "<group>"; };
 		43B649A11863EE1A00D1396F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -90,6 +101,7 @@
 		430682CA186360C90038F9C8 = {
 			isa = PBXGroup;
 			children = (
+				4344B351186443C5009E28CB /* Images */,
 				430682DC186360C90038F9C8 /* RevengeReversi */,
 				430682FE186360C90038F9C8 /* RevengeReversiTests */,
 				430682D5186360C90038F9C8 /* Frameworks */,
@@ -121,13 +133,9 @@
 		430682DC186360C90038F9C8 /* RevengeReversi */ = {
 			isa = PBXGroup;
 			children = (
+				4344B35918644917009E28CB /* Controller */,
+				4344B3581864490B009E28CB /* View */,
 				43B6499D1863D4BC00D1396F /* Model */,
-				430682E5186360C90038F9C8 /* USKAppDelegate.h */,
-				430682E6186360C90038F9C8 /* USKAppDelegate.m */,
-				430682E8186360C90038F9C8 /* Main_iPhone.storyboard */,
-				430682EB186360C90038F9C8 /* Main_iPad.storyboard */,
-				430682EE186360C90038F9C8 /* USKViewController.h */,
-				430682EF186360C90038F9C8 /* USKViewController.m */,
 				430682F1186360C90038F9C8 /* Images.xcassets */,
 				430682DD186360C90038F9C8 /* Supporting Files */,
 			);
@@ -161,6 +169,39 @@
 				43068301186360C90038F9C8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4344B351186443C5009E28CB /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4344B35D18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg */,
+				4344B354186447B5009E28CB /* forest-green-cloth-light.jpeg */,
+				4344B352186445D3009E28CB /* desk_gray.jpg */,
+				4344B34F186443BC009E28CB /* board.jpg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		4344B3581864490B009E28CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				430682E8186360C90038F9C8 /* Main_iPhone.storyboard */,
+				430682EB186360C90038F9C8 /* Main_iPad.storyboard */,
+				4344B35A18644935009E28CB /* USKDiskView.h */,
+				4344B35B18644935009E28CB /* USKDiskView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		4344B35918644917009E28CB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				430682E5186360C90038F9C8 /* USKAppDelegate.h */,
+				430682E6186360C90038F9C8 /* USKAppDelegate.m */,
+				430682EE186360C90038F9C8 /* USKViewController.h */,
+				430682EF186360C90038F9C8 /* USKViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		43B6499D1863D4BC00D1396F /* Model */ = {
@@ -250,8 +291,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				430682ED186360C90038F9C8 /* Main_iPad.storyboard in Resources */,
+				4344B353186445D3009E28CB /* desk_gray.jpg in Resources */,
 				430682F2186360C90038F9C8 /* Images.xcassets in Resources */,
+				4344B355186447B5009E28CB /* forest-green-cloth-light.jpeg in Resources */,
 				430682EA186360C90038F9C8 /* Main_iPhone.storyboard in Resources */,
+				4344B350186443BC009E28CB /* board.jpg in Resources */,
+				4344B35E18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg in Resources */,
 				430682E1186360C90038F9C8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +320,7 @@
 				430682E7186360C90038F9C8 /* USKAppDelegate.m in Sources */,
 				43B649A01863D4DB00D1396F /* USKReversi.m in Sources */,
 				430682E3186360C90038F9C8 /* main.m in Sources */,
+				4344B35C18644935009E28CB /* USKDiskView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

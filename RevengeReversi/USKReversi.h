@@ -8,13 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum USKReversiRule{
+typedef enum USKReversiAbility {
+	USKReversiAbilityNone = 0,
+	USKReversiAbilityGrandCross
+} USKReversiAbility;
+
+typedef enum USKReversiRule {
 	USKReversiRuleClassic = 0
 } USKReversiRule;
 
 typedef struct USKReversiState {
-	int reverseCount; // how many times the cell was reversed
 	int color; // cell color
+	BOOL changed;
+	int reverseCount; // how many times the cell was reversed
 } USKReversiState;
 
 @interface USKReversi : NSObject
@@ -25,11 +31,15 @@ typedef struct USKReversiState {
 @property (readonly) USKReversiRule rule;
 
 @property (readonly) int turn;
+@property USKReversiAbility ability;
 @property (readonly) NSMutableArray *scores;
 @property (readonly) USKReversiState *states;
+@property (readonly) int passCount; // if passCount become equal to numberOfPlayers, the game will be over.
+@property (readonly) BOOL gameOver;
 
 + (id)reversiWithRow:(int)r column:(int)c numberOfPlayers:(int)n rule:(USKReversiRule)r;
 - (id)initWithRow:(int)r column:(int)c numberOfPlayers:(int)n rule:(USKReversiRule)r;
 - (void)changeStateWithRow:(int)r column:(int)c;
+- (int)attacker;
 
 @end
