@@ -187,15 +187,17 @@
 	// attack up-right
 	tempIndex = attackerIndex - (column - 1);
 	int upperRightAllyIndex = attackerIndex;
-	if (states[tempIndex].color != -1 && tempIndex % column != column - 1) {
-		while (0 <= tempIndex && tempIndex % column != column - 1) {
-			if (states[tempIndex].color == attackColor) {
-				upperRightAllyIndex = tempIndex;
-				break;
-			} else if (states[tempIndex].color == -1) {
-				break;
+	if (0 <= tempIndex) {
+		if (states[tempIndex].color != -1 && tempIndex % column != column - 1) {
+			while (0 <= tempIndex && tempIndex % column != column - 1) {
+				if (states[tempIndex].color == attackColor) {
+					upperRightAllyIndex = tempIndex;
+					break;
+				} else if (states[tempIndex].color == -1) {
+					break;
+				}
+				tempIndex -= (column - 1);
 			}
-			tempIndex -= (column - 1);
 		}
 	}
 	tempIndex = attackerIndex - (column - 1);
@@ -211,15 +213,17 @@
 	tempIndex = attackerIndex;
 	int rightAllyIndex = attackerIndex;
 	tempIndex++;
-	if (states[tempIndex].color != -1) {
-		while (r == tempIndex / column) {
-			if (states[tempIndex].color == attackColor) {
-				rightAllyIndex = tempIndex;
-				break;
-			} else if (states[tempIndex].color == -1) {
-				break;
+	if (tempIndex < row * column) {
+		if (states[tempIndex].color != -1) {
+			while (r == tempIndex / column) {
+				if (states[tempIndex].color == attackColor) {
+					rightAllyIndex = tempIndex;
+					break;
+				} else if (states[tempIndex].color == -1) {
+					break;
+				}
+				tempIndex++;
 			}
-			tempIndex++;
 		}
 	}
 	tempIndex = attackerIndex + 1;

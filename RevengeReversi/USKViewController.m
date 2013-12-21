@@ -65,14 +65,15 @@
 	[boardImageView.image drawInRect:CGRectMake(0, 0, boardImageView.frame.size.width, boardImageView.frame.size.height)];
 	CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
 	CGContextSetLineWidth(context, 2);
-	for (int i = 0; i < 9; i++) {
+	for (int i = 0; i < reversi.column + 1; i++) {
 		// Draw vertical lines.
-		CGContextMoveToPoint(context, boardImageView.frame.size.width / 8.0 * i, 0.0);
-		CGContextAddLineToPoint(context, boardImageView.frame.size.width / 8.0 * i, boardImageView.frame.size.height);
-		
+		CGContextMoveToPoint(context, boardImageView.frame.size.width / reversi.column * i, 0.0);
+		CGContextAddLineToPoint(context, boardImageView.frame.size.width / reversi.column * i, boardImageView.frame.size.height);
+	}
+	for (int i = 0; i < reversi.row + 1; i++) {
 		// Draw horizontal lines.
-		CGContextMoveToPoint(context, 0.0, boardImageView.frame.size.height / 8.0 * i);
-		CGContextAddLineToPoint(context, boardImageView.frame.size.width, boardImageView.frame.size.height / 8.0 * i);
+		CGContextMoveToPoint(context, 0.0, boardImageView.frame.size.height / reversi.row * i);
+		CGContextAddLineToPoint(context, boardImageView.frame.size.width, boardImageView.frame.size.height / reversi.row * i);
 	}
 	CGContextStrokePath(context);
 	boardImageView.image = UIGraphicsGetImageFromCurrentImageContext();
@@ -88,15 +89,12 @@
 									 boardImageView.frame.size.height / reversi.row - 2.0 * margin);
 			USKDiskView *aDiskView = [[USKDiskView alloc] initWithFrame:rect];
 			aDiskView.backgroundColor = [UIColor clearColor];
-			aDiskView.label.textColor = [UIColor clearColor];
-			aDiskView.tag = 0;
-			aDiskView.label.text = [NSString stringWithFormat:@"%d", aDiskView.tag];
 			aDiskView.label.textAlignment = NSTextAlignmentCenter;
 			aDiskView.label.font = [UIFont fontWithName:@"Futura" size:32.0];
 			aDiskView.layer.cornerRadius = aDiskView.frame.size.width / 2.0;
-//			aDiskView.layer.shadowColor = [[UIColor blackColor] CGColor];
-//			aDiskView.layer.shadowOffset = CGSizeMake(2.0, 2.0);
-//			aDiskView.layer.shadowOpacity = 0.7;
+			aDiskView.layer.shadowColor = [[UIColor blackColor] CGColor];
+			aDiskView.layer.shadowOffset = CGSizeMake(2.0, 2.0);
+			aDiskView.layer.shadowOpacity = 0.7;
 			[boardImageView addSubview:aDiskView];
 			[reverseLabels addObject:aDiskView];
 		}
