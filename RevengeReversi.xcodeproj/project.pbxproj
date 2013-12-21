@@ -133,9 +133,9 @@
 		430682DC186360C90038F9C8 /* RevengeReversi */ = {
 			isa = PBXGroup;
 			children = (
-				4344B35918644917009E28CB /* Controller */,
-				4344B3581864490B009E28CB /* View */,
 				43B6499D1863D4BC00D1396F /* Model */,
+				4344B3581864490B009E28CB /* View */,
+				4344B35918644917009E28CB /* Controller */,
 				430682F1186360C90038F9C8 /* Images.xcassets */,
 				430682DD186360C90038F9C8 /* Supporting Files */,
 			);

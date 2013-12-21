@@ -36,8 +36,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	reversi = [USKReversi reversiWithRow:8 column:8 numberOfPlayers:2 rule:USKReversiRuleClassic];
+
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {	// iPad
+		reversi = [USKReversi reversiWithRow:8 column:8 numberOfPlayers:2 rule:USKReversiRuleClassic];
+	} else { // iPhone
+		reversi = [USKReversi reversiWithRow:6 column:6 numberOfPlayers:2 rule:USKReversiRuleClassic];
+	}
+
+
 	reverseLabels = [NSMutableArray array];
 	[self drawBoard];
 	[self redrawBoard];
@@ -122,39 +128,41 @@
 
 - (void)redrawBoard
 {
-	for (int i = 0; i < reversi.row * reversi.column; i++) {
-		if (reversi.states[i].changed == YES) {
-			switch (reversi.states[i].color) {
-				case 0:
-					[UIView beginAnimations:@"flipping view" context:nil];
-					[UIView setAnimationDuration:0.5];
-					[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-					[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:((UILabel *)reverseLabels[i]) cache:YES];
-					((USKDiskView *)reverseLabels[i]).backgroundColor = [UIColor blackColor];
-					((USKDiskView *)reverseLabels[i]).label.textColor = [UIColor whiteColor];
-					if (reversi.scores.count == 2) {
-						reversi.scores[0] = [NSNumber numberWithInt:([reversi.scores[0] intValue] + reversi.states[i].reverseCount)];
-					}
-					[UIView commitAnimations];
-					break;
-				case 1:
-					[UIView beginAnimations:@"flipping view" context:nil];
-					[UIView setAnimationDuration:0.5];
-					[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-					[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:((UILabel *)reverseLabels[i]) cache:YES];
-					((USKDiskView *)reverseLabels[i]).backgroundColor = [UIColor whiteColor];
-					((USKDiskView *)reverseLabels[i]).label.textColor = [UIColor blackColor];
-					if (reversi.scores.count == 2) {
-						reversi.scores[1] = [NSNumber numberWithInt:([reversi.scores[1] intValue] + reversi.states[i].reverseCount)];
-					}
-					[UIView commitAnimations];
-					break;
-				default:
-					break;
-			}
-			((USKDiskView *)reverseLabels[i]).label.text = [NSString stringWithFormat:@"%d", reversi.states[i].reverseCount];
-		}
-	}
+//	for (int i = 0; i < reversi.row; i++) {
+//		for (int j = 0; j < reversi.column; j++) {
+//		if (board[i][j].changed == YES) {
+//			switch (board[i][j].color) {
+//				case 0:
+//					[UIView beginAnimations:@"flipping view" context:nil];
+//					[UIView setAnimationDuration:0.5];
+//					[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//					[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:((UILabel *)reverseLabels[i]) cache:YES];
+//					((USKDiskView *)reverseLabels[i]).backgroundColor = [UIColor blackColor];
+//					((USKDiskView *)reverseLabels[i]).label.textColor = [UIColor whiteColor];
+//					if (reversi.scores.count == 2) {
+//						reversi.scores[0] = [NSNumber numberWithInt:([reversi.scores[0] intValue] + reversi.states[i].reverseCount)];
+//					}
+//					[UIView commitAnimations];
+//					break;
+//				case 1:
+//					[UIView beginAnimations:@"flipping view" context:nil];
+//					[UIView setAnimationDuration:0.5];
+//					[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//					[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:((UILabel *)reverseLabels[i]) cache:YES];
+//					((USKDiskView *)reverseLabels[i]).backgroundColor = [UIColor whiteColor];
+//					((USKDiskView *)reverseLabels[i]).label.textColor = [UIColor blackColor];
+//					if (reversi.scores.count == 2) {
+//						reversi.scores[1] = [NSNumber numberWithInt:([reversi.scores[1] intValue] + reversi.states[i].reverseCount)];
+//					}
+//					[UIView commitAnimations];
+//					break;
+//				default:
+//					break;
+//			}
+//			((USKDiskView *)reverseLabels[i]).label.text = [NSString stringWithFormat:@"%d", reversi.states[i].reverseCount];
+//		}
+//	}
+//	}
 }
 
 - (void)updateHelpLabel

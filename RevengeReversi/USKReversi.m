@@ -8,10 +8,20 @@
 
 #import "USKReversi.h"
 
-@implementation USKReversi
+#define aite(player) (3-(player))
+
+#define MAX_BOARD_SIZE 20
+
+static USKDiskState board[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+
+@implementation USKReversi {
+	int row2;
+	int col2;
+}
 
 @synthesize row, column, numberOfPlayers, rule;
-@synthesize turn, scores, states, passCount, gameOver, ability;
+@synthesize turn, scores, passCount, gameOver, ability;
+
 
 + (id)reversiWithRow:(int)r column:(int)c numberOfPlayers:(int)n rule:(USKReversiRule)rl
 {
@@ -24,11 +34,12 @@
 {
 	if (self = [super init]) {
 		row = r;
+		row2 = r + 2;
 		column = c;
+		col2 = column + 2;
 		numberOfPlayers = n;
 		rule = rl;
 		
-		states = calloc(row * column, sizeof(USKReversiState));
 		scores = [NSMutableArray array];
 		[scores addObject:@0];
 		[scores addObject:@0];
@@ -36,19 +47,30 @@
 		switch (rule) {
 			default: // USKReversiRuleClassic
 			{
-				// 奇数の時は偶数にする処理を追加すべき //
-				for (int i = 0; i < row * column; i++) {
-					states[i].color = -1;
-					states[i].reverseCount = 0;
+				// 3-step initialization
+				// initialize board with sentinel (1/3)
+				for (int i = 0; i < row2; i++) {
+					for (int j = 0; j < col2; j++) {
+						board[i][j].color = -1;
+						board[i][j].changed = NO;
+					}
 				}
-				states[(row / 2 - 1) * column + (column / 2 - 1)].color = 0;
-				states[(row / 2 - 1) * column + (column / 2 - 1)].changed = YES;
-				states[(row / 2 - 1) * column + (column / 2)].color = 1;
-				states[(row / 2 - 1) * column + (column / 2)].changed = YES;
-				states[(row / 2) * column + (column / 2 - 1)].color = 1;
-				states[(row / 2) * column + (column / 2 - 1)].changed = YES;
-				states[(row / 2) * column + (column / 2)].color = 0;
-				states[(row / 2) * column + (column / 2)].changed = YES;
+				
+				// initialize board with none except for edges (2/3)
+				for (int i = 1; i <= r; i++) {
+					for (int j = 1; j <= c; j++) {
+						board[i][j].color = 0;
+					}
+				}
+				// initialize central disks (3/3)
+				board[row2 / 2 - 1][col2 / 2 - 1].color = 1;
+				board[row2 / 2 - 1][col2 / 2 - 1].changed = YES;
+				board[row2 / 2 - 1][col2 / 2].color = 2;
+				board[row2 / 2 - 1][col2 / 2].changed = YES;
+				board[row2 / 2][col2 / 2 - 1].color = 2;
+				board[row2 / 2][col2 / 2 - 1].changed = YES;
+				board[row2 / 2][col2 / 2].color = 1;
+				board[row2 / 2][col2 / 2].changed = YES;
 			}
 				break;
 		}
@@ -62,49 +84,74 @@
 - (void)changeStateWithRow:(int)r column:(int)c
 {
 	switch (ability) {
-		case USKReversiAbilityGrandCross:
-		{
-			int attackColor = turn % numberOfPlayers;
-			scores[attackColor] = [NSNumber numberWithInt:[scores[attackColor] intValue] - 50];
-			
-			for (int i = 0; i < row; i++) {
-				states[i * column + c].color = attackColor;
-				states[i * column + c].changed = YES;
-				states[i * column + c].reverseCount++;
-			}
-			for (int j = 0; j < column; j++) {
-				states[r * column + j].color = attackColor;
-				states[r * column + j].changed = YES;
-				states[r * column + j].reverseCount++;
-			}
-			ability = USKReversiAbilityNone;
-			turn++;
-			break;
-		}
+//		case USKReversiAbilityGrandCross:
+//		{
+//			int attackColor = turn % numberOfPlayers;
+//			scores[attackColor] = [NSNumber numberWithInt:[scores[attackColor] intValue] - 50];
+//			
+//			for (int i = 0; i < row; i++) {
+//				states[i * column + c].color = attackColor;
+//				states[i * column + c].changed = YES;
+//				states[i * column + c].reverseCount++;
+//			}
+//			for (int j = 0; j < column; j++) {
+//				states[r * column + j].color = attackColor;
+//				states[r * column + j].changed = YES;
+//				states[r * column + j].reverseCount++;
+//			}
+//			ability = USKReversiAbilityNone;
+//			turn++;
+//			break;
+//		}
 		default:
 		{
 			// reset changed flags
-			for (int i = 0; i < row * column; i++) {
-				states[i].changed = NO;
+			for (int i = 1; i <= row; i++) {
+				for (int j = 1; j <= column; j++) {
+					board[i][j].changed = NO;
+				}
 			}
 			
 			// change states if the place is valid
-			if (states[r * column + c].color == -1) {
-				int attackColor = turn % numberOfPlayers;
-				if ([self reverseWithRow:r column:c attackColor:attackColor]) {
-					states[r * column + c].color = attackColor;
-					states[r * column + c].changed = YES;
-					turn++;
-				}
-				
-				//		[self printState];
+			int attacker = turn % numberOfPlayers;
+			if ([self isValidMoveWithRow:r column:c player:attacker]) {
+				[self flipWithRow:r column:c attackColor:attacker];
+				turn++;
 			}
-		}
 			break;
+		}
 	}
 	
 	[self updateScores];
 //	[self passCheck];
+}
+
+int flip(int player, int p, int q, int d, int e)
+{
+    int i;
+    
+    for (i = 1; board[p+i*d][q+i*e].color == aite(player); i++) {};
+    
+    if (board[p+i*d][q+i*e].color == player) {
+        return i-1;
+    } else {
+        return 0;
+    }
+}
+
+- (BOOL)isValidMoveWithRow:(int)r column:(int)c player:(int)p
+{
+	if (r < 1 || r > 8 || c < 1 || c > 8) return 0;
+    if (board[r][c].color != 0) return 0;
+    if (flip(p, r, c, -1,  0)) return 1;  /* 上 */
+    if (flip(p, r, c,  1,  0)) return 1;  /* 下 */
+    if (flip(p, r, c,  0, -1)) return 1;  /* 左 */
+    if (flip(p, r, c,  0,  1)) return 1;  /* 右 */
+    if (flip(p, r, c, -1, -1)) return 1;  /* 左上 */
+    if (flip(p, r, c, -1,  1)) return 1;  /* 右上 */
+    if (flip(p, r, c,  1, -1)) return 1;  /* 左下 */
+    if (flip(p, r, c,  1,  1)) return 1;  /* 右下 */
+	return NO;
 }
 
 //- (void)passCheck
@@ -143,399 +190,23 @@
 
 - (void)printState
 {
-	for (int i = 0; i < row; i++) {
-		for (int j = 0; j < column; j++) {
-			printf("%+d ", states[i * column + j].color);
+	for (int i = 1; i <= row; i++) {
+		for (int j = 1; j <= column; j++) {
+			printf("%d ", board[i][j].color);
 		}
 		printf("\n");
 	}
 }
 
-- (int)reverseWithRow:(int)r column:(int)c attackColor:(int)color
+- (void)flipWithRow:(int)r column:(int)c attackColor:(int)color
 {
 	int attackColor = color;
 	int attackerIndex = r * column + c;
 	int tempIndex = attackerIndex;
 	int hit = 0;
 	
-	// attack up
-	tempIndex = attackerIndex;
-	int upperAllyIndex = attackerIndex;
-	tempIndex -= column;
-	if (0 <= tempIndex) {
-		if (states[tempIndex].color != -1) {
-			while (0 <= tempIndex) {
-				if (states[tempIndex].color == attackColor) {
-					upperAllyIndex = tempIndex;
-					break;
-				} else if (states[tempIndex].color == -1) {
-					break;
-				}
-				tempIndex -= column;
-			}
-		}
-	}
-	tempIndex = attackerIndex - column;
-	while (upperAllyIndex < tempIndex) {
-		states[tempIndex].color = attackColor;
-		states[tempIndex].changed = YES;
-		states[tempIndex].reverseCount++;
-		hit++;
-		tempIndex -= column;
-	}
-	
-	// attack up-right
-	tempIndex = attackerIndex - (column - 1);
-	int upperRightAllyIndex = attackerIndex;
-	if (0 <= tempIndex) {
-		if (states[tempIndex].color != -1 && tempIndex % column != column - 1) {
-			while (0 <= tempIndex && tempIndex % column != column - 1) {
-				if (states[tempIndex].color == attackColor) {
-					upperRightAllyIndex = tempIndex;
-					break;
-				} else if (states[tempIndex].color == -1) {
-					break;
-				}
-				tempIndex -= (column - 1);
-			}
-		}
-	}
-	tempIndex = attackerIndex - (column - 1);
-	while (upperRightAllyIndex < tempIndex) {
-		states[tempIndex].color = attackColor;
-		states[tempIndex].changed = YES;
-		states[tempIndex].reverseCount++;
-		hit++;
-		tempIndex -= (column - 1);
-	}
-	
-	// attack right
-	tempIndex = attackerIndex;
-	int rightAllyIndex = attackerIndex;
-	tempIndex++;
-	if (tempIndex < row * column) {
-		if (states[tempIndex].color != -1) {
-			while (r == tempIndex / column) {
-				if (states[tempIndex].color == attackColor) {
-					rightAllyIndex = tempIndex;
-					break;
-				} else if (states[tempIndex].color == -1) {
-					break;
-				}
-				tempIndex++;
-			}
-		}
-	}
-	tempIndex = attackerIndex + 1;
-	while (tempIndex < rightAllyIndex) {
-		states[tempIndex].color = attackColor;
-		states[tempIndex].changed = YES;
-		states[tempIndex].reverseCount++;
-		hit++;
-		tempIndex++;
-	}
-	
-	// attack bottom-right
-	tempIndex = attackerIndex + (column + 1);
-	int bottomRightAllyIndex = attackerIndex;
-	if (states[tempIndex].color != -1 && (tempIndex - (column + 1)) % column != column - 1) {
-		while (tempIndex < row * column && tempIndex % column != column - 1) {
-			if (states[tempIndex].color == attackColor) {
-				bottomRightAllyIndex = tempIndex;
-				break;
-			} else if (states[tempIndex].color == -1) {
-				break;
-			}
-			tempIndex += (column + 1);
-		}
-	}
-	tempIndex = attackerIndex + (column + 1);
-	while (tempIndex < bottomRightAllyIndex) {
-		states[tempIndex].color = attackColor;
-		states[tempIndex].changed = YES;
-		states[tempIndex].reverseCount++;
-		hit++;
-		tempIndex += (column + 1);
-	}
 
-	
-	// attack bottom
-	tempIndex = attackerIndex;
-	int bottomAllyIndex = attackerIndex;
-	tempIndex += column;
-	if (states[tempIndex].color != -1) {
-		while (tempIndex < row * column) {
-			if (states[tempIndex].color == attackColor) {
-				bottomAllyIndex = tempIndex;
-				break;
-			} else if (states[tempIndex].color == -1) {
-				break;
-			}
-			tempIndex += column;
-		}
-	}
-	tempIndex = attackerIndex + column;
-	while (tempIndex < bottomAllyIndex) {
-		states[tempIndex].color = attackColor;
-		states[tempIndex].changed = YES;
-		states[tempIndex].reverseCount++;
-		hit++;
-		tempIndex += column;
-	}
-	
-	// attack bottom-left
-	tempIndex = attackerIndex + (column - 1);
-	int bottomLeftAllyIndex = attackerIndex;
-	if (states[tempIndex].color != -1 && (tempIndex - (column - 1)) % column != 0) {
-		while (tempIndex < row * column && tempIndex % column != 0) {
-			if (states[tempIndex].color == attackColor) {
-				bottomLeftAllyIndex = tempIndex;
-				break;
-			} else if (states[tempIndex].color == -1) {
-				break;
-			}
-			tempIndex += (column - 1);
-		}
-	}
-	tempIndex = attackerIndex + (column - 1);
-	while (tempIndex < bottomLeftAllyIndex) {
-		states[tempIndex].color = attackColor;
-		states[tempIndex].changed = YES;
-		states[tempIndex].reverseCount++;
-		hit++;
-		tempIndex += (column - 1);
-	}
-	
-	// attack left
-	tempIndex = attackerIndex;
-	int leftAllyIndex = attackerIndex;
-	tempIndex--;
-	if (states[tempIndex].color != -1) {
-		while (r == tempIndex / column && 0 <= tempIndex) {
-			if (states[tempIndex].color == attackColor) {
-				leftAllyIndex = tempIndex;
-				break;
-			} else if (states[tempIndex].color == -1) {
-				break;
-			}
-			tempIndex--;
-		}
-	}
-	tempIndex = attackerIndex - 1;
-	while (leftAllyIndex < tempIndex) {
-		states[tempIndex].color = attackColor;
-		states[tempIndex].changed = YES;
-		states[tempIndex].reverseCount++;
-		hit++;
-		tempIndex--;
-	}
-	
-	// attack top-left
-	tempIndex = attackerIndex - (column + 1);
-	int topLeftAllyIndex = attackerIndex;
-	if (0 <= tempIndex - (column + 1)) {
-		if (states[tempIndex - (column + 1)].color != -1 && (tempIndex + (column + 1)) % column != 0) {
-			while (0 <= tempIndex && tempIndex % column != 0) {
-				if (states[tempIndex].color == attackColor) {
-					topLeftAllyIndex = tempIndex;
-					break;
-				} else if (states[tempIndex].color == -1) {
-					break;
-				}
-				tempIndex -= (column + 1);
-			}
-		}
-	}
-	tempIndex = attackerIndex - (column + 1);
-	while (topLeftAllyIndex < tempIndex) {
-		states[tempIndex].color = attackColor;
-		states[tempIndex].changed = YES;
-		states[tempIndex].reverseCount++;
-		hit++;
-		tempIndex -= (column + 1);
-	}
-	
-	return hit;
 }
-//
-//- (int)checkWithRow:(int)r column:(int)c attackColor:(int)color
-//{
-//	int attackColor = color;
-//	int attackerIndex = r * column + c;
-//	int tempIndex = attackerIndex;
-//	int hit = 0;
-//	
-//	// attack up
-//	tempIndex = attackerIndex;
-//	int upperAllyIndex = attackerIndex;
-//	tempIndex -= column;
-//	if (0 <= tempIndex) {
-//		if (states[tempIndex].color != -1) {
-//			while (0 <= tempIndex) {
-//				if (states[tempIndex].color == attackColor) {
-//					upperAllyIndex = tempIndex;
-//					break;
-//				} else if (states[tempIndex].color == -1) {
-//					break;
-//				}
-//				tempIndex -= column;
-//			}
-//		}
-//	}
-//	tempIndex = attackerIndex - column;
-//	while (upperAllyIndex < tempIndex) {
-//		hit++;
-//		tempIndex -= column;
-//	}
-//	
-//	// attack up-right
-//	tempIndex = attackerIndex - (column - 1);
-//	int upperRightAllyIndex = attackerIndex;
-//	if (states[tempIndex].color != -1 && tempIndex % column != column - 1) {
-//		while (0 <= tempIndex && tempIndex % column != column - 1) {
-//			if (states[tempIndex].color == attackColor) {
-//				upperRightAllyIndex = tempIndex;
-//				break;
-//			} else if (states[tempIndex].color == -1) {
-//				break;
-//			}
-//			tempIndex -= (column - 1);
-//		}
-//	}
-//	tempIndex = attackerIndex - (column - 1);
-//	while (upperRightAllyIndex < tempIndex) {
-//		hit++;
-//		tempIndex -= (column - 1);
-//	}
-//	
-//	// attack right
-//	tempIndex = attackerIndex;
-//	int rightAllyIndex = attackerIndex;
-//	tempIndex++;
-//	if (states[tempIndex].color != -1) {
-//		while (r == tempIndex / column) {
-//			if (states[tempIndex].color == attackColor) {
-//				rightAllyIndex = tempIndex;
-//				break;
-//			} else if (states[tempIndex].color == -1) {
-//				break;
-//			}
-//			tempIndex++;
-//		}
-//	}
-//	tempIndex = attackerIndex + 1;
-//	while (tempIndex < rightAllyIndex) {
-//		hit++;
-//		tempIndex++;
-//	}
-//	
-//	// attack bottom-right
-//	tempIndex = attackerIndex + (column + 1);
-//	int bottomRightAllyIndex = attackerIndex;
-//	if (states[tempIndex].color != -1 && (tempIndex - (column + 1)) % column != column - 1) {
-//		while (tempIndex < row * column && tempIndex % column != column - 1) {
-//			if (states[tempIndex].color == attackColor) {
-//				bottomRightAllyIndex = tempIndex;
-//				break;
-//			} else if (states[tempIndex].color == -1) {
-//				break;
-//			}
-//			tempIndex += (column + 1);
-//		}
-//	}
-//	tempIndex = attackerIndex + (column + 1);
-//	while (tempIndex < bottomRightAllyIndex) {
-//		hit++;
-//		tempIndex += (column + 1);
-//	}
-//	
-//	
-//	// attack bottom
-//	tempIndex = attackerIndex;
-//	int bottomAllyIndex = attackerIndex;
-//	tempIndex += column;
-//	if (states[tempIndex].color != -1) {
-//		while (tempIndex < row * column) {
-//			if (states[tempIndex].color == attackColor) {
-//				bottomAllyIndex = tempIndex;
-//				break;
-//			} else if (states[tempIndex].color == -1) {
-//				break;
-//			}
-//			tempIndex += column;
-//		}
-//	}
-//	tempIndex = attackerIndex + column;
-//	while (tempIndex < bottomAllyIndex) {
-//		hit++;
-//		tempIndex += column;
-//	}
-//	
-//	// attack bottom-left
-//	tempIndex = attackerIndex + (column - 1);
-//	int bottomLeftAllyIndex = attackerIndex;
-//	if (states[tempIndex].color != -1 && (tempIndex - (column - 1)) % column != 0) {
-//		while (tempIndex < row * column && tempIndex % column != 0) {
-//			if (states[tempIndex].color == attackColor) {
-//				bottomLeftAllyIndex = tempIndex;
-//				break;
-//			} else if (states[tempIndex].color == -1) {
-//				break;
-//			}
-//			tempIndex += (column - 1);
-//		}
-//	}
-//	tempIndex = attackerIndex + (column - 1);
-//	while (tempIndex < bottomLeftAllyIndex) {
-//		hit++;
-//		tempIndex += (column - 1);
-//	}
-//	
-//	// attack left
-//	tempIndex = attackerIndex;
-//	int leftAllyIndex = attackerIndex;
-//	tempIndex--;
-//	if (states[tempIndex].color != -1) {
-//		while (r == tempIndex / column && 0 <= tempIndex) {
-//			if (states[tempIndex].color == attackColor) {
-//				leftAllyIndex = tempIndex;
-//				break;
-//			} else if (states[tempIndex].color == -1) {
-//				break;
-//			}
-//			tempIndex--;
-//		}
-//	}
-//	tempIndex = attackerIndex - 1;
-//	while (leftAllyIndex < tempIndex) {
-//		hit++;
-//		tempIndex--;
-//	}
-//	
-//	// attack top-left
-//	tempIndex = attackerIndex - (column + 1);
-//	int topLeftAllyIndex = attackerIndex;
-//	if (0 <= tempIndex - (column + 1)) {
-//		if (states[tempIndex - (column + 1)].color != -1 && (tempIndex + (column + 1)) % column != 0) {
-//			while (0 <= tempIndex && tempIndex % column != 0) {
-//				if (states[tempIndex].color == attackColor) {
-//					topLeftAllyIndex = tempIndex;
-//					break;
-//				} else if (states[tempIndex].color == -1) {
-//					break;
-//				}
-//				tempIndex -= (column + 1);
-//			}
-//		}
-//	}
-//	tempIndex = attackerIndex - (column + 1);
-//	while (topLeftAllyIndex < tempIndex) {
-//		hit++;
-//		tempIndex -= (column + 1);
-//	}
-//	
-//	return hit;
-//}
 
 - (int)attacker
 {
@@ -544,7 +215,6 @@
 
 - (void)dealloc
 {
-	free(states);
 }
 
 @end
