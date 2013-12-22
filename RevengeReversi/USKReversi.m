@@ -95,7 +95,7 @@ typedef enum USKReversiDirection {
 		}
 	}
 	
-	[self printState];
+	[self printBoard];
 	[self countOccupiedCells];
 	[self numberOfFreeCells];
 	
@@ -191,14 +191,19 @@ typedef enum USKReversiDirection {
 	}
 }
 
-- (int)countPasses
-{
-	return 0;
-}
-
 - (int)numberOfAvailableMovesWithPlayerNumber:(int)player
 {
-	return 0;
+	int numberOfAvailableMoves = 0;
+	
+	for (int i = 0; i < self.row; i++) {
+		for (int j = 0; j < self.column; j++) {
+			if ([self validateMoveWithRow:i column:j playerNumber:player]) {
+				numberOfAvailableMoves++;
+			}
+		}
+	}
+	
+	return numberOfAvailableMoves;
 }
 
 - (BOOL)everyonePasses
@@ -217,7 +222,7 @@ typedef enum USKReversiDirection {
 	return ((0 <= row && row < self.row) && (0 <= column && column < self.column));
 }
 
-- (int)flipCountWithRow:(int)row column:(int)column player:(int)player direction:(USKReversiDirection)direction
+- (int)flipCountFromRow:(int)row column:(int)column toward:(USKReversiDirection)direction playerNumber:(int)playerNumber
 {
 	int flipCount = 0;
 	
@@ -228,7 +233,7 @@ typedef enum USKReversiDirection {
 	int c = column + columnDelta;
 
 	while ([self diskIsOnBoardWithRow:r column:c]
-		   && ((USKReversiDisk *)self.disks[r][c]).playerNumber != player
+		   && ((USKReversiDisk *)self.disks[r][c]).playerNumber != playerNumber
 		   && ((USKReversiDisk *)self.disks[r][c]).playerNumber != -1) {
 		r += rowDelta;
 		c += columnDelta;
@@ -236,14 +241,15 @@ typedef enum USKReversiDirection {
 	}
 	
 	if ([self diskIsOnBoardWithRow:r column:c]
-		&& ((USKReversiDisk *)self.disks[r][c]).playerNumber == player) {
+		&& ((USKReversiDisk *)self.disks[r][c]).playerNumber == playerNumber) {
+//		printf("Flip count = %d\n", flipCount);
 		return flipCount;
 	} else {
 		return 0;
 	}
 }
 
-- (BOOL)moveValidityOnRow:(int)row column:(int)column byPlayer:(int)playerNumber
+- (BOOL)validateMoveWithRow:(int)row column:(int)column playerNumber:(int)playerNumber
 {
 	if ([self diskIsOnBoardWithRow:row column:column] == NO) {
 		return NO;
@@ -253,29 +259,46 @@ typedef enum USKReversiDirection {
 		return NO;
 	}
 	
-	int flipCount = 0;
-	for (NSNumber *aDirection in self.directionsToFlip) {
-		USKReversiDirection d = [aDirection intValue];
-		flipCount += [self flipCountWithRow:row column:column player:playerNumber direction:d];
+	for (int i = 0; i < self.directionsToFlip.count; i++) {
+		USKReversiDirection direction = [self.directionsToFlip[i] intValue];
+		if ([self flipCountFromRow:row column:column toward:direction playerNumber:playerNumber]) {
+			return YES;
+		}
 	}
-	if (flipCount == 0) {
-		return NO;
-	}
-	
-	return YES;
+
+	return NO;
 }
 
 
-//- (void)commitFlipWithRow:(int)row column:(int)column playerNumber:(int)playerNumber
-//{
-//	int flipCount = 0;
-//	for (NSNumber *aDirection in self.directionsToFlip) {
-//		USKReversiDirection d = [aDirection intValue];
-//		flipCount += [self flipCountWithRow:row column:column player:playerNumber direction:d];
-//	}
-//}
+- (void)flipFromRow:(int)row column:(int)column toward:(USKReversiDirection)direction playerNumber:(int)playerNumber
+{
+	int flipCount = 0;
+	flipCount = [self flipCountFromRow:row column:column toward:direction playerNumber:playerNumber];
+	printf("Flip count = %d\n", flipCount);
+	
+	int rowDelta = [self rowDeltaToDirection:direction];
+	int columnDelta = [self columnDeltaToDirection:direction];
+	
+	for (int i = 1; i <= flipCount; i++) {
+		((USKReversiDisk *)self.disks[row + rowDelta * i][column + columnDelta * i]).playerNumber = playerNumber;
+	}
+}
 
-- (void)printState
+- (void)flipFromRow:(int)row column:(int)column playerNumber:(int)playerNumber
+{
+	((USKReversiDisk *)self.disks[row][column]).playerNumber = playerNumber;
+	
+	for (int i = 0; i < self.directionsToFlip.count; i++) {
+		USKReversiDirection direction = [self.directionsToFlip[i] intValue];
+		[self flipFromRow:row column:column toward:direction playerNumber:playerNumber];
+	}
+	
+	self.turn++;
+	
+	[self printBoard];
+}
+
+- (void)printBoard
 {
 	for (int i = 0; i < self.row; i++) {
 		for (int j = 0; j < self.column; j++) {

@@ -62,13 +62,17 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kelly-green-canvas-fabric-texture.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aSa-2P-gq7">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kelly-green-canvas-fabric-texture.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aSa-2P-gq7">
                                 <rect key="frame" x="24" y="152" width="720" height="720"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="720" id="MCq-dZ-SoV"/>
                                     <constraint firstAttribute="width" constant="720" id="l0X-jY-Hds"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="jGe-Lz-fXe" appends="YES" id="EZM-gO-QVy"/>
+                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFD-c4-xWo">
                                 <rect key="frame" x="245" y="888" width="279" height="116"/>
@@ -105,6 +109,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="jGe-Lz-fXe">
+                    <connections>
+                        <action selector="tapAction:" destination="BYZ-38-t0r" id="0qr-YQ-VZR"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
         </scene>
     </scenes>

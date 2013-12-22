@@ -23,16 +23,17 @@ typedef enum USKReversiRule {
 @property (readonly) int numberOfPlayers;
 @property (readonly) USKReversiRule rule;
 
-@property (readonly) int turn;
+@property int turn;
 @property USKReversiAbility ability;
 @property NSMutableArray *players;
 @property (readonly) NSMutableArray *disks;
 @property (readonly) BOOL finished;
+@property (readonly) int attacker;
 
 + (id)reversiWithRow:(int)row column:(int)column numberOfPlayers:(int)numberOfPlayers rule:(USKReversiRule)rule;
 - (id)initWithRow:(int)row column:(int)column numberOfPlayers:(int)numberOfPlayers rule:(USKReversiRule)rule;
-- (int)attacker;
 - (BOOL)isFinished;
-
+- (BOOL)validateMoveWithRow:(int)row column:(int)column playerNumber:(int)playerNumber;
+- (void)flipFromRow:(int)row column:(int)column playerNumber:(int)playerNumber;
 
 @end

@@ -23,6 +23,7 @@
 @property NSMutableArray *diskViews;
 
 - (IBAction)grandCrossButtonAction:(id)sender;
+- (IBAction)tapAction:(id)sender;
 
 @end
 
@@ -114,23 +115,11 @@
 	self.whiteScoreLabel.text = [NSString stringWithFormat:@"White: %d", ((USKReversiPlayer *)_reversi.players[1]).score];
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-	CGPoint p = [[touches anyObject] locationInView:self.boardImageView];
-	int row = p.y / self.boardImageView.frame.size.height * _reversi.row;
-	int column = p.x / self.boardImageView.frame.size.width * _reversi.column;
-	printf("INDEX:(%d, %d), COOD:(%3.1f, %3.1f)", row, column, p.x, p.y);
-
-	[self redrawBoard];
-	[self updateHelpLabel];
-	[self updateScoreLabels];
-}
-
 - (void)redrawBoard
 {
 	for (int i = 0; i < _reversi.row; i++) {
 		for (int j = 0; j < _reversi.column; j++) {
-			if ([self.reversi.disks[i][j] lastChangedTurn] == self.reversi.turn) {
+//			if ([self.reversi.disks[i][j] lastChangedTurn] == self.reversi.turn) {
 				switch (((USKReversiDisk *)self.reversi.disks[i][j]).playerNumber) {
 					case 0:
 						[UIView beginAnimations:@"flipping view" context:nil];
@@ -161,28 +150,42 @@
 				}
 //				((USKDiskView *)self.diskViews[i][j]).label.text = [NSString stringWithFormat:@"%d", board[i][j].flipCount];
 			}
-		}
+//		}
 	}
 }
 
 - (void)updateHelpLabel
 {
-//	switch ([_reversi attacker]) {
-//		case 0:
-//			helpLabel.text = @"Black's Turn";
-//			break;
-//		case 1:
-//			helpLabel.text = @"White's Turn";
-//			break;
-//		default:
-//			break;
-//	}
+	switch (self.reversi.attacker) {
+		case 0:
+			self.helpLabel.text = @"Black's Turn";
+			break;
+		case 1:
+			self.helpLabel.text = @"White's Turn";
+			break;
+		default:
+			break;
+	}
 }
-
-
 
 - (IBAction)grandCrossButtonAction:(id)sender {
 	_reversi.ability = USKReversiAbilityGrandCross;
+}
+
+- (IBAction)tapAction:(id)sender {
+	UIGestureRecognizer *recognizer = sender;
+
+	CGPoint p = [recognizer locationInView:self.boardImageView];
+	int row = p.y / self.boardImageView.frame.size.height * self.reversi.row;
+	int column = p.x / self.boardImageView.frame.size.width * self.reversi.column;
+	NSLog(@"INDEX:(%d, %d), COOD:(%3.1f, %3.1f)", row, column, p.x, p.y);
+	
+	if ([self.reversi validateMoveWithRow:row column:column playerNumber:self.reversi.attacker]) {
+		[self.reversi flipFromRow:row column:column playerNumber:self.reversi.attacker];
+		[self redrawBoard];
+		[self updateHelpLabel];
+		[self updateScoreLabels];
+	}
 }
 
 @end
