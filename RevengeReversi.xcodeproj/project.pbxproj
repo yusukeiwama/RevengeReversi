@@ -23,9 +23,7 @@
 		43068303186360C90038F9C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43068301186360C90038F9C8 /* InfoPlist.strings */; };
 		43068305186360C90038F9C8 /* RevengeReversiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43068304186360C90038F9C8 /* RevengeReversiTests.m */; };
 		433E36C01865EE8300C0C051 /* USKReversiDisk.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E36BF1865EE8300C0C051 /* USKReversiDisk.m */; };
-		4344B350186443BC009E28CB /* board.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4344B34F186443BC009E28CB /* board.jpg */; };
 		4344B353186445D3009E28CB /* desk_gray.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4344B352186445D3009E28CB /* desk_gray.jpg */; };
-		4344B355186447B5009E28CB /* forest-green-cloth-light.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4344B354186447B5009E28CB /* forest-green-cloth-light.jpeg */; };
 		4344B35C18644935009E28CB /* USKDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4344B35B18644935009E28CB /* USKDiskView.m */; };
 		4344B35E18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4344B35D18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg */; };
 		435997E4186691F600E3C4A3 /* USKReversiPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 435997E3186691F600E3C4A3 /* USKReversiPlayer.m */; };
@@ -67,9 +65,7 @@
 		43068304186360C90038F9C8 /* RevengeReversiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevengeReversiTests.m; sourceTree = "<group>"; };
 		433E36BE1865EE8300C0C051 /* USKReversiDisk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversiDisk.h; sourceTree = "<group>"; };
 		433E36BF1865EE8300C0C051 /* USKReversiDisk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKReversiDisk.m; sourceTree = "<group>"; };
-		4344B34F186443BC009E28CB /* board.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = board.jpg; path = RevengeReversi/board.jpg; sourceTree = "<group>"; };
 		4344B352186445D3009E28CB /* desk_gray.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = desk_gray.jpg; path = RevengeReversi/desk_gray.jpg; sourceTree = "<group>"; };
-		4344B354186447B5009E28CB /* forest-green-cloth-light.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "forest-green-cloth-light.jpeg"; path = "RevengeReversi/forest-green-cloth-light.jpeg"; sourceTree = "<group>"; };
 		4344B35A18644935009E28CB /* USKDiskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKDiskView.h; sourceTree = "<group>"; };
 		4344B35B18644935009E28CB /* USKDiskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKDiskView.m; sourceTree = "<group>"; };
 		4344B35D18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "kelly-green-canvas-fabric-texture.jpg"; path = "RevengeReversi/kelly-green-canvas-fabric-texture.jpg"; sourceTree = "<group>"; };
@@ -184,9 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				4344B35D18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg */,
-				4344B354186447B5009E28CB /* forest-green-cloth-light.jpeg */,
 				4344B352186445D3009E28CB /* desk_gray.jpg */,
-				4344B34F186443BC009E28CB /* board.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -308,9 +302,7 @@
 				430682ED186360C90038F9C8 /* Main_iPad.storyboard in Resources */,
 				4344B353186445D3009E28CB /* desk_gray.jpg in Resources */,
 				430682F2186360C90038F9C8 /* Images.xcassets in Resources */,
-				4344B355186447B5009E28CB /* forest-green-cloth-light.jpeg in Resources */,
 				430682EA186360C90038F9C8 /* Main_iPhone.storyboard in Resources */,
-				4344B350186443BC009E28CB /* board.jpg in Resources */,
 				4344B35E18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg in Resources */,
 				430682E1186360C90038F9C8 /* InfoPlist.strings in Resources */,
 			);

@@ -10,9 +10,9 @@
 
 @interface USKReversiDisk : NSObject
 
-@property int playerNumber; // -1:free,
-@property int flipCount;
-@property int lastChangedTurn;
+@property (readonly) int playerNumber; // -1:free,
+@property (readonly) int flipCount;
+@property (readonly) int lastChangedTurn;
 
 - (void)changeColorTo:(int)color turn:(int)turn;
 

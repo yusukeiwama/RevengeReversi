@@ -27,8 +27,8 @@
 
 - (void)changeColorTo:(int)color turn:(int)turn
 {
-	self.playerNumber = color;
-	self.lastChangedTurn = turn;
+	_playerNumber = color;
+	_lastChangedTurn = turn;
 }
 
 @end

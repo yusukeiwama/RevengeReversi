@@ -111,21 +111,22 @@
 
 - (void)updateScoreLabels
 {
-	self.blackScoreLabel.text = [NSString stringWithFormat:@"Black: %d", ((USKReversiPlayer *)_reversi.players[0]).score];
-	self.whiteScoreLabel.text = [NSString stringWithFormat:@"White: %d", ((USKReversiPlayer *)_reversi.players[1]).score];
+	self.blackScoreLabel.text = [NSString stringWithFormat:@"Black: %d", ((USKReversiPlayer *)_reversi.players[0]).occupiedCount];
+	self.whiteScoreLabel.text = [NSString stringWithFormat:@"White: %d", ((USKReversiPlayer *)_reversi.players[1]).occupiedCount];
 }
 
 - (void)redrawBoard
 {
 	for (int i = 0; i < _reversi.row; i++) {
 		for (int j = 0; j < _reversi.column; j++) {
-//			if ([self.reversi.disks[i][j] lastChangedTurn] == self.reversi.turn) {
+			if ([self.reversi.disks[i][j] lastChangedTurn] + 1 == self.reversi.turn) {
+				double duration = 0.12;
 				switch (((USKReversiDisk *)self.reversi.disks[i][j]).playerNumber) {
 					case 0:
 						[UIView beginAnimations:@"flipping view" context:nil];
-						[UIView setAnimationDuration:0.5];
+						[UIView setAnimationDuration:duration];
 						[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-						[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:((USKDiskView *)self.diskViews[i][j]) cache:YES];
+						[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:((USKDiskView *)self.diskViews[i][j]) cache:NO];
 						((USKDiskView *)self.diskViews[i][j]).backgroundColor = [UIColor blackColor];
 						((USKDiskView *)self.diskViews[i][j]).label.textColor = [UIColor whiteColor];
 //						if (self.reversi.scores.count == 2) {
@@ -135,9 +136,9 @@
 						break;
 					case 1:
 						[UIView beginAnimations:@"flipping view" context:nil];
-						[UIView setAnimationDuration:0.5];
+						[UIView setAnimationDuration:duration];
 						[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-						[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:((USKDiskView *)self.diskViews[i][j]) cache:YES];
+						[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:((USKDiskView *)self.diskViews[i][j]) cache:NO];
 						((USKDiskView *)self.diskViews[i][j]).backgroundColor = [UIColor whiteColor];
 						((USKDiskView *)self.diskViews[i][j]).label.textColor = [UIColor blackColor];
 //						if (self.reversi.scores.count == 2) {
@@ -150,12 +151,26 @@
 				}
 //				((USKDiskView *)self.diskViews[i][j]).label.text = [NSString stringWithFormat:@"%d", board[i][j].flipCount];
 			}
-//		}
+		}
 	}
 }
 
 - (void)updateHelpLabel
 {
+	if (self.reversi.isFinished) {
+		switch (self.reversi.winner) {
+			case 0:
+				self.helpLabel.text = @"Black Won!";
+				break;
+			case 1:
+				self.helpLabel.text = @"White Won!";
+				break;
+			default:
+				break;
+		}
+		return;
+	}
+	
 	switch (self.reversi.attacker) {
 		case 0:
 			self.helpLabel.text = @"Black's Turn";
