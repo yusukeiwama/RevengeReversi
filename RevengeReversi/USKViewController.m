@@ -7,8 +7,8 @@
 //
 
 #import "USKViewController.h"
-#import "USKReversi.h"
 #import <QuartzCore/QuartzCore.h>
+#import "USKReversi.h"
 #import "USKDiskView.h"
 
 @interface USKViewController ()
@@ -18,39 +18,84 @@
 @property (weak, nonatomic) IBOutlet UILabel *whiteScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *helpLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
+@property USKReversi *reversi;
+@property NSMutableArray *diskViews;
+
 - (IBAction)grandCrossButtonAction:(id)sender;
 
 @end
 
-@implementation USKViewController {
-	USKReversi *reversi;
-	NSMutableArray *reverseLabels;
-}
+@implementation USKViewController
 
-@synthesize boardImageView;
-@synthesize blackScoreLabel;
-@synthesize whiteScoreLabel;
-@synthesize helpLabel;
-@synthesize backgroundImageView;
+@synthesize boardImageView = _boardImageView;
+@synthesize blackScoreLabel = _blackScoreLabel;
+@synthesize whiteScoreLabel = _whiteScoreLabel;
+@synthesize helpLabel = _helpLabel;
+@synthesize backgroundImageView = _backgroundImageView;
+@synthesize reversi = _reversi;
+@synthesize diskViews = _diskViews;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+	// Select proper board size according to user's device.
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {	// iPad
-		reversi = [USKReversi reversiWithRow:8 column:8 numberOfPlayers:2 rule:USKReversiRuleClassic];
+		_reversi = [USKReversi reversiWithRow:8 column:8 numberOfPlayers:2 rule:USKReversiRuleClassic];
 	} else { // iPhone
-		reversi = [USKReversi reversiWithRow:6 column:6 numberOfPlayers:2 rule:USKReversiRuleClassic];
+		_reversi = [USKReversi reversiWithRow:6 column:6 numberOfPlayers:2 rule:USKReversiRuleClassic];
 	}
-
-
-	reverseLabels = [NSMutableArray array];
-	[self drawBoard];
+	
+	// Draw guidelines
+	UIGraphicsBeginImageContextWithOptions((self.boardImageView.frame.size), YES, 0);
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	[self.boardImageView.image drawInRect:CGRectMake(0, 0, self.boardImageView.frame.size.width, self.boardImageView.frame.size.height)];
+	CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
+	CGContextSetLineWidth(context, 2);
+	for (int i = 0; i < _reversi.column + 1; i++) {
+		// Draw vertical lines.
+		CGContextMoveToPoint(context, self.boardImageView.frame.size.width / _reversi.column * i, 0.0);
+		CGContextAddLineToPoint(context, self.boardImageView.frame.size.width / _reversi.column * i, self.boardImageView.frame.size.height);
+	}
+	for (int i = 0; i < _reversi.row + 1; i++) {
+		// Draw horizontal lines.
+		CGContextMoveToPoint(context, 0.0, self.boardImageView.frame.size.height / _reversi.row * i);
+		CGContextAddLineToPoint(context, self.boardImageView.frame.size.width, self.boardImageView.frame.size.height / _reversi.row * i);
+	}
+	CGContextStrokePath(context);
+	self.boardImageView.image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	// Draw disk views.
+	_diskViews = [NSMutableArray array];
+	for (int i = 0; i < _reversi.row; i++) {
+		NSMutableArray *aRow = [NSMutableArray array];
+		for (int j = 0; j < _reversi.column; j++) {
+			CGFloat margin = self.boardImageView.frame.size.width / _reversi.column * 0.12;
+			CGRect rect = CGRectMake(self.boardImageView.frame.size.width / _reversi.column * j + margin,
+									 self.boardImageView.frame.size.height / _reversi.row * i + margin,
+									 self.boardImageView.frame.size.width / _reversi.column - 2.0 * margin,
+									 self.boardImageView.frame.size.height / _reversi.row - 2.0 * margin);
+			USKDiskView *aDiskView = [[USKDiskView alloc] initWithFrame:rect];
+			aDiskView.backgroundColor = [UIColor clearColor];
+			aDiskView.label.textAlignment = NSTextAlignmentCenter;
+			aDiskView.label.font = [UIFont fontWithName:@"Futura" size:32.0];
+			aDiskView.layer.cornerRadius = aDiskView.frame.size.width / 2.0;
+			aDiskView.layer.shadowColor = [[UIColor blackColor] CGColor];
+			aDiskView.layer.shadowOffset = CGSizeMake(2.0, 2.0);
+			aDiskView.layer.shadowOpacity = 0.7;
+			[self.boardImageView addSubview:aDiskView];
+			[aRow addObject:aDiskView];
+		}
+		[_diskViews addObject:aRow];
+	}
+	
 	[self redrawBoard];
 	[self updateHelpLabel];
 	
-	boardImageView.userInteractionEnabled = YES;
-	boardImageView.multipleTouchEnabled = NO;
+	self.boardImageView.userInteractionEnabled = YES;
+	self.boardImageView.multipleTouchEnabled = NO;
 	
 //	blackScoreLabel.transform = CGAffineTransformRotate(blackScoreLabel.transform, M_PI);
 	
@@ -63,64 +108,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)drawBoard
-{
-	// Draw guidelines
-	UIGraphicsBeginImageContextWithOptions((boardImageView.frame.size), YES, 0);
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	[boardImageView.image drawInRect:CGRectMake(0, 0, boardImageView.frame.size.width, boardImageView.frame.size.height)];
-	CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
-	CGContextSetLineWidth(context, 2);
-	for (int i = 0; i < reversi.column + 1; i++) {
-		// Draw vertical lines.
-		CGContextMoveToPoint(context, boardImageView.frame.size.width / reversi.column * i, 0.0);
-		CGContextAddLineToPoint(context, boardImageView.frame.size.width / reversi.column * i, boardImageView.frame.size.height);
-	}
-	for (int i = 0; i < reversi.row + 1; i++) {
-		// Draw horizontal lines.
-		CGContextMoveToPoint(context, 0.0, boardImageView.frame.size.height / reversi.row * i);
-		CGContextAddLineToPoint(context, boardImageView.frame.size.width, boardImageView.frame.size.height / reversi.row * i);
-	}
-	CGContextStrokePath(context);
-	boardImageView.image = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-	
-		
-	for (int i = 0; i < reversi.row; i++) {
-		for (int j = 0; j < reversi.column; j++) {
-			CGFloat margin = boardImageView.frame.size.width / reversi.column * 0.12;
-			CGRect rect = CGRectMake(boardImageView.frame.size.width / reversi.column * j + margin,
-									 boardImageView.frame.size.height / reversi.row * i + margin,
-									 boardImageView.frame.size.width / reversi.column - 2.0 * margin,
-									 boardImageView.frame.size.height / reversi.row - 2.0 * margin);
-			USKDiskView *aDiskView = [[USKDiskView alloc] initWithFrame:rect];
-			aDiskView.backgroundColor = [UIColor clearColor];
-			aDiskView.label.textAlignment = NSTextAlignmentCenter;
-			aDiskView.label.font = [UIFont fontWithName:@"Futura" size:32.0];
-			aDiskView.layer.cornerRadius = aDiskView.frame.size.width / 2.0;
-			aDiskView.layer.shadowColor = [[UIColor blackColor] CGColor];
-			aDiskView.layer.shadowOffset = CGSizeMake(2.0, 2.0);
-			aDiskView.layer.shadowOpacity = 0.7;
-			[boardImageView addSubview:aDiskView];
-			[reverseLabels addObject:aDiskView];
-		}
-	}
-}
-
 - (void)updateScoreLabels
 {
-	blackScoreLabel.text = [NSString stringWithFormat:@"Black: %d", [(NSNumber *)reversi.scores[0] intValue]];
-	whiteScoreLabel.text = [NSString stringWithFormat:@"White: %d", [(NSNumber *)reversi.scores[1] intValue]];
+	self.blackScoreLabel.text = [NSString stringWithFormat:@"Black: %d", ((USKReversiPlayer *)_reversi.players[0]).score];
+	self.whiteScoreLabel.text = [NSString stringWithFormat:@"White: %d", ((USKReversiPlayer *)_reversi.players[1]).score];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	CGPoint p = [[touches anyObject] locationInView:boardImageView];
-	int row = p.y / boardImageView.frame.size.height * reversi.row;
-	int column = p.x / boardImageView.frame.size.width * reversi.column;
-	NSLog(@"INDEX:(%d, %d), COOD:(%3.1f, %3.1f)", row, column, p.x, p.y);
+	CGPoint p = [[touches anyObject] locationInView:self.boardImageView];
+	int row = p.y / self.boardImageView.frame.size.height * _reversi.row;
+	int column = p.x / self.boardImageView.frame.size.width * _reversi.column;
+	printf("INDEX:(%d, %d), COOD:(%3.1f, %3.1f)", row, column, p.x, p.y);
 
-	[reversi changeStateWithRow:row column:column];
 	[self redrawBoard];
 	[self updateHelpLabel];
 	[self updateScoreLabels];
@@ -128,61 +128,61 @@
 
 - (void)redrawBoard
 {
-//	for (int i = 0; i < reversi.row; i++) {
-//		for (int j = 0; j < reversi.column; j++) {
-//		if (board[i][j].changed == YES) {
-//			switch (board[i][j].color) {
-//				case 0:
-//					[UIView beginAnimations:@"flipping view" context:nil];
-//					[UIView setAnimationDuration:0.5];
-//					[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//					[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:((UILabel *)reverseLabels[i]) cache:YES];
-//					((USKDiskView *)reverseLabels[i]).backgroundColor = [UIColor blackColor];
-//					((USKDiskView *)reverseLabels[i]).label.textColor = [UIColor whiteColor];
-//					if (reversi.scores.count == 2) {
-//						reversi.scores[0] = [NSNumber numberWithInt:([reversi.scores[0] intValue] + reversi.states[i].reverseCount)];
-//					}
-//					[UIView commitAnimations];
-//					break;
-//				case 1:
-//					[UIView beginAnimations:@"flipping view" context:nil];
-//					[UIView setAnimationDuration:0.5];
-//					[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//					[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:((UILabel *)reverseLabels[i]) cache:YES];
-//					((USKDiskView *)reverseLabels[i]).backgroundColor = [UIColor whiteColor];
-//					((USKDiskView *)reverseLabels[i]).label.textColor = [UIColor blackColor];
-//					if (reversi.scores.count == 2) {
-//						reversi.scores[1] = [NSNumber numberWithInt:([reversi.scores[1] intValue] + reversi.states[i].reverseCount)];
-//					}
-//					[UIView commitAnimations];
-//					break;
-//				default:
-//					break;
-//			}
-//			((USKDiskView *)reverseLabels[i]).label.text = [NSString stringWithFormat:@"%d", reversi.states[i].reverseCount];
-//		}
-//	}
-//	}
+	for (int i = 0; i < _reversi.row; i++) {
+		for (int j = 0; j < _reversi.column; j++) {
+			if ([self.reversi.disks[i][j] lastChangedTurn] == self.reversi.turn) {
+				switch (((USKReversiDisk *)self.reversi.disks[i][j]).playerNumber) {
+					case 0:
+						[UIView beginAnimations:@"flipping view" context:nil];
+						[UIView setAnimationDuration:0.5];
+						[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+						[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:((USKDiskView *)self.diskViews[i][j]) cache:YES];
+						((USKDiskView *)self.diskViews[i][j]).backgroundColor = [UIColor blackColor];
+						((USKDiskView *)self.diskViews[i][j]).label.textColor = [UIColor whiteColor];
+//						if (self.reversi.scores.count == 2) {
+//							self.reversi.scores[0] = [NSNumber numberWithInt:([self.reversi.scores[0] intValue] + board[i][j].flipCount)];
+//						}
+						[UIView commitAnimations];
+						break;
+					case 1:
+						[UIView beginAnimations:@"flipping view" context:nil];
+						[UIView setAnimationDuration:0.5];
+						[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+						[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:((USKDiskView *)self.diskViews[i][j]) cache:YES];
+						((USKDiskView *)self.diskViews[i][j]).backgroundColor = [UIColor whiteColor];
+						((USKDiskView *)self.diskViews[i][j]).label.textColor = [UIColor blackColor];
+//						if (self.reversi.scores.count == 2) {
+//							self.reversi.scores[1] = [NSNumber numberWithInt:([self.reversi.scores[1] intValue] + self.reversi.disks[i][j].flipCount)];
+//						}
+						[UIView commitAnimations];
+						break;
+					default:
+						break;
+				}
+//				((USKDiskView *)self.diskViews[i][j]).label.text = [NSString stringWithFormat:@"%d", board[i][j].flipCount];
+			}
+		}
+	}
 }
 
 - (void)updateHelpLabel
 {
-	switch ([reversi attacker]) {
-		case 0:
-			helpLabel.text = @"Black's Turn";
-			break;
-		case 1:
-			helpLabel.text = @"White's Turn";
-			break;
-		default:
-			break;
-	}
+//	switch ([_reversi attacker]) {
+//		case 0:
+//			helpLabel.text = @"Black's Turn";
+//			break;
+//		case 1:
+//			helpLabel.text = @"White's Turn";
+//			break;
+//		default:
+//			break;
+//	}
 }
 
 
 
 - (IBAction)grandCrossButtonAction:(id)sender {
-	reversi.ability = USKReversiAbilityGrandCross;
+	_reversi.ability = USKReversiAbilityGrandCross;
 }
 
 @end

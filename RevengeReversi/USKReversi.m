@@ -8,207 +8,291 @@
 
 #import "USKReversi.h"
 
-#define aite(player) (3-(player))
+typedef enum USKReversiDirection {
+	USKReversiDirectionRight		= 1,
+	USKReversiDirectionUpperRight	= 2,
+	USKReversiDirectionUpper		= 4,
+	USKReversiDirectionUpperLeft	= 8,
+	USKReversiDirectionLeft			= 16,
+	USKReversiDirectionLowerLeft	= 32,
+	USKReversiDirectionLower		= 64,
+	USKReversiDirectionLowerRight	= 128
+} USKReversiDirection;
 
+@interface USKReversi ()
 
+@property const NSArray *directionsToFlip;
 
-@implementation USKReversi {
-	int row2;
-	int col2;
-}
+@end
 
-@synthesize row, column, numberOfPlayers, rule;
-@synthesize turn, scores, passCount, gameOver, ability;
+@implementation USKReversi
 
+@synthesize ability;
 
-+ (id)reversiWithRow:(int)r column:(int)c numberOfPlayers:(int)n rule:(USKReversiRule)rl
+@synthesize row = _row;
+@synthesize column = _column;
+@synthesize rule = _rule;
+@synthesize numberOfPlayers = _numberOfPlayers;
+@synthesize disks = _disks;
+@synthesize turn = _turn;
+@synthesize players = _players;
+@synthesize directionsToFlip = _directionsToFlip;
+
++ (id)reversiWithRow:(int)row column:(int)column numberOfPlayers:(int)numberOfPlayers rule:(USKReversiRule)rule
 {
-	USKReversi *reversi = [[USKReversi alloc] initWithRow:r column:c numberOfPlayers:n rule:rl];
+	USKReversi *reversi = [[USKReversi alloc] initWithRow:row column:column numberOfPlayers:numberOfPlayers rule:rule];
 	
 	return reversi;
 }
 
-- (id)initWithRow:(int)r column:(int)c numberOfPlayers:(int)n rule:(USKReversiRule)rl
+- (id)initWithRow:(int)row column:(int)column numberOfPlayers:(int)numberOfPlayers rule:(USKReversiRule)rule
 {
-	if (self = [super init]) {
-		row = r;
-		row2 = r + 2;
-		column = c;
-		col2 = column + 2;
-		numberOfPlayers = n;
-		rule = rl;
+	self = [super init];
+	
+	if (self) {
+		_row = row;
+		_column = column;
+		_numberOfPlayers = numberOfPlayers;
+		_rule = rule;
 		
-		scores = [NSMutableArray array];
-		[scores addObject:@0];
-		[scores addObject:@0];
+		_turn = 0;
+		_directionsToFlip = @[@(USKReversiDirectionRight),
+							  @(USKReversiDirectionUpperRight),
+							  @(USKReversiDirectionUpper),
+							  @(USKReversiDirectionUpperLeft),
+							  @(USKReversiDirectionLeft),
+							  @(USKReversiDirectionLowerLeft),
+							  @(USKReversiDirectionLower),
+							  @(USKReversiDirectionLowerRight)];
 		
-		switch (rule) {
+		// Add players.
+		_players = [NSMutableArray array];
+		for (int i = 0; i < _numberOfPlayers; i++) {
+			USKReversiPlayer *aPlayer = [[USKReversiPlayer alloc] init];
+			[_players addObject:aPlayer];
+		}
+		
+		// Initialize disks.
+		_disks = [NSMutableArray array];
+		for (int i = 0; i < _row; i++) {
+			NSMutableArray *aRow = [NSMutableArray array];
+			for (int j = 0; j < _column; j++) {
+				[aRow addObject:[[USKReversiDisk alloc] init]];
+			}
+			[_disks addObject:aRow];
+		}
+		
+		// Set disks into initial state.
+		switch (_rule) {
 			default: // USKReversiRuleClassic
 			{
-				// 3-step initialization
-				// initialize board with sentinel (1/3)
-				for (int i = 0; i < row2; i++) {
-					for (int j = 0; j < col2; j++) {
-						board[i][j].color = -1;
-						board[i][j].changed = NO;
-					}
-				}
-				
-				// initialize board with none except for edges (2/3)
-				for (int i = 1; i <= r; i++) {
-					for (int j = 1; j <= c; j++) {
-						board[i][j].color = 0;
-					}
-				}
-				// initialize central disks (3/3)
-				board[row2 / 2 - 1][col2 / 2 - 1].color = 1;
-				board[row2 / 2 - 1][col2 / 2 - 1].changed = YES;
-				board[row2 / 2 - 1][col2 / 2].color = 2;
-				board[row2 / 2 - 1][col2 / 2].changed = YES;
-				board[row2 / 2][col2 / 2 - 1].color = 2;
-				board[row2 / 2][col2 / 2 - 1].changed = YES;
-				board[row2 / 2][col2 / 2].color = 1;
-				board[row2 / 2][col2 / 2].changed = YES;
+				[_disks[_row / 2 - 1][_column / 2 - 1] changeColorTo:0 turn:_turn];
+				[_disks[_row / 2 - 1][_column / 2 - 0] changeColorTo:1 turn:_turn];
+				[_disks[_row / 2 - 0][_column / 2 - 1] changeColorTo:1 turn:_turn];
+				[_disks[_row / 2 - 0][_column / 2 - 0] changeColorTo:0 turn:_turn];
 			}
 				break;
 		}
 	}
-	[self updateScores];
 	
-//	[self printState];
+	[self printState];
+	[self countOccupiedCells];
+	[self numberOfFreeCells];
+	
 	return self;
 }
 
-- (void)changeStateWithRow:(int)r column:(int)c
+- (int)rowDeltaToDirection:(USKReversiDirection)direction
 {
-	switch (ability) {
-//		case USKReversiAbilityGrandCross:
-//		{
-//			int attackColor = turn % numberOfPlayers;
-//			scores[attackColor] = [NSNumber numberWithInt:[scores[attackColor] intValue] - 50];
-//			
-//			for (int i = 0; i < row; i++) {
-//				states[i * column + c].color = attackColor;
-//				states[i * column + c].changed = YES;
-//				states[i * column + c].reverseCount++;
-//			}
-//			for (int j = 0; j < column; j++) {
-//				states[r * column + j].color = attackColor;
-//				states[r * column + j].changed = YES;
-//				states[r * column + j].reverseCount++;
-//			}
-//			ability = USKReversiAbilityNone;
-//			turn++;
-//			break;
-//		}
+	switch (direction) {
+		case USKReversiDirectionUpperRight:
+		case USKReversiDirectionUpper:
+		case USKReversiDirectionUpperLeft:
+			return -1;
+		case USKReversiDirectionLowerLeft:
+		case USKReversiDirectionLower:
+		case USKReversiDirectionLowerRight:
+			return 1;
 		default:
-		{
-			// reset changed flags
-			for (int i = 1; i <= row; i++) {
-				for (int j = 1; j <= column; j++) {
-					board[i][j].changed = NO;
+			return 0;
+	}
+}
+
+- (int)columnDeltaToDirection:(USKReversiDirection)direction
+{
+	switch (direction) {
+		case USKReversiDirectionRight:
+		case USKReversiDirectionUpperRight:
+		case USKReversiDirectionLowerRight:
+			return 1;
+		case USKReversiDirectionUpperLeft:
+		case USKReversiDirectionLeft:
+		case USKReversiDirectionLowerLeft:
+			return -1;
+		default:
+			return 0;
+	}
+}
+
+- (void)countOccupiedCells
+{
+	for (int p = 0; p < self.numberOfPlayers; p++) {
+		((USKReversiPlayer *)self.players[p]).occupiedCount = 0;
+	}
+	
+	for (int p = 0; p < self.numberOfPlayers; p++) {
+		for (int i = 0; i < self.row; i++) {
+			for (int j = 0; j < self.column; j++) {
+				if (((USKReversiDisk *)self.disks[i][j]).playerNumber == p) {
+					((USKReversiPlayer *)self.players[p]).occupiedCount++;
 				}
 			}
-			
-			// change states if the place is valid
-			int attacker = turn % numberOfPlayers;
-			if ([self isValidMoveWithRow:r column:c player:attacker]) {
-				[self flipWithRow:r column:c attackColor:attacker];
-				turn++;
-			}
-			break;
 		}
 	}
 	
-	[self updateScores];
-//	[self passCheck];
+	[self printNumberOfOccupiedCells];
 }
 
-int flip(int player, int p, int q, int d, int e)
+- (void)printNumberOfOccupiedCells
 {
-    int i;
-    
-    for (i = 1; board[p+i*d][q+i*e].color == aite(player); i++) {};
-    
-    if (board[p+i*d][q+i*e].color == player) {
-        return i-1;
-    } else {
-        return 0;
-    }
+	for (int p = 0; p < self.numberOfPlayers; p++) {
+		printf("Player%d's number of occupied cells = %d\n", p, ((USKReversiPlayer *)self.players[p]).occupiedCount);
+	}
 }
 
-- (BOOL)isValidMoveWithRow:(int)r column:(int)c player:(int)p
+- (int)numberOfFreeCells
 {
-	if (r < 1 || r > 8 || c < 1 || c > 8) return 0;
-    if (board[r][c].color != 0) return 0;
-    if (flip(p, r, c, -1,  0)) return 1;  /* 上 */
-    if (flip(p, r, c,  1,  0)) return 1;  /* 下 */
-    if (flip(p, r, c,  0, -1)) return 1;  /* 左 */
-    if (flip(p, r, c,  0,  1)) return 1;  /* 右 */
-    if (flip(p, r, c, -1, -1)) return 1;  /* 左上 */
-    if (flip(p, r, c, -1,  1)) return 1;  /* 右上 */
-    if (flip(p, r, c,  1, -1)) return 1;  /* 左下 */
-    if (flip(p, r, c,  1,  1)) return 1;  /* 右下 */
-	return NO;
+	int count = 0;
+	
+	for (int i = 0; i < self.row; i++) {
+		for (int j = 0; j < self.column; j++) {
+			if (((USKReversiDisk *)self.disks[i][j]).playerNumber == -1) {
+				count++;
+			}
+		}
+	}
+	
+	[self printNumberOfFreeCells:count];
+	
+	return count;
 }
 
-//- (void)passCheck
+- (void)printNumberOfFreeCells:(int)n
+{
+	printf("Number of free cells = %d\n", n);
+}
+
+- (BOOL)isFinished
+{
+	if ([self numberOfFreeCells] == 0 || [self everyonePasses]) {
+		return YES;
+	} else {
+		return NO;
+	}
+}
+
+- (int)countPasses
+{
+	return 0;
+}
+
+- (int)numberOfAvailableMovesWithPlayerNumber:(int)player
+{
+	return 0;
+}
+
+- (BOOL)everyonePasses
+{
+	for (int p = 0; p < self.numberOfPlayers; p++) {
+		if ([((USKReversiPlayer *)self.players[p]) isPassing] == NO) {
+			return NO;
+		}
+	}
+	
+	return YES;
+}
+
+- (BOOL)diskIsOnBoardWithRow:(int)row column:(int)column
+{
+	return ((0 <= row && row < self.row) && (0 <= column && column < self.column));
+}
+
+- (int)flipCountWithRow:(int)row column:(int)column player:(int)player direction:(USKReversiDirection)direction
+{
+	int flipCount = 0;
+	
+	int rowDelta = [self rowDeltaToDirection:direction];
+	int columnDelta = [self columnDeltaToDirection:direction];
+	
+	int r = row + rowDelta;
+	int c = column + columnDelta;
+
+	while ([self diskIsOnBoardWithRow:r column:c]
+		   && ((USKReversiDisk *)self.disks[r][c]).playerNumber != player
+		   && ((USKReversiDisk *)self.disks[r][c]).playerNumber != -1) {
+		r += rowDelta;
+		c += columnDelta;
+		flipCount++;
+	}
+	
+	if ([self diskIsOnBoardWithRow:r column:c]
+		&& ((USKReversiDisk *)self.disks[r][c]).playerNumber == player) {
+		return flipCount;
+	} else {
+		return 0;
+	}
+}
+
+- (BOOL)moveValidityOnRow:(int)row column:(int)column byPlayer:(int)playerNumber
+{
+	if ([self diskIsOnBoardWithRow:row column:column] == NO) {
+		return NO;
+	}
+	
+	if (((USKReversiDisk *)self.disks[row][column]).playerNumber != -1) {
+		return NO;
+	}
+	
+	int flipCount = 0;
+	for (NSNumber *aDirection in self.directionsToFlip) {
+		USKReversiDirection d = [aDirection intValue];
+		flipCount += [self flipCountWithRow:row column:column player:playerNumber direction:d];
+	}
+	if (flipCount == 0) {
+		return NO;
+	}
+	
+	return YES;
+}
+
+
+//- (void)commitFlipWithRow:(int)row column:(int)column playerNumber:(int)playerNumber
 //{
-//	int attackColor = turn % numberOfPlayers;
-//
-//	for (int i = 0; i < row * column; i++) {
-//		if ([self checkWithRow:i / column column:i % column attackColor:attackColor]) {
-//			return;
-//		}
-//	}
-//	
-//	// if there is no available place, increment passCount
-//	passCount++;
-//	NSLog(@"passCount = %d", passCount);
-//	if (passCount >= numberOfPlayers) {
-//		gameOver = YES;
-//		NSLog(@"The game is over...");
+//	int flipCount = 0;
+//	for (NSNumber *aDirection in self.directionsToFlip) {
+//		USKReversiDirection d = [aDirection intValue];
+//		flipCount += [self flipCountWithRow:row column:column player:playerNumber direction:d];
 //	}
 //}
 
-- (void)updateScores
-{
-//	[scores removeAllObjects];
-//	for (int i = 0; i < numberOfPlayers; i++) {
-//		int aScore = 0;
-//		for (int j = 0; j < row * column; j++) {
-//			if (states[j].color == i) {
-//				aScore++;
-//			}
-//		}
-//		NSNumber *aScoreNumber = [NSNumber numberWithInt:aScore];
-//		[scores insertObject:aScoreNumber atIndex:i];
-//	}
-}
-
 - (void)printState
 {
-	for (int i = 1; i <= row; i++) {
-		for (int j = 1; j <= column; j++) {
-			printf("%d ", board[i][j].color);
+	for (int i = 0; i < self.row; i++) {
+		for (int j = 0; j < self.column; j++) {
+			printf("%+d ", ((USKReversiDisk *)self.disks[i][j]).playerNumber);
 		}
 		printf("\n");
 	}
 }
 
-- (void)flipWithRow:(int)r column:(int)c attackColor:(int)color
-{
-	int attackColor = color;
-	int attackerIndex = r * column + c;
-	int tempIndex = attackerIndex;
-	int hit = 0;
-	
-
-}
-
 - (int)attacker
 {
-	return turn % numberOfPlayers;
+	return self.turn % self.numberOfPlayers;
+}
+
+- (BOOL)finished
+{
+	return [self isFinished];
 }
 
 - (void)dealloc

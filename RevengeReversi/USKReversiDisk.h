@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface USKDisk : NSObject
+@interface USKReversiDisk : NSObject
 
-/// disk color ... -1:sentinel, 0:none, 1~:playerColor
-@property int color;
+@property int playerNumber; // -1:free,
 @property int flipCount;
-@property BOOL changed;
+@property int lastChangedTurn;
+
+- (void)changeColorTo:(int)color turn:(int)turn;
 
 @end

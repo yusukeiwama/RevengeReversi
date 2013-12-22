@@ -7,16 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "USKDisk.h"
+#import "USKReversiDisk.h"
+#import "USKReversiPlayer.h"
 
 #define MAX_BOARD_SIZE 20
-
-static USKDisk *board[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
-
-typedef enum USKReversiAbility {
-	USKReversiAbilityNone = 0,
-	USKReversiAbilityGrandCross
-} USKReversiAbility;
 
 typedef enum USKReversiRule {
 	USKReversiRuleClassic = 0
@@ -31,14 +25,14 @@ typedef enum USKReversiRule {
 
 @property (readonly) int turn;
 @property USKReversiAbility ability;
-@property (readonly) NSMutableArray *scores;
-@property (readonly) int passCount; // if passCount become equal to numberOfPlayers, the game will be over.
-@property (readonly) BOOL gameOver;
+@property NSMutableArray *players;
+@property (readonly) NSMutableArray *disks;
+@property (readonly) BOOL finished;
 
-+ (id)reversiWithRow:(int)r column:(int)c numberOfPlayers:(int)n rule:(USKReversiRule)r;
-- (id)initWithRow:(int)r column:(int)c numberOfPlayers:(int)n rule:(USKReversiRule)r;
-- (void)changeStateWithRow:(int)r column:(int)c;
++ (id)reversiWithRow:(int)row column:(int)column numberOfPlayers:(int)numberOfPlayers rule:(USKReversiRule)rule;
+- (id)initWithRow:(int)row column:(int)column numberOfPlayers:(int)numberOfPlayers rule:(USKReversiRule)rule;
 - (int)attacker;
+- (BOOL)isFinished;
 
 
 @end
