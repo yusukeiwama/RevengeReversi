@@ -7,6 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "USKDisk.h"
+
+#define MAX_BOARD_SIZE 20
+
+static USKDisk *board[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 
 typedef enum USKReversiAbility {
 	USKReversiAbilityNone = 0,
@@ -16,12 +21,6 @@ typedef enum USKReversiAbility {
 typedef enum USKReversiRule {
 	USKReversiRuleClassic = 0
 } USKReversiRule;
-
-typedef struct USKDiskState {
-	int color; // cell color. -1:sentinel, 0:none, 1~:playerColor
-	BOOL changed;
-	int reverseCount; // how many times the cell was reversed
-} USKDiskState;
 
 @interface USKReversi : NSObject
 

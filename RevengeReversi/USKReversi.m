@@ -10,9 +10,7 @@
 
 #define aite(player) (3-(player))
 
-#define MAX_BOARD_SIZE 20
 
-static USKDiskState board[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 
 @implementation USKReversi {
 	int row2;
