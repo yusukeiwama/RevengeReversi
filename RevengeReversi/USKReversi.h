@@ -9,12 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "USKReversiDisk.h"
 #import "USKReversiPlayer.h"
+#import "USKReversiMove.h"
 
 #define MAX_BOARD_SIZE 20
 
 typedef enum USKReversiRule {
 	USKReversiRuleClassic = 0
 } USKReversiRule;
+
+//@protocol USKReversiDelegate <NSObject>
+//
+//- (void)updateBoardView;
+//
+//@end
+
 
 @interface USKReversi : NSObject
 
@@ -31,14 +39,20 @@ typedef enum USKReversiRule {
 @property (readonly) int attacker;
 @property (readonly) int winner;
 
-+ (id)reversiWithRow:(int)row column:(int)column numberOfPlayers:(int)numberOfPlayers rule:(USKReversiRule)rule;
+@property id delegate;
 
+
++ (id)reversiWithRow:(int)row column:(int)column numberOfPlayers:(int)numberOfPlayers rule:(USKReversiRule)rule;
 - (id)initWithRow:(int)row column:(int)column numberOfPlayers:(int)numberOfPlayers rule:(USKReversiRule)rule;
 
-- (BOOL)isFinished;
-
-- (BOOL)validateMoveWithRow:(int)row column:(int)column playerNumber:(int)playerNumber;
-
-- (void)flipFromRow:(int)row column:(int)column playerNumber:(int)playerNumber;
+- (BOOL)attemptMoveAtRow:(int)row column:(int)column;
+- (void)pass;
 
 @end
+
+
+/*
+ TODO:
+ saveRecord
+
+*/

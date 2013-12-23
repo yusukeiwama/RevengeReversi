@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="desk_gray.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="AJt-FR-E4f">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backgroundPad.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="AJt-FR-E4f">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -62,7 +62,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kelly-green-canvas-fabric-texture.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aSa-2P-gq7">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boardFabricPad.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aSa-2P-gq7">
                                 <rect key="frame" x="24" y="152" width="720" height="720"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
@@ -118,8 +118,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="desk_gray.jpg" width="1536" height="2048"/>
-        <image name="kelly-green-canvas-fabric-texture.jpg" width="1440" height="1440"/>
+        <image name="backgroundPad.jpg" width="1536" height="2048"/>
+        <image name="boardFabricPad.jpg" width="1440" height="1440"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>

@@ -32,7 +32,7 @@
 	
 	for (int i = 0; i < self.record.count; i++) {
 		USKReversiMove *aMove;
-		if (aMove.validity == YES) {
+		if (aMove.isValid == YES) {
 			count++;
 		}
 	}
@@ -46,7 +46,7 @@
 	
 	for (int i = 0; i < self.record.count; i++) {
 		USKReversiMove *aMove;
-		if (aMove.validity == YES || aMove.pass == NO) {
+		if (aMove.isValid == YES || aMove.isPass == NO) {
 			count++;
 		}
 	}
@@ -60,7 +60,7 @@
 	
 	for (int i = 0; i < self.record.count; i++) {
 		USKReversiMove *aMove;
-		if (aMove.validity == NO) {
+		if (aMove.isValid == NO) {
 			count++;
 		}
 	}
@@ -71,7 +71,7 @@
 - (BOOL)isPassing
 {
 	USKReversiMove *lastMove = [self.record lastObject];
-	if (lastMove.pass == YES) {
+	if (lastMove.isPass == YES) {
 		return YES;
 	} else {
 		return NO;

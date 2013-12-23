@@ -12,8 +12,34 @@
 
 @synthesize row = _row;
 @synthesize column = _column;
-@synthesize validity = _validity;
-@synthesize pass = _pass;
+@synthesize isValid = _isValid;
+@synthesize isPass = _isPass;
+
++ (id)moveWithRow:(int)row column:(int)column
+{
+	return [[USKReversiMove alloc] initWithRow:row column:column];
+}
+
+- (id)initWithRow:(int)row column:(int)column
+{
+	self = [super init];
+	
+	if (self) {
+		_row = row;
+		_column = column;
+	}
+	
+	return self;
+}
+
++ (id)pass
+{
+	USKReversiMove *passMove = [[USKReversiMove alloc] initWithRow:-1 column:-1];
+	passMove.isValid = YES;
+	passMove.isPass = YES;
+	
+	return passMove;
+}
 
 +(id)moveWithRow:(int)row column:(int)column validity:(BOOL)validity pass:(BOOL)pass
 {
@@ -27,8 +53,8 @@
 	if (self) {
 		_row = row;
 		_column = column;
-		_validity = validity;
-		_pass = pass;
+		_isValid = validity;
+		_isPass = pass;
 	}
 	
 	return self;

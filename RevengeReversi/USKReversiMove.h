@@ -10,10 +10,15 @@
 
 @interface USKReversiMove : NSObject
 
-@property int row;
-@property int column;
-@property BOOL validity;
-@property BOOL pass;
+@property (readonly) int row;
+@property (readonly) int column;
+@property BOOL isValid;
+@property BOOL isPass;
+
++ (id)moveWithRow:(int)row column:(int)column;
+- (id)initWithRow:(int)row column:(int)column;
+
++ (id)pass;
 
 + (id)moveWithRow:(int)row column:(int)column validity:(BOOL)validity pass:(BOOL)pass;
 - (id)initWithRow:(int)row column:(int)column validity:(BOOL)validity pass:(BOOL)pass;

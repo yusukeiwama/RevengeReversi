@@ -8,6 +8,8 @@
 
 #import "USKReversi.h"
 
+#define FREE -1
+
 typedef enum USKReversiDirection {
 	USKReversiDirectionRight		= 1,
 	USKReversiDirectionUpperRight	= 2,
@@ -38,6 +40,7 @@ typedef enum USKReversiDirection {
 @synthesize players = _players;
 @synthesize directionsToFlip = _directionsToFlip;
 @synthesize winner = _winner;
+@synthesize delegate = _delegate;
 
 + (id)reversiWithRow:(int)row column:(int)column numberOfPlayers:(int)numberOfPlayers rule:(USKReversiRule)rule
 {
@@ -167,7 +170,7 @@ typedef enum USKReversiDirection {
 	
 	for (int i = 0; i < self.row; i++) {
 		for (int j = 0; j < self.column; j++) {
-			if (((USKReversiDisk *)self.disks[i][j]).playerNumber == -1) {
+			if (((USKReversiDisk *)self.disks[i][j]).playerNumber == FREE) {
 				count++;
 			}
 		}
@@ -192,13 +195,14 @@ typedef enum USKReversiDirection {
 	}
 }
 
-- (int)numberOfAvailableMovesWithPlayerNumber:(int)player
+- (int)numberOfAvailableMoves
 {
 	int numberOfAvailableMoves = 0;
 	
 	for (int i = 0; i < self.row; i++) {
 		for (int j = 0; j < self.column; j++) {
-			if ([self validateMoveWithRow:i column:j playerNumber:player]) {
+			USKReversiMove *aMove = [USKReversiMove moveWithRow:i column:j];
+			if ([self validateMove:aMove]) {
 				numberOfAvailableMoves++;
 			}
 		}
@@ -223,83 +227,81 @@ typedef enum USKReversiDirection {
 	return ((0 <= row && row < self.row) && (0 <= column && column < self.column));
 }
 
-- (int)flipCountFromRow:(int)row column:(int)column toward:(USKReversiDirection)direction playerNumber:(int)playerNumber
+- (int)flipCountByMove:(USKReversiMove *)move toward:(USKReversiDirection)direction
 {
 	int flipCount = 0;
 	
 	int rowDelta = [self rowDeltaToDirection:direction];
 	int columnDelta = [self columnDeltaToDirection:direction];
 	
-	int r = row + rowDelta;
-	int c = column + columnDelta;
+	int r = move.row + rowDelta;
+	int c = move.column + columnDelta;
 
 	while ([self diskIsOnBoardWithRow:r column:c]
-		   && ((USKReversiDisk *)self.disks[r][c]).playerNumber != playerNumber
-		   && ((USKReversiDisk *)self.disks[r][c]).playerNumber != -1) {
+		   && [self.disks[r][c] playerNumber] != self.attacker
+		   && [self.disks[r][c] playerNumber] != FREE) {
 		r += rowDelta;
 		c += columnDelta;
 		flipCount++;
 	}
 	
 	if ([self diskIsOnBoardWithRow:r column:c]
-		&& ((USKReversiDisk *)self.disks[r][c]).playerNumber == playerNumber) {
+		&& ((USKReversiDisk *)self.disks[r][c]).playerNumber == self.attacker) {
 		return flipCount;
 	} else {
 		return 0;
 	}
 }
 
-- (BOOL)validateMoveWithRow:(int)row column:(int)column playerNumber:(int)playerNumber
+- (BOOL)validateMove:(USKReversiMove *)move
 {
-	if ([self diskIsOnBoardWithRow:row column:column] == NO) {
-		return NO;
+	if ([self diskIsOnBoardWithRow:move.row column:move.column] == NO) {
+		return move.isValid = NO;
 	}
 	
-	if (((USKReversiDisk *)self.disks[row][column]).playerNumber != -1) {
-		return NO;
+	if ([self.disks[move.row][move.column] playerNumber] != FREE) {
+		return move.isValid = NO;
 	}
 	
 	for (int i = 0; i < self.directionsToFlip.count; i++) {
-		USKReversiDirection direction = [self.directionsToFlip[i] intValue];
-		if ([self flipCountFromRow:row column:column toward:direction playerNumber:playerNumber]) {
-			return YES;
+		if ([self flipCountByMove:move toward:[self.directionsToFlip[i] intValue]]) {
+			return move.isValid = YES;
 		}
 	}
 
-	return NO;
+	return move.isValid = NO;
 }
 
 
-- (void)flipFromRow:(int)row column:(int)column toward:(USKReversiDirection)direction playerNumber:(int)playerNumber
+- (void)flipByMove:(USKReversiMove *)move toward:(USKReversiDirection)direction
 {
 	int flipCount = 0;
-	flipCount = [self flipCountFromRow:row column:column toward:direction playerNumber:playerNumber];
+	flipCount = [self flipCountByMove:move toward:direction];
 	
 	int rowDelta = [self rowDeltaToDirection:direction];
 	int columnDelta = [self columnDeltaToDirection:direction];
 	
 	for (int i = 1; i <= flipCount; i++) {
-		[((USKReversiDisk *)self.disks[row + rowDelta * i][column + columnDelta * i]) changeColorTo:playerNumber turn:self.turn];
+		[self.disks[move.row + rowDelta * i][move.column + columnDelta * i] changeColorTo:self.attacker turn:self.turn];
 	}
 }
 
-- (void)flipFromRow:(int)row column:(int)column playerNumber:(int)playerNumber
+- (void)flipByMove:(USKReversiMove *)move
 {
-	[((USKReversiDisk *)self.disks[row][column]) changeColorTo:playerNumber turn:self.turn];
+	[((USKReversiDisk *)self.disks[move.row][move.column]) changeColorTo:self.attacker turn:self.turn];
 	
 	for (int i = 0; i < self.directionsToFlip.count; i++) {
 		USKReversiDirection direction = [self.directionsToFlip[i] intValue];
-		[self flipFromRow:row column:column toward:direction playerNumber:playerNumber];
+		[self flipByMove:move toward:direction];
 	}
 	
 	[self countOccupiedCells];
 	
 	_turn++;
 	
-	if ([self numberOfAvailableMovesWithPlayerNumber:self.attacker] == 0) {
+	if ([self numberOfAvailableMoves] == 0) {
 		_turn++;
 	}
-
 	
 	[self printBoard];
 }
@@ -316,10 +318,10 @@ typedef enum USKReversiDirection {
 		}
 		printf("%d ", i + 1);
 		for (int j = 0; j < self.column; j++) {
-			if (((USKReversiDisk *)self.disks[i][j]).playerNumber == -1) {
+			if ([self.disks[i][j] playerNumber] == FREE) {
 				printf("- ");
 			} else {
-				printf("%d ", ((USKReversiDisk *)self.disks[i][j]).playerNumber);
+				printf("%d ", [self.disks[i][j] playerNumber]);
 			}
 		}
 		printf("\n");
@@ -344,14 +346,37 @@ typedef enum USKReversiDirection {
 			int maxOccupiedCells = 0;
 			int winner = -1;
 			for (int i = 0; i < self.players.count; i++) {
-				if (maxOccupiedCells < ((USKReversiPlayer *)self.players[i]).occupiedCount) {
-					maxOccupiedCells = ((USKReversiPlayer *)self.players[i]).occupiedCount;
+				if (maxOccupiedCells < [self.players[i] occupiedCount]) {
+					maxOccupiedCells = [self.players[i] occupiedCount];
 					winner = i;
 				}
 			}
 			return winner;
 		}
 	}
+}
+
+- (BOOL)attemptMoveAtRow:(int)row column:(int)column
+{
+	USKReversiMove *move = [USKReversiMove moveWithRow:row column:column];
+	
+	if ([self validateMove:move]) {
+		[self flipByMove:move];
+		[[_players[self.attacker] record] addObject:move];
+		return YES;
+	} else {
+		[[_players[self.attacker] record] addObject:move];
+		return NO;
+	}
+}
+
+- (void)pass
+{
+	USKReversiMove *pass = [USKReversiMove pass];
+	
+	[[_players[self.attacker] record] addObject:pass];
+	
+	_turn++;
 }
 
 @end
