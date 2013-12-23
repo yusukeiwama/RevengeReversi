@@ -193,7 +193,7 @@
 	CGPoint p = [recognizer locationInView:self.boardImageView];
 	int row = p.y / self.boardImageView.frame.size.height * self.reversi.row;
 	int column = p.x / self.boardImageView.frame.size.width * self.reversi.column;
-	NSLog(@"INDEX:(%d, %d), COOD:(%3.1f, %3.1f)", row, column, p.x, p.y);
+	NSLog(@"\nPlayer%d Tapped at (%3.1f, %3.1f) in board view(%c%d).", self.reversi.attacker, p.x, p.y, 'a' + column, row + 1);
 	
 	if ([self.reversi validateMoveWithRow:row column:column playerNumber:self.reversi.attacker]) {
 		[self.reversi flipFromRow:row column:column playerNumber:self.reversi.attacker];

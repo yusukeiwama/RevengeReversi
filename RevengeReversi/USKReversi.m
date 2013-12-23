@@ -87,10 +87,10 @@ typedef enum USKReversiDirection {
 		switch (_rule) {
 			default: // USKReversiRuleClassic
 			{
-				[_disks[_row / 2 - 1][_column / 2 - 1] changeColorTo:0 turn:_turn - 1];
-				[_disks[_row / 2 - 1][_column / 2 - 0] changeColorTo:1 turn:_turn - 1];
-				[_disks[_row / 2 - 0][_column / 2 - 1] changeColorTo:1 turn:_turn - 1];
-				[_disks[_row / 2 - 0][_column / 2 - 0] changeColorTo:0 turn:_turn - 1];
+				[_disks[_row / 2 - 1][_column / 2 - 1] changeColorTo:1 turn:_turn - 1];
+				[_disks[_row / 2 - 1][_column / 2 - 0] changeColorTo:0 turn:_turn - 1];
+				[_disks[_row / 2 - 0][_column / 2 - 1] changeColorTo:0 turn:_turn - 1];
+				[_disks[_row / 2 - 0][_column / 2 - 0] changeColorTo:1 turn:_turn - 1];
 			}
 				break;
 		}
@@ -243,7 +243,6 @@ typedef enum USKReversiDirection {
 	
 	if ([self diskIsOnBoardWithRow:r column:c]
 		&& ((USKReversiDisk *)self.disks[r][c]).playerNumber == playerNumber) {
-//		printf("Flip count = %d\n", flipCount);
 		return flipCount;
 	} else {
 		return 0;
@@ -275,7 +274,6 @@ typedef enum USKReversiDirection {
 {
 	int flipCount = 0;
 	flipCount = [self flipCountFromRow:row column:column toward:direction playerNumber:playerNumber];
-	printf("Flip count = %d\n", flipCount);
 	
 	int rowDelta = [self rowDeltaToDirection:direction];
 	int columnDelta = [self columnDeltaToDirection:direction];
@@ -309,8 +307,20 @@ typedef enum USKReversiDirection {
 - (void)printBoard
 {
 	for (int i = 0; i < self.row; i++) {
+		if (i == 0) {
+			printf(" ");
+			for (int j = 0; j < self.column; j++) {
+				printf(" %c", 'a' + j);
+			}
+			printf("\n");
+		}
+		printf("%d ", i + 1);
 		for (int j = 0; j < self.column; j++) {
-			printf("%+d ", ((USKReversiDisk *)self.disks[i][j]).playerNumber);
+			if (((USKReversiDisk *)self.disks[i][j]).playerNumber == -1) {
+				printf("- ");
+			} else {
+				printf("%d ", ((USKReversiDisk *)self.disks[i][j]).playerNumber);
+			}
 		}
 		printf("\n");
 	}

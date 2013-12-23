@@ -23,11 +23,13 @@
 		43068303186360C90038F9C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43068301186360C90038F9C8 /* InfoPlist.strings */; };
 		43068305186360C90038F9C8 /* RevengeReversiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43068304186360C90038F9C8 /* RevengeReversiTests.m */; };
 		433E36C01865EE8300C0C051 /* USKReversiDisk.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E36BF1865EE8300C0C051 /* USKReversiDisk.m */; };
-		4344B353186445D3009E28CB /* desk_gray.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4344B352186445D3009E28CB /* desk_gray.jpg */; };
 		4344B35C18644935009E28CB /* USKDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4344B35B18644935009E28CB /* USKDiskView.m */; };
-		4344B35E18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4344B35D18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg */; };
 		435997E4186691F600E3C4A3 /* USKReversiPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 435997E3186691F600E3C4A3 /* USKReversiPlayer.m */; };
 		437877151866CDE800EA0BEA /* USKReversiMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 437877141866CDE800EA0BEA /* USKReversiMove.m */; };
+		4378771A1867CC5B00EA0BEA /* backgroundPad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877161867CC5B00EA0BEA /* backgroundPad.jpg */; };
+		4378771B1867CC5B00EA0BEA /* backgroundPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877171867CC5B00EA0BEA /* backgroundPhone.jpg */; };
+		4378771C1867CC5B00EA0BEA /* boardFabricPad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877181867CC5B00EA0BEA /* boardFabricPad.jpg */; };
+		4378771D1867CC5B00EA0BEA /* boardFabricPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877191867CC5B00EA0BEA /* boardFabricPhone.jpg */; };
 		43B649A01863D4DB00D1396F /* USKReversi.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B6499F1863D4DB00D1396F /* USKReversi.m */; };
 		43B649A21863EE1A00D1396F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B649A11863EE1A00D1396F /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -65,14 +67,16 @@
 		43068304186360C90038F9C8 /* RevengeReversiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevengeReversiTests.m; sourceTree = "<group>"; };
 		433E36BE1865EE8300C0C051 /* USKReversiDisk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversiDisk.h; sourceTree = "<group>"; };
 		433E36BF1865EE8300C0C051 /* USKReversiDisk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKReversiDisk.m; sourceTree = "<group>"; };
-		4344B352186445D3009E28CB /* desk_gray.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = desk_gray.jpg; path = RevengeReversi/desk_gray.jpg; sourceTree = "<group>"; };
 		4344B35A18644935009E28CB /* USKDiskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKDiskView.h; sourceTree = "<group>"; };
 		4344B35B18644935009E28CB /* USKDiskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKDiskView.m; sourceTree = "<group>"; };
-		4344B35D18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "kelly-green-canvas-fabric-texture.jpg"; path = "RevengeReversi/kelly-green-canvas-fabric-texture.jpg"; sourceTree = "<group>"; };
 		435997E2186691F600E3C4A3 /* USKReversiPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversiPlayer.h; sourceTree = "<group>"; };
 		435997E3186691F600E3C4A3 /* USKReversiPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKReversiPlayer.m; sourceTree = "<group>"; };
 		437877131866CDE800EA0BEA /* USKReversiMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversiMove.h; sourceTree = "<group>"; };
 		437877141866CDE800EA0BEA /* USKReversiMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKReversiMove.m; sourceTree = "<group>"; };
+		437877161867CC5B00EA0BEA /* backgroundPad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = backgroundPad.jpg; path = RevengeReversi/backgroundPad.jpg; sourceTree = "<group>"; };
+		437877171867CC5B00EA0BEA /* backgroundPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = backgroundPhone.jpg; path = RevengeReversi/backgroundPhone.jpg; sourceTree = "<group>"; };
+		437877181867CC5B00EA0BEA /* boardFabricPad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = boardFabricPad.jpg; path = RevengeReversi/boardFabricPad.jpg; sourceTree = "<group>"; };
+		437877191867CC5B00EA0BEA /* boardFabricPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = boardFabricPhone.jpg; path = RevengeReversi/boardFabricPhone.jpg; sourceTree = "<group>"; };
 		43B6499E1863D4DB00D1396F /* USKReversi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversi.h; sourceTree = "<group>"; };
 		43B6499F1863D4DB00D1396F /* USKReversi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKReversi.m; sourceTree = "<group>"; };
 		43B649A11863EE1A00D1396F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -179,8 +183,10 @@
 		4344B351186443C5009E28CB /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				4344B35D18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg */,
-				4344B352186445D3009E28CB /* desk_gray.jpg */,
+				437877161867CC5B00EA0BEA /* backgroundPad.jpg */,
+				437877171867CC5B00EA0BEA /* backgroundPhone.jpg */,
+				437877181867CC5B00EA0BEA /* boardFabricPad.jpg */,
+				437877191867CC5B00EA0BEA /* boardFabricPhone.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -299,11 +305,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4378771B1867CC5B00EA0BEA /* backgroundPhone.jpg in Resources */,
 				430682ED186360C90038F9C8 /* Main_iPad.storyboard in Resources */,
-				4344B353186445D3009E28CB /* desk_gray.jpg in Resources */,
 				430682F2186360C90038F9C8 /* Images.xcassets in Resources */,
+				4378771A1867CC5B00EA0BEA /* backgroundPad.jpg in Resources */,
+				4378771D1867CC5B00EA0BEA /* boardFabricPhone.jpg in Resources */,
+				4378771C1867CC5B00EA0BEA /* boardFabricPad.jpg in Resources */,
 				430682EA186360C90038F9C8 /* Main_iPhone.storyboard in Resources */,
-				4344B35E18645285009E28CB /* kelly-green-canvas-fabric-texture.jpg in Resources */,
 				430682E1186360C90038F9C8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
