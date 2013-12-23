@@ -29,8 +29,6 @@ typedef enum USKReversiDirection {
 
 @implementation USKReversi
 
-@synthesize ability;
-
 @synthesize row = _row;
 @synthesize column = _column;
 @synthesize rule = _rule;
@@ -41,6 +39,7 @@ typedef enum USKReversiDirection {
 @synthesize directionsToFlip = _directionsToFlip;
 @synthesize winner = _winner;
 @synthesize delegate = _delegate;
+@synthesize isFinished = _isFinished;
 
 + (id)reversiWithRow:(int)row column:(int)column numberOfPlayers:(int)numberOfPlayers rule:(USKReversiRule)rule
 {
@@ -100,10 +99,71 @@ typedef enum USKReversiDirection {
 	}
 	
 	[self printBoard];
-	[self countOccupiedCells];
+	[self countFilledSquares];
 	[self numberOfFreeCells];
 	
 	return self;
+}
+
+- (BOOL)attemptMoveAtRow:(int)row column:(int)column
+{
+	USKReversiMove *move = [USKReversiMove moveWithRow:row column:column];
+	
+	if ([self validateMove:move]) {
+		[self flipByMove:move];
+		[[_players[self.attacker] record] addObject:move];
+		return YES;
+	} else {
+		[[_players[self.attacker] record] addObject:move];
+		return NO;
+	}
+}
+
+- (void)pass
+{
+	USKReversiMove *pass = [USKReversiMove pass];
+	
+	[[_players[self.attacker] record] addObject:pass];
+	
+	if ([self numberOfFreeCells] == 0 || [self everyonePasses]) {
+		_isFinished = YES;
+	}
+	
+	_turn++;
+}
+
+- (void)flipByMove:(USKReversiMove *)move
+{
+	[((USKReversiDisk *)self.disks[move.row][move.column]) changeColorTo:self.attacker turn:self.turn];
+	
+	for (int i = 0; i < self.directionsToFlip.count; i++) {
+		USKReversiDirection direction = [self.directionsToFlip[i] intValue];
+		[self flipByMove:move toward:direction];
+	}
+	
+	[self countFilledSquares];
+	
+	[self printBoard];
+	
+	if ([self numberOfFreeCells] == 0 || [self everyonePasses]) {
+		_isFinished = YES;
+	}
+	
+	_turn++;
+}
+
+- (void)flipByMove:(USKReversiMove *)move toward:(USKReversiDirection)direction
+{
+	int flipCount = 0;
+	flipCount = [self flipCountByMove:move toward:direction];
+	
+	int rowDelta = [self rowDeltaToDirection:direction];
+	int columnDelta = [self columnDeltaToDirection:direction];
+	
+	for (int i = 1; i <= flipCount; i++) {
+		((USKReversiPlayer *)_players[self.attacker]).score += [self.disks[move.row + rowDelta * i][move.column + columnDelta * i] flipCount];
+		[self.disks[move.row + rowDelta * i][move.column + columnDelta * i] changeColorTo:self.attacker turn:self.turn];
+	}
 }
 
 - (int)rowDeltaToDirection:(USKReversiDirection)direction
@@ -138,7 +198,7 @@ typedef enum USKReversiDirection {
 	}
 }
 
-- (void)countOccupiedCells
+- (void)countFilledSquares
 {
 	for (int p = 0; p < self.numberOfPlayers; p++) {
 		((USKReversiPlayer *)self.players[p]).occupiedCount = 0;
@@ -153,16 +213,8 @@ typedef enum USKReversiDirection {
 			}
 		}
 	}
-	
-	[self printNumberOfOccupiedCells];
 }
 
-- (void)printNumberOfOccupiedCells
-{
-	for (int p = 0; p < self.numberOfPlayers; p++) {
-		printf("Player%d's number of occupied cells = %d\n", p, ((USKReversiPlayer *)self.players[p]).occupiedCount);
-	}
-}
 
 - (int)numberOfFreeCells
 {
@@ -175,15 +227,8 @@ typedef enum USKReversiDirection {
 			}
 		}
 	}
-	
-	[self printNumberOfFreeCells:count];
-	
-	return count;
-}
 
-- (void)printNumberOfFreeCells:(int)n
-{
-	printf("Number of free cells = %d\n", n);
+	return count;
 }
 
 - (BOOL)isFinished
@@ -272,42 +317,6 @@ typedef enum USKReversiDirection {
 	return move.isValid = NO;
 }
 
-
-- (void)flipByMove:(USKReversiMove *)move toward:(USKReversiDirection)direction
-{
-	int flipCount = 0;
-	flipCount = [self flipCountByMove:move toward:direction];
-	
-	int rowDelta = [self rowDeltaToDirection:direction];
-	int columnDelta = [self columnDeltaToDirection:direction];
-	
-
-	for (int i = 1; i <= flipCount; i++) {
-		((USKReversiPlayer *)_players[self.attacker]).score += [self.disks[move.row + rowDelta * i][move.column + columnDelta * i] flipCount];
-		[self.disks[move.row + rowDelta * i][move.column + columnDelta * i] changeColorTo:self.attacker turn:self.turn];
-	}
-}
-
-- (void)flipByMove:(USKReversiMove *)move
-{
-	[((USKReversiDisk *)self.disks[move.row][move.column]) changeColorTo:self.attacker turn:self.turn];
-	
-	for (int i = 0; i < self.directionsToFlip.count; i++) {
-		USKReversiDirection direction = [self.directionsToFlip[i] intValue];
-		[self flipByMove:move toward:direction];
-	}
-	
-	[self countOccupiedCells];
-	
-	_turn++;
-	
-	if ([self numberOfAvailableMoves] == 0) {
-		_turn++;
-	}
-	
-	[self printBoard];
-}
-
 - (void)printBoard
 {
 	for (int i = 0; i < self.row; i++) {
@@ -335,11 +344,6 @@ typedef enum USKReversiDirection {
 	return self.turn % self.numberOfPlayers;
 }
 
-- (BOOL)finished
-{
-	return [self isFinished];
-}
-
 - (int)winner
 {
 	switch (self.rule) {
@@ -351,6 +355,8 @@ typedef enum USKReversiDirection {
 				if (maxOccupiedCells < [self.players[i] occupiedCount]) {
 					maxOccupiedCells = [self.players[i] occupiedCount];
 					winner = i;
+				} else if (maxOccupiedCells == [self.players[i] occupiedCount]) {
+					winner = DRAW;
 				}
 			}
 			return winner;
@@ -358,27 +364,6 @@ typedef enum USKReversiDirection {
 	}
 }
 
-- (BOOL)attemptMoveAtRow:(int)row column:(int)column
-{
-	USKReversiMove *move = [USKReversiMove moveWithRow:row column:column];
-	
-	if ([self validateMove:move]) {
-		[self flipByMove:move];
-		[[_players[self.attacker] record] addObject:move];
-		return YES;
-	} else {
-		[[_players[self.attacker] record] addObject:move];
-		return NO;
-	}
-}
 
-- (void)pass
-{
-	USKReversiMove *pass = [USKReversiMove pass];
-	
-	[[_players[self.attacker] record] addObject:pass];
-	
-	_turn++;
-}
 
 @end

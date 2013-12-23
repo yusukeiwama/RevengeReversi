@@ -13,6 +13,8 @@
 
 #define MAX_BOARD_SIZE 20
 
+#define DRAW -1
+
 typedef enum USKReversiRule {
 	USKReversiRuleClassic = 0
 } USKReversiRule;
@@ -25,10 +27,9 @@ typedef enum USKReversiRule {
 @property (readonly) USKReversiRule rule;
 
 @property (readonly) int turn;
-@property USKReversiAbility ability;
 @property NSMutableArray *players;
 @property (readonly) NSMutableArray *disks;
-@property (readonly) BOOL finished;
+@property (readonly) BOOL isFinished;
 @property (readonly) int attacker;
 @property (readonly) int winner;
 

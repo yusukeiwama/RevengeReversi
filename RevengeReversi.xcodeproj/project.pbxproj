@@ -23,7 +23,6 @@
 		43068303186360C90038F9C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43068301186360C90038F9C8 /* InfoPlist.strings */; };
 		43068305186360C90038F9C8 /* RevengeReversiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43068304186360C90038F9C8 /* RevengeReversiTests.m */; };
 		433E36C01865EE8300C0C051 /* USKReversiDisk.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E36BF1865EE8300C0C051 /* USKReversiDisk.m */; };
-		4344B35C18644935009E28CB /* USKDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4344B35B18644935009E28CB /* USKDiskView.m */; };
 		435997E4186691F600E3C4A3 /* USKReversiPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 435997E3186691F600E3C4A3 /* USKReversiPlayer.m */; };
 		437877151866CDE800EA0BEA /* USKReversiMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 437877141866CDE800EA0BEA /* USKReversiMove.m */; };
 		4378771A1867CC5B00EA0BEA /* backgroundPad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877161867CC5B00EA0BEA /* backgroundPad.jpg */; };
@@ -42,7 +41,6 @@
 		437877831868299800EA0BEA /* cureRosetta160x160@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378777D1868299800EA0BEA /* cureRosetta160x160@2x.jpg */; };
 		437877841868299800EA0BEA /* cureRosetta160x160Yellow@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378777E1868299800EA0BEA /* cureRosetta160x160Yellow@2x.jpg */; };
 		437877851868299800EA0BEA /* cureSword160x160Purple@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378777F1868299800EA0BEA /* cureSword160x160Purple@2x.jpg */; };
-		4378778C18682DF800EA0BEA /* diskBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378778618682DF800EA0BEA /* diskBlack.png */; };
 		4378778D18682DF800EA0BEA /* diskGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378778718682DF800EA0BEA /* diskGreen.png */; };
 		4378778E18682DF800EA0BEA /* diskOrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378778818682DF800EA0BEA /* diskOrange.png */; };
 		4378778F18682DF800EA0BEA /* diskRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378778918682DF800EA0BEA /* diskRed.png */; };
@@ -51,6 +49,18 @@
 		4378779418682F1000EA0BEA /* diskRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378779218682F1000EA0BEA /* diskRed@2x.png */; };
 		4378779518682F1000EA0BEA /* diskWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378779318682F1000EA0BEA /* diskWhite@2x.png */; };
 		4378779718682F5000EA0BEA /* diskBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378779618682F5000EA0BEA /* diskBlack@2x.png */; };
+		4378779D18685FE500EA0BEA /* diskGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378779818685FE500EA0BEA /* diskGreen@2x.png */; };
+		4378779E18685FE500EA0BEA /* diskOrange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378779918685FE500EA0BEA /* diskOrange@2x.png */; };
+		4378779F18685FE500EA0BEA /* diskYellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378779A18685FE500EA0BEA /* diskYellow@2x.png */; };
+		437877A018685FE500EA0BEA /* snow_texture@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378779B18685FE500EA0BEA /* snow_texture@2x.jpg */; };
+		437877A118685FE500EA0BEA /* whiteTile@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378779C18685FE500EA0BEA /* whiteTile@2x.jpg */; };
+		437877A41868660B00EA0BEA /* cureAce.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877A21868660B00EA0BEA /* cureAce.jpg */; };
+		437877A51868660B00EA0BEA /* regina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877A31868660B00EA0BEA /* regina.jpg */; };
+		437877A718686DF100EA0BEA /* whiteStucco.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877A618686DF100EA0BEA /* whiteStucco.jpg */; };
+		437877A9186873F700EA0BEA /* snow_texturePhone@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877A8186873F700EA0BEA /* snow_texturePhone@2x.jpg */; };
+		437877AD1868905A00EA0BEA /* diskQuestion.png in Resources */ = {isa = PBXBuildFile; fileRef = 437877AB1868905A00EA0BEA /* diskQuestion.png */; };
+		437877AE1868905A00EA0BEA /* diskStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 437877AC1868905A00EA0BEA /* diskStop.png */; };
+		437877B01868923800EA0BEA /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 437877AF1868923800EA0BEA /* star.png */; };
 		43B649A01863D4DB00D1396F /* USKReversi.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B6499F1863D4DB00D1396F /* USKReversi.m */; };
 		43B649A21863EE1A00D1396F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B649A11863EE1A00D1396F /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -88,8 +98,6 @@
 		43068304186360C90038F9C8 /* RevengeReversiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevengeReversiTests.m; sourceTree = "<group>"; };
 		433E36BE1865EE8300C0C051 /* USKReversiDisk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversiDisk.h; sourceTree = "<group>"; };
 		433E36BF1865EE8300C0C051 /* USKReversiDisk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKReversiDisk.m; sourceTree = "<group>"; };
-		4344B35A18644935009E28CB /* USKDiskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKDiskView.h; sourceTree = "<group>"; };
-		4344B35B18644935009E28CB /* USKDiskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKDiskView.m; sourceTree = "<group>"; };
 		435997E2186691F600E3C4A3 /* USKReversiPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversiPlayer.h; sourceTree = "<group>"; };
 		435997E3186691F600E3C4A3 /* USKReversiPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKReversiPlayer.m; sourceTree = "<group>"; };
 		437877131866CDE800EA0BEA /* USKReversiMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversiMove.h; sourceTree = "<group>"; };
@@ -110,7 +118,6 @@
 		4378777D1868299800EA0BEA /* cureRosetta160x160@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cureRosetta160x160@2x.jpg"; path = "Assets/cureRosetta160x160@2x.jpg"; sourceTree = "<group>"; };
 		4378777E1868299800EA0BEA /* cureRosetta160x160Yellow@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cureRosetta160x160Yellow@2x.jpg"; path = "Assets/cureRosetta160x160Yellow@2x.jpg"; sourceTree = "<group>"; };
 		4378777F1868299800EA0BEA /* cureSword160x160Purple@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cureSword160x160Purple@2x.jpg"; path = "Assets/cureSword160x160Purple@2x.jpg"; sourceTree = "<group>"; };
-		4378778618682DF800EA0BEA /* diskBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diskBlack.png; path = Assets/diskBlack.png; sourceTree = "<group>"; };
 		4378778718682DF800EA0BEA /* diskGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diskGreen.png; path = Assets/diskGreen.png; sourceTree = "<group>"; };
 		4378778818682DF800EA0BEA /* diskOrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diskOrange.png; path = Assets/diskOrange.png; sourceTree = "<group>"; };
 		4378778918682DF800EA0BEA /* diskRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diskRed.png; path = Assets/diskRed.png; sourceTree = "<group>"; };
@@ -119,6 +126,18 @@
 		4378779218682F1000EA0BEA /* diskRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "diskRed@2x.png"; path = "Assets/diskRed@2x.png"; sourceTree = "<group>"; };
 		4378779318682F1000EA0BEA /* diskWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "diskWhite@2x.png"; path = "Assets/diskWhite@2x.png"; sourceTree = "<group>"; };
 		4378779618682F5000EA0BEA /* diskBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "diskBlack@2x.png"; path = "Assets/diskBlack@2x.png"; sourceTree = "<group>"; };
+		4378779818685FE500EA0BEA /* diskGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "diskGreen@2x.png"; path = "Assets/diskGreen@2x.png"; sourceTree = "<group>"; };
+		4378779918685FE500EA0BEA /* diskOrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "diskOrange@2x.png"; path = "Assets/diskOrange@2x.png"; sourceTree = "<group>"; };
+		4378779A18685FE500EA0BEA /* diskYellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "diskYellow@2x.png"; path = "Assets/diskYellow@2x.png"; sourceTree = "<group>"; };
+		4378779B18685FE500EA0BEA /* snow_texture@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "snow_texture@2x.jpg"; path = "Assets/snow_texture@2x.jpg"; sourceTree = "<group>"; };
+		4378779C18685FE500EA0BEA /* whiteTile@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "whiteTile@2x.jpg"; path = "Assets/whiteTile@2x.jpg"; sourceTree = "<group>"; };
+		437877A21868660B00EA0BEA /* cureAce.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cureAce.jpg; path = Assets/cureAce.jpg; sourceTree = "<group>"; };
+		437877A31868660B00EA0BEA /* regina.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = regina.jpg; path = Assets/regina.jpg; sourceTree = "<group>"; };
+		437877A618686DF100EA0BEA /* whiteStucco.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = whiteStucco.jpg; path = Assets/whiteStucco.jpg; sourceTree = "<group>"; };
+		437877A8186873F700EA0BEA /* snow_texturePhone@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "snow_texturePhone@2x.jpg"; path = "Assets/snow_texturePhone@2x.jpg"; sourceTree = "<group>"; };
+		437877AB1868905A00EA0BEA /* diskQuestion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diskQuestion.png; path = Assets/diskQuestion.png; sourceTree = "<group>"; };
+		437877AC1868905A00EA0BEA /* diskStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diskStop.png; path = Assets/diskStop.png; sourceTree = "<group>"; };
+		437877AF1868923800EA0BEA /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = Assets/star.png; sourceTree = "<group>"; };
 		43B6499E1863D4DB00D1396F /* USKReversi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversi.h; sourceTree = "<group>"; };
 		43B6499F1863D4DB00D1396F /* USKReversi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKReversi.m; sourceTree = "<group>"; };
 		43B649A11863EE1A00D1396F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -225,10 +244,21 @@
 		4344B351186443C5009E28CB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				437877AF1868923800EA0BEA /* star.png */,
+				437877AB1868905A00EA0BEA /* diskQuestion.png */,
+				437877AC1868905A00EA0BEA /* diskStop.png */,
+				437877A8186873F700EA0BEA /* snow_texturePhone@2x.jpg */,
+				437877A618686DF100EA0BEA /* whiteStucco.jpg */,
+				437877A21868660B00EA0BEA /* cureAce.jpg */,
+				437877A31868660B00EA0BEA /* regina.jpg */,
+				4378779818685FE500EA0BEA /* diskGreen@2x.png */,
+				4378779918685FE500EA0BEA /* diskOrange@2x.png */,
+				4378779A18685FE500EA0BEA /* diskYellow@2x.png */,
+				4378779B18685FE500EA0BEA /* snow_texture@2x.jpg */,
+				4378779C18685FE500EA0BEA /* whiteTile@2x.jpg */,
 				4378779618682F5000EA0BEA /* diskBlack@2x.png */,
 				4378779218682F1000EA0BEA /* diskRed@2x.png */,
 				4378779318682F1000EA0BEA /* diskWhite@2x.png */,
-				4378778618682DF800EA0BEA /* diskBlack.png */,
 				4378778718682DF800EA0BEA /* diskGreen.png */,
 				4378778818682DF800EA0BEA /* diskOrange.png */,
 				4378778918682DF800EA0BEA /* diskRed.png */,
@@ -259,8 +289,6 @@
 			children = (
 				430682E8186360C90038F9C8 /* Main_iPhone.storyboard */,
 				430682EB186360C90038F9C8 /* Main_iPad.storyboard */,
-				4344B35A18644935009E28CB /* USKDiskView.h */,
-				4344B35B18644935009E28CB /* USKDiskView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -276,17 +304,25 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		43B6499D1863D4BC00D1396F /* Model */ = {
+		437877AA1868873E00EA0BEA /* Support Classes */ = {
 			isa = PBXGroup;
 			children = (
-				43B6499E1863D4DB00D1396F /* USKReversi.h */,
-				43B6499F1863D4DB00D1396F /* USKReversi.m */,
 				435997E2186691F600E3C4A3 /* USKReversiPlayer.h */,
 				435997E3186691F600E3C4A3 /* USKReversiPlayer.m */,
 				437877131866CDE800EA0BEA /* USKReversiMove.h */,
 				437877141866CDE800EA0BEA /* USKReversiMove.m */,
 				433E36BE1865EE8300C0C051 /* USKReversiDisk.h */,
 				433E36BF1865EE8300C0C051 /* USKReversiDisk.m */,
+			);
+			name = "Support Classes";
+			sourceTree = "<group>";
+		};
+		43B6499D1863D4BC00D1396F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				43B6499E1863D4DB00D1396F /* USKReversi.h */,
+				43B6499F1863D4DB00D1396F /* USKReversi.m */,
+				437877AA1868873E00EA0BEA /* Support Classes */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -373,27 +409,38 @@
 				437877791868261500EA0BEA /* cureSword160x160@2x.jpg in Resources */,
 				43787771186823E600EA0BEA /* cureSword.jpg in Resources */,
 				4378779018682DF800EA0BEA /* diskWhite.png in Resources */,
+				4378779D18685FE500EA0BEA /* diskGreen@2x.png in Resources */,
+				437877A9186873F700EA0BEA /* snow_texturePhone@2x.jpg in Resources */,
 				4378778D18682DF800EA0BEA /* diskGreen.png in Resources */,
+				437877A018685FE500EA0BEA /* snow_texture@2x.jpg in Resources */,
 				4378778E18682DF800EA0BEA /* diskOrange.png in Resources */,
 				4378776F186823E600EA0BEA /* cureHeart.jpg in Resources */,
-				4378778C18682DF800EA0BEA /* diskBlack.png in Resources */,
 				430682ED186360C90038F9C8 /* Main_iPad.storyboard in Resources */,
 				437877821868299800EA0BEA /* cureHeart160x160Pink@2x.jpg in Resources */,
 				4378776E186823E600EA0BEA /* cureDiamond.jpg in Resources */,
 				430682F2186360C90038F9C8 /* Images.xcassets in Resources */,
+				4378779E18685FE500EA0BEA /* diskOrange@2x.png in Resources */,
+				437877AD1868905A00EA0BEA /* diskQuestion.png in Resources */,
 				4378779418682F1000EA0BEA /* diskRed@2x.png in Resources */,
 				4378778F18682DF800EA0BEA /* diskRed.png in Resources */,
+				437877A41868660B00EA0BEA /* cureAce.jpg in Resources */,
+				437877A51868660B00EA0BEA /* regina.jpg in Resources */,
+				437877B01868923800EA0BEA /* star.png in Resources */,
 				4378771A1867CC5B00EA0BEA /* backgroundPad.jpg in Resources */,
 				4378771D1867CC5B00EA0BEA /* boardFabricPhone.jpg in Resources */,
+				437877A118685FE500EA0BEA /* whiteTile@2x.jpg in Resources */,
 				4378779518682F1000EA0BEA /* diskWhite@2x.png in Resources */,
 				437877841868299800EA0BEA /* cureRosetta160x160Yellow@2x.jpg in Resources */,
+				4378779F18685FE500EA0BEA /* diskYellow@2x.png in Resources */,
 				437877781868261500EA0BEA /* cureHeart160x160@2x.jpg in Resources */,
 				4378779118682DF800EA0BEA /* diskYellow.png in Resources */,
 				4378771C1867CC5B00EA0BEA /* boardFabricPad.jpg in Resources */,
 				437877851868299800EA0BEA /* cureSword160x160Purple@2x.jpg in Resources */,
+				437877A718686DF100EA0BEA /* whiteStucco.jpg in Resources */,
 				437877801868299800EA0BEA /* cureDiamond160x160@2x.jpg in Resources */,
 				430682EA186360C90038F9C8 /* Main_iPhone.storyboard in Resources */,
 				4378779718682F5000EA0BEA /* diskBlack@2x.png in Resources */,
+				437877AE1868905A00EA0BEA /* diskStop.png in Resources */,
 				430682E1186360C90038F9C8 /* InfoPlist.strings in Resources */,
 				437877811868299800EA0BEA /* cureDiamond160x160Blue@2x.jpg in Resources */,
 				437877831868299800EA0BEA /* cureRosetta160x160@2x.jpg in Resources */,
@@ -422,7 +469,6 @@
 				43B649A01863D4DB00D1396F /* USKReversi.m in Sources */,
 				437877151866CDE800EA0BEA /* USKReversiMove.m in Sources */,
 				430682E3186360C90038F9C8 /* main.m in Sources */,
-				4344B35C18644935009E28CB /* USKDiskView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
