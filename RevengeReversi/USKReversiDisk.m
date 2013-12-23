@@ -28,6 +28,7 @@
 - (void)changeColorTo:(int)color turn:(int)turn
 {
 	_playerNumber = color;
+	_flipCount++;
 	_lastChangedTurn = turn;
 }
 

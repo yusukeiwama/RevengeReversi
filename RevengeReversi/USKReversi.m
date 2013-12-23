@@ -54,8 +54,8 @@ typedef enum USKReversiDirection {
 	self = [super init];
 	
 	if (self) {
-		_row = row;
-		_column = column;
+		(row > MAX_BOARD_SIZE) ? (_row = MAX_BOARD_SIZE) : (_row = row);
+		(column > MAX_BOARD_SIZE) ? (_column = MAX_BOARD_SIZE) : (_column = column);
 		_numberOfPlayers = numberOfPlayers;
 		_rule = rule;
 		
@@ -281,7 +281,9 @@ typedef enum USKReversiDirection {
 	int rowDelta = [self rowDeltaToDirection:direction];
 	int columnDelta = [self columnDeltaToDirection:direction];
 	
+
 	for (int i = 1; i <= flipCount; i++) {
+		((USKReversiPlayer *)_players[self.attacker]).score += [self.disks[move.row + rowDelta * i][move.column + columnDelta * i] flipCount];
 		[self.disks[move.row + rowDelta * i][move.column + columnDelta * i] changeColorTo:self.attacker turn:self.turn];
 	}
 }
@@ -309,14 +311,14 @@ typedef enum USKReversiDirection {
 - (void)printBoard
 {
 	for (int i = 0; i < self.row; i++) {
-		if (i == 0) {
-			printf(" ");
+		if (i == 0) { // print column characters
+			printf("  ");
 			for (int j = 0; j < self.column; j++) {
 				printf(" %c", 'a' + j);
 			}
 			printf("\n");
 		}
-		printf("%d ", i + 1);
+		printf("%2d ", i + 1);
 		for (int j = 0; j < self.column; j++) {
 			if ([self.disks[i][j] playerNumber] == FREE) {
 				printf("- ");
@@ -344,7 +346,7 @@ typedef enum USKReversiDirection {
 		default:
 		{
 			int maxOccupiedCells = 0;
-			int winner = -1;
+			int winner;
 			for (int i = 0; i < self.players.count; i++) {
 				if (maxOccupiedCells < [self.players[i] occupiedCount]) {
 					maxOccupiedCells = [self.players[i] occupiedCount];
