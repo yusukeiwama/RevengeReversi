@@ -64,6 +64,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFD-c4-xWo">
                                 <rect key="frame" x="326" y="888" width="116" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="116" id="4Bs-Ba-2cJ"/>
                                     <constraint firstAttribute="width" constant="116" id="auZ-xC-aJ3"/>

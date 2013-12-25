@@ -34,6 +34,7 @@ typedef enum USKReversiSkin {
 
 @property UIImageView *imageViewToEdit;
 
+- (IBAction)functionButtonLongPressAction:(id)sender;
 - (IBAction)functionButtonAction:(id)sender;
 - (IBAction)tapAction:(id)sender;
 - (IBAction)changePlayer0Image:(id)sender;
@@ -43,6 +44,7 @@ typedef enum USKReversiSkin {
 
 @implementation USKViewController {
 	CGFloat _diskMargin;
+	UIAlertView *_abortGameAlertView;
 }
 
 @synthesize boardImageView = _boardImageView;
@@ -135,8 +137,10 @@ typedef enum USKReversiSkin {
 		[_diskViews addObject:aRow];
 	}
 	
+	UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+	[_functionButton addGestureRecognizer:longPressGestureRecognizer];
+	
 	[self updateBoardView];
-	[self updateHelpLabel];
 	[self updatePlayerInfoViews];
 }
 
@@ -198,10 +202,7 @@ typedef enum USKReversiSkin {
 	
 	self.blackScoreLabel.text = [NSString stringWithFormat:@"%d", [self.reversi.players[0] occupiedCount]];
 	self.whiteScoreLabel.text = [NSString stringWithFormat:@"%d", [self.reversi.players[1] occupiedCount]];
-}
-
-- (void)updateHelpLabel
-{
+	
 	if (self.reversi.isFinished) {
 		switch (self.reversi.winner) {
 			case 0:
@@ -224,12 +225,12 @@ typedef enum USKReversiSkin {
 		self.whiteScoreLabel.hidden = NO;
 		[self.functionButton setBackgroundImage:[UIImage imageNamed:@"star.png"] forState:UIControlStateNormal];
 		[self.functionButton setTitle:@"New" forState:UIControlStateNormal];
-
+		
 		self.boardImageView.userInteractionEnabled = NO;
 		
 		return;
 	}
-//	
+
 //	switch (self.reversi.attacker) {
 //		case 0:
 //			self.helpLabel.text = [NSString stringWithFormat:@"%@'s Turn", [(NSDictionary *)self.players[0] objectForKey:@"Name"]];
@@ -274,16 +275,24 @@ typedef enum USKReversiSkin {
 	}
 }
 
-- (IBAction)functionButtonAction:(id)sender {
+- (void)handleLongPress:(UILongPressGestureRecognizer *)sender
+{
+	if (sender.state == UIGestureRecognizerStateEnded) {
+		_abortGameAlertView = [[UIAlertView alloc] initWithTitle:@"New Game?" message:@"Are you sure you want to stop this game and start new one?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"New Game", nil];
+		[_abortGameAlertView show];
+
+	}
+}
+
+- (IBAction)functionButtonAction:(id)sender
+{
 	if (self.reversi.isFinished) {
 		[self newGame];
 	} else {
-		if ([self.reversi attemptPass]) {
+		if ([self.reversi attemptPass]) { // check if legal pass
 			NSLog(@"\nTurn %3d: pass (%@ passed)", self.reversi.turn + 1, [(NSDictionary *)self.players[self.reversi.attacker] objectForKey:@"Name"]);
 			[self updateBoardView];
 			[self updatePlayerInfoViews];
-			[self updateHelpLabel];
-		} else { // illegal pass
 		}
 	}
 }
@@ -300,7 +309,6 @@ typedef enum USKReversiSkin {
 	if ([self.reversi attemptMoveAtRow:row column:column]) {
 		[self updateBoardView];
 		[self updatePlayerInfoViews];
-		[self updateHelpLabel];
 	}
 	self.view.userInteractionEnabled = YES;
 }
@@ -324,17 +332,27 @@ typedef enum USKReversiSkin {
 
 -(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	switch (buttonIndex) {
-		case 1:
-			[self takePhoto];
-			break;
-		case 2:
-			[self selectImageFromPhotoLibrary];
-			break;
-		case 3:
-			[self restoreDefaultDiskImage];
-		default:
-			break;
+	if ([alertView isEqual:_abortGameAlertView]) {
+		switch (buttonIndex) {
+			case 1:
+				[self newGame];
+				break;
+			default:
+				break;
+		}
+	} else {
+		switch (buttonIndex) {
+			case 1:
+				[self takePhoto];
+				break;
+			case 2:
+				[self selectImageFromPhotoLibrary];
+				break;
+			case 3:
+				[self restoreDefaultDiskImage];
+			default:
+				break;
+		}
 	}
 }
 
