@@ -16,51 +16,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="snow_texture.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="AJt-FR-E4f">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="desk_gray.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="AJt-FR-E4f">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJH-EM-KZu">
                                 <rect key="frame" x="16" y="144" width="736" height="736"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="736" id="aQF-Vl-Jga"/>
                                     <constraint firstAttribute="height" constant="736" id="nLn-Ze-Fm1"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="48" translatesAutoresizingMaskIntoConstraints="NO" id="GVO-5F-A6E">
-                                <rect key="frame" x="148" y="20" width="48" height="116"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="116" translatesAutoresizingMaskIntoConstraints="NO" id="GVO-5F-A6E">
+                                <rect key="frame" x="148" y="20" width="116" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="n04-1D-Iap"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="32"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="48" translatesAutoresizingMaskIntoConstraints="NO" id="eCF-Yb-PbR">
-                                <rect key="frame" x="576" y="20" width="48" height="116"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="glD-2c-vMA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="32"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="ZJJ-Oa-Ngg">
-                                <rect key="frame" x="224" y="20" width="320" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="7hj-1a-3Qx"/>
-                                    <constraint firstAttribute="height" constant="120" id="OKR-cw-dtb"/>
+                                    <constraint firstAttribute="width" constant="116" id="n04-1D-Iap"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="48"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteStucco.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aSa-2P-gq7">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="116" translatesAutoresizingMaskIntoConstraints="NO" id="eCF-Yb-PbR">
+                                <rect key="frame" x="508" y="20" width="116" height="116"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="116" id="glD-2c-vMA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="48"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boardFabricPad.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aSa-2P-gq7">
                                 <rect key="frame" x="24" y="152" width="720" height="720"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
@@ -87,28 +76,34 @@
                                     <action selector="functionButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y9N-9q-gZe"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8rY-1k-wAr">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8rY-1k-wAr">
                                 <rect key="frame" x="24" y="20" width="116" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="116" id="qfZ-Ib-g9B"/>
                                     <constraint firstAttribute="width" constant="116" id="xPj-Uz-yCZ"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="nhc-CQ-1aj" appends="YES" id="77r-As-NMI"/>
+                                </connections>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qlC-oe-Xm1">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qlC-oe-Xm1">
                                 <rect key="frame" x="632" y="20" width="116" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="gHq-wr-tOu" appends="YES" id="jXH-9I-Y9F"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZJJ-Oa-Ngg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="2Pd-WK-o3c"/>
                             <constraint firstItem="eCF-Yb-PbR" firstAttribute="centerY" secondItem="qlC-oe-Xm1" secondAttribute="centerY" id="6tg-4j-2ls"/>
                             <constraint firstItem="CNM-zY-hTH" firstAttribute="top" secondItem="EFD-c4-xWo" secondAttribute="bottom" constant="20" id="9pu-Bg-zwe"/>
                             <constraint firstItem="qlC-oe-Xm1" firstAttribute="height" secondItem="8rY-1k-wAr" secondAttribute="height" id="CaF-QF-9eo"/>
                             <constraint firstAttribute="trailing" secondItem="qlC-oe-Xm1" secondAttribute="trailing" constant="20" id="DDm-3Y-f5r"/>
                             <constraint firstAttribute="centerX" secondItem="aSa-2P-gq7" secondAttribute="centerX" id="DkA-t3-Pa6"/>
-                            <constraint firstAttribute="centerX" secondItem="ZJJ-Oa-Ngg" secondAttribute="centerX" id="EBe-4k-Pk5"/>
                             <constraint firstItem="8rY-1k-wAr" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="IFO-2g-RTA"/>
                             <constraint firstItem="eCF-Yb-PbR" firstAttribute="height" secondItem="qlC-oe-Xm1" secondAttribute="height" id="K0b-kB-UcF"/>
                             <constraint firstItem="8rY-1k-wAr" firstAttribute="height" secondItem="GVO-5F-A6E" secondAttribute="height" id="QBe-Bf-Bno"/>
@@ -133,7 +128,6 @@
                         <outlet property="blackScoreLabel" destination="GVO-5F-A6E" id="yTF-IQ-VcQ"/>
                         <outlet property="boardImageView" destination="aSa-2P-gq7" id="Fsi-V4-dzB"/>
                         <outlet property="functionButton" destination="EFD-c4-xWo" id="gts-Lp-wR8"/>
-                        <outlet property="helpLabel" destination="ZJJ-Oa-Ngg" id="0Ru-yc-Jvn"/>
                         <outlet property="player0ImageView" destination="8rY-1k-wAr" id="bSq-7n-yqB"/>
                         <outlet property="player1ImageView" destination="qlC-oe-Xm1" id="faV-En-iR6"/>
                         <outlet property="whiteScoreLabel" destination="eCF-Yb-PbR" id="h69-Dc-3Ed"/>
@@ -145,13 +139,23 @@
                         <action selector="tapAction:" destination="BYZ-38-t0r" id="0qr-YQ-VZR"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="nhc-CQ-1aj">
+                    <connections>
+                        <action selector="changePlayer0Image:" destination="BYZ-38-t0r" id="5j4-SS-94r"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="gHq-wr-tOu">
+                    <connections>
+                        <action selector="changePlayer1Image:" destination="BYZ-38-t0r" id="2Kv-NA-rDC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
         </scene>
     </scenes>
     <resources>
+        <image name="boardFabricPad.jpg" width="1440" height="1440"/>
+        <image name="desk_gray.jpg" width="1536" height="2048"/>
         <image name="diskRed.png" width="256" height="256"/>
-        <image name="snow_texture.jpg" width="768" height="1024"/>
-        <image name="whiteStucco.jpg" width="1440" height="1440"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>

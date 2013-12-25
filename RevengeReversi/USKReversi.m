@@ -119,18 +119,33 @@ typedef enum USKReversiDirection {
 	}
 }
 
-- (void)pass
+- (BOOL)attemptPass
 {
 	USKReversiMove *pass = [USKReversiMove pass];
+
+	if ([self numberOfAvailableMoves] == 0) {
+		
+		pass.isValid = YES;
+		[[_players[self.attacker] record] addObject:pass];
+		
+		if ([self numberOfFreeCells] == 0 || [self everyonePasses]) {
+			_isFinished = YES;
+		}
+		
+		_turn++;
+		
+		return YES;
+
+	} else {
+		
+		pass.isValid = NO;
+		[[_players[self.attacker] record] addObject:pass];
 	
-	[[_players[self.attacker] record] addObject:pass];
+		return NO;
 	
-	if ([self numberOfFreeCells] == 0 || [self everyonePasses]) {
-		_isFinished = YES;
 	}
-	
-	_turn++;
 }
+
 
 - (void)flipByMove:(USKReversiMove *)move
 {
@@ -256,22 +271,6 @@ typedef enum USKReversiDirection {
 	return numberOfAvailableMoves;
 }
 
-- (BOOL)everyonePasses
-{
-	for (int p = 0; p < self.numberOfPlayers; p++) {
-		if ([((USKReversiPlayer *)self.players[p]) isPassing] == NO) {
-			return NO;
-		}
-	}
-	
-	return YES;
-}
-
-- (BOOL)diskIsOnBoardWithRow:(int)row column:(int)column
-{
-	return ((0 <= row && row < self.row) && (0 <= column && column < self.column));
-}
-
 - (int)flipCountByMove:(USKReversiMove *)move toward:(USKReversiDirection)direction
 {
 	int flipCount = 0;
@@ -317,26 +316,20 @@ typedef enum USKReversiDirection {
 	return move.isValid = NO;
 }
 
-- (void)printBoard
+- (BOOL)everyonePasses
 {
-	for (int i = 0; i < self.row; i++) {
-		if (i == 0) { // print column characters
-			printf("  ");
-			for (int j = 0; j < self.column; j++) {
-				printf(" %c", 'a' + j);
-			}
-			printf("\n");
+	for (int p = 0; p < self.numberOfPlayers; p++) {
+		if ([((USKReversiPlayer *)self.players[p]) isPassing] == NO) {
+			return NO;
 		}
-		printf("%2d ", i + 1);
-		for (int j = 0; j < self.column; j++) {
-			if ([self.disks[i][j] playerNumber] == FREE) {
-				printf("- ");
-			} else {
-				printf("%d ", [self.disks[i][j] playerNumber]);
-			}
-		}
-		printf("\n");
 	}
+	
+	return YES;
+}
+
+- (BOOL)diskIsOnBoardWithRow:(int)row column:(int)column
+{
+	return ((0 <= row && row < self.row) && (0 <= column && column < self.column));
 }
 
 - (int)attacker
@@ -364,6 +357,26 @@ typedef enum USKReversiDirection {
 	}
 }
 
-
+- (void)printBoard
+{
+	for (int i = 0; i < self.row; i++) {
+		if (i == 0) { // print column characters
+			printf("  ");
+			for (int j = 0; j < self.column; j++) {
+				printf(" %c", 'a' + j);
+			}
+			printf("\n");
+		}
+		printf("%2d ", i + 1);
+		for (int j = 0; j < self.column; j++) {
+			if ([self.disks[i][j] playerNumber] == FREE) {
+				printf("- ");
+			} else {
+				printf("%d ", [self.disks[i][j] playerNumber]);
+			}
+		}
+		printf("\n");
+	}
+}
 
 @end

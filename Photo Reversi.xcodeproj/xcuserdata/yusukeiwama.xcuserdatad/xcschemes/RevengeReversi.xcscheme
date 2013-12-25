@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "430682D2186360C90038F9C8"
-               BuildableName = "RevengeReversi.app"
-               BlueprintName = "RevengeReversi"
-               ReferencedContainer = "container:RevengeReversi.xcodeproj">
+               BuildableName = "Photo Reversi.app"
+               BlueprintName = "Photo Reversi"
+               ReferencedContainer = "container:Photo Reversi.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "430682F6186360C90038F9C8"
-               BuildableName = "RevengeReversiTests.xctest"
-               BlueprintName = "RevengeReversiTests"
-               ReferencedContainer = "container:RevengeReversi.xcodeproj">
+               BuildableName = "Photo ReversiTests.xctest"
+               BlueprintName = "Photo ReversiTests"
+               ReferencedContainer = "container:Photo Reversi.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "430682D2186360C90038F9C8"
-            BuildableName = "RevengeReversi.app"
-            BlueprintName = "RevengeReversi"
-            ReferencedContainer = "container:RevengeReversi.xcodeproj">
+            BuildableName = "Photo Reversi.app"
+            BlueprintName = "Photo Reversi"
+            ReferencedContainer = "container:Photo Reversi.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "430682D2186360C90038F9C8"
-            BuildableName = "RevengeReversi.app"
-            BlueprintName = "RevengeReversi"
-            ReferencedContainer = "container:RevengeReversi.xcodeproj">
+            BuildableName = "Photo Reversi.app"
+            BlueprintName = "Photo Reversi"
+            ReferencedContainer = "container:Photo Reversi.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "430682D2186360C90038F9C8"
-            BuildableName = "RevengeReversi.app"
-            BlueprintName = "RevengeReversi"
-            ReferencedContainer = "container:RevengeReversi.xcodeproj">
+            BuildableName = "Photo Reversi.app"
+            BlueprintName = "Photo Reversi"
+            ReferencedContainer = "container:Photo Reversi.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

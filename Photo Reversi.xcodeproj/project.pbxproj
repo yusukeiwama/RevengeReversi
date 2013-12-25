@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43035E1A186995D7005DF3FD /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 43035E19186995D7005DF3FD /* star.png */; };
 		430682D7186360C90038F9C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430682D6186360C90038F9C8 /* Foundation.framework */; };
 		430682D9186360C90038F9C8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430682D8186360C90038F9C8 /* CoreGraphics.framework */; };
 		430682DB186360C90038F9C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430682DA186360C90038F9C8 /* UIKit.framework */; };
@@ -21,7 +22,7 @@
 		430682FA186360C90038F9C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430682D6186360C90038F9C8 /* Foundation.framework */; };
 		430682FB186360C90038F9C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430682DA186360C90038F9C8 /* UIKit.framework */; };
 		43068303186360C90038F9C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43068301186360C90038F9C8 /* InfoPlist.strings */; };
-		43068305186360C90038F9C8 /* RevengeReversiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43068304186360C90038F9C8 /* RevengeReversiTests.m */; };
+		43068305186360C90038F9C8 /* PhotoReversiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43068304186360C90038F9C8 /* PhotoReversiTests.m */; };
 		433E36C01865EE8300C0C051 /* USKReversiDisk.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E36BF1865EE8300C0C051 /* USKReversiDisk.m */; };
 		435997E4186691F600E3C4A3 /* USKReversiPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 435997E3186691F600E3C4A3 /* USKReversiPlayer.m */; };
 		437877151866CDE800EA0BEA /* USKReversiMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 437877141866CDE800EA0BEA /* USKReversiMove.m */; };
@@ -29,18 +30,6 @@
 		4378771B1867CC5B00EA0BEA /* backgroundPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877171867CC5B00EA0BEA /* backgroundPhone.jpg */; };
 		4378771C1867CC5B00EA0BEA /* boardFabricPad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877181867CC5B00EA0BEA /* boardFabricPad.jpg */; };
 		4378771D1867CC5B00EA0BEA /* boardFabricPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877191867CC5B00EA0BEA /* boardFabricPhone.jpg */; };
-		4378776E186823E600EA0BEA /* cureDiamond.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378776A186823E600EA0BEA /* cureDiamond.jpg */; };
-		4378776F186823E600EA0BEA /* cureHeart.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378776B186823E600EA0BEA /* cureHeart.jpg */; };
-		43787770186823E600EA0BEA /* cureRosetta.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378776C186823E600EA0BEA /* cureRosetta.jpg */; };
-		43787771186823E600EA0BEA /* cureSword.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378776D186823E600EA0BEA /* cureSword.jpg */; };
-		437877781868261500EA0BEA /* cureHeart160x160@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877761868261500EA0BEA /* cureHeart160x160@2x.jpg */; };
-		437877791868261500EA0BEA /* cureSword160x160@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877771868261500EA0BEA /* cureSword160x160@2x.jpg */; };
-		437877801868299800EA0BEA /* cureDiamond160x160@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378777A1868299800EA0BEA /* cureDiamond160x160@2x.jpg */; };
-		437877811868299800EA0BEA /* cureDiamond160x160Blue@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378777B1868299800EA0BEA /* cureDiamond160x160Blue@2x.jpg */; };
-		437877821868299800EA0BEA /* cureHeart160x160Pink@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378777C1868299800EA0BEA /* cureHeart160x160Pink@2x.jpg */; };
-		437877831868299800EA0BEA /* cureRosetta160x160@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378777D1868299800EA0BEA /* cureRosetta160x160@2x.jpg */; };
-		437877841868299800EA0BEA /* cureRosetta160x160Yellow@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378777E1868299800EA0BEA /* cureRosetta160x160Yellow@2x.jpg */; };
-		437877851868299800EA0BEA /* cureSword160x160Purple@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378777F1868299800EA0BEA /* cureSword160x160Purple@2x.jpg */; };
 		4378778D18682DF800EA0BEA /* diskGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378778718682DF800EA0BEA /* diskGreen.png */; };
 		4378778E18682DF800EA0BEA /* diskOrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378778818682DF800EA0BEA /* diskOrange.png */; };
 		4378778F18682DF800EA0BEA /* diskRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378778918682DF800EA0BEA /* diskRed.png */; };
@@ -53,16 +42,13 @@
 		4378779E18685FE500EA0BEA /* diskOrange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378779918685FE500EA0BEA /* diskOrange@2x.png */; };
 		4378779F18685FE500EA0BEA /* diskYellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4378779A18685FE500EA0BEA /* diskYellow@2x.png */; };
 		437877A018685FE500EA0BEA /* snow_texture@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378779B18685FE500EA0BEA /* snow_texture@2x.jpg */; };
-		437877A118685FE500EA0BEA /* whiteTile@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4378779C18685FE500EA0BEA /* whiteTile@2x.jpg */; };
-		437877A41868660B00EA0BEA /* cureAce.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877A21868660B00EA0BEA /* cureAce.jpg */; };
-		437877A51868660B00EA0BEA /* regina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877A31868660B00EA0BEA /* regina.jpg */; };
 		437877A718686DF100EA0BEA /* whiteStucco.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877A618686DF100EA0BEA /* whiteStucco.jpg */; };
 		437877A9186873F700EA0BEA /* snow_texturePhone@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 437877A8186873F700EA0BEA /* snow_texturePhone@2x.jpg */; };
 		437877AD1868905A00EA0BEA /* diskQuestion.png in Resources */ = {isa = PBXBuildFile; fileRef = 437877AB1868905A00EA0BEA /* diskQuestion.png */; };
 		437877AE1868905A00EA0BEA /* diskStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 437877AC1868905A00EA0BEA /* diskStop.png */; };
-		437877B01868923800EA0BEA /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 437877AF1868923800EA0BEA /* star.png */; };
 		43B649A01863D4DB00D1396F /* USKReversi.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B6499F1863D4DB00D1396F /* USKReversi.m */; };
 		43B649A21863EE1A00D1396F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B649A11863EE1A00D1396F /* QuartzCore.framework */; };
+		43CC6FE21868ADBE00421A68 /* desk_gray.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43CC6FE11868ADBE00421A68 /* desk_gray.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,14 +62,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		430682D3186360C90038F9C8 /* RevengeReversi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RevengeReversi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43035E19186995D7005DF3FD /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = Assets/star.png; sourceTree = "<group>"; };
+		430682D3186360C90038F9C8 /* Photo Reversi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Reversi.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		430682D6186360C90038F9C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		430682D8186360C90038F9C8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		430682DA186360C90038F9C8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		430682DE186360C90038F9C8 /* RevengeReversi-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RevengeReversi-Info.plist"; sourceTree = "<group>"; };
+		430682DE186360C90038F9C8 /* Photo Reversi-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Photo Reversi-Info.plist"; sourceTree = "<group>"; };
 		430682E0186360C90038F9C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		430682E2186360C90038F9C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		430682E4186360C90038F9C8 /* RevengeReversi-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RevengeReversi-Prefix.pch"; sourceTree = "<group>"; };
+		430682E4186360C90038F9C8 /* Photo Reversi-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Photo Reversi-Prefix.pch"; sourceTree = "<group>"; };
 		430682E5186360C90038F9C8 /* USKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USKAppDelegate.h; sourceTree = "<group>"; };
 		430682E6186360C90038F9C8 /* USKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = USKAppDelegate.m; sourceTree = "<group>"; };
 		430682E9186360C90038F9C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
@@ -91,11 +78,11 @@
 		430682EE186360C90038F9C8 /* USKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USKViewController.h; sourceTree = "<group>"; };
 		430682EF186360C90038F9C8 /* USKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = USKViewController.m; sourceTree = "<group>"; };
 		430682F1186360C90038F9C8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		430682F7186360C90038F9C8 /* RevengeReversiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RevengeReversiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		430682F7186360C90038F9C8 /* Photo ReversiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Photo ReversiTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		430682F8186360C90038F9C8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		43068300186360C90038F9C8 /* RevengeReversiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RevengeReversiTests-Info.plist"; sourceTree = "<group>"; };
+		43068300186360C90038F9C8 /* Photo ReversiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Photo ReversiTests-Info.plist"; sourceTree = "<group>"; };
 		43068302186360C90038F9C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		43068304186360C90038F9C8 /* RevengeReversiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevengeReversiTests.m; sourceTree = "<group>"; };
+		43068304186360C90038F9C8 /* PhotoReversiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoReversiTests.m; sourceTree = "<group>"; };
 		433E36BE1865EE8300C0C051 /* USKReversiDisk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversiDisk.h; sourceTree = "<group>"; };
 		433E36BF1865EE8300C0C051 /* USKReversiDisk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKReversiDisk.m; sourceTree = "<group>"; };
 		435997E2186691F600E3C4A3 /* USKReversiPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversiPlayer.h; sourceTree = "<group>"; };
@@ -106,18 +93,6 @@
 		437877171867CC5B00EA0BEA /* backgroundPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = backgroundPhone.jpg; path = RevengeReversi/backgroundPhone.jpg; sourceTree = "<group>"; };
 		437877181867CC5B00EA0BEA /* boardFabricPad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = boardFabricPad.jpg; path = RevengeReversi/boardFabricPad.jpg; sourceTree = "<group>"; };
 		437877191867CC5B00EA0BEA /* boardFabricPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = boardFabricPhone.jpg; path = RevengeReversi/boardFabricPhone.jpg; sourceTree = "<group>"; };
-		4378776A186823E600EA0BEA /* cureDiamond.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cureDiamond.jpg; path = Assets/cureDiamond.jpg; sourceTree = "<group>"; };
-		4378776B186823E600EA0BEA /* cureHeart.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cureHeart.jpg; path = Assets/cureHeart.jpg; sourceTree = "<group>"; };
-		4378776C186823E600EA0BEA /* cureRosetta.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cureRosetta.jpg; path = Assets/cureRosetta.jpg; sourceTree = "<group>"; };
-		4378776D186823E600EA0BEA /* cureSword.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cureSword.jpg; path = Assets/cureSword.jpg; sourceTree = "<group>"; };
-		437877761868261500EA0BEA /* cureHeart160x160@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cureHeart160x160@2x.jpg"; path = "Assets/cureHeart160x160@2x.jpg"; sourceTree = "<group>"; };
-		437877771868261500EA0BEA /* cureSword160x160@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cureSword160x160@2x.jpg"; path = "Assets/cureSword160x160@2x.jpg"; sourceTree = "<group>"; };
-		4378777A1868299800EA0BEA /* cureDiamond160x160@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cureDiamond160x160@2x.jpg"; path = "Assets/cureDiamond160x160@2x.jpg"; sourceTree = "<group>"; };
-		4378777B1868299800EA0BEA /* cureDiamond160x160Blue@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cureDiamond160x160Blue@2x.jpg"; path = "Assets/cureDiamond160x160Blue@2x.jpg"; sourceTree = "<group>"; };
-		4378777C1868299800EA0BEA /* cureHeart160x160Pink@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cureHeart160x160Pink@2x.jpg"; path = "Assets/cureHeart160x160Pink@2x.jpg"; sourceTree = "<group>"; };
-		4378777D1868299800EA0BEA /* cureRosetta160x160@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cureRosetta160x160@2x.jpg"; path = "Assets/cureRosetta160x160@2x.jpg"; sourceTree = "<group>"; };
-		4378777E1868299800EA0BEA /* cureRosetta160x160Yellow@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cureRosetta160x160Yellow@2x.jpg"; path = "Assets/cureRosetta160x160Yellow@2x.jpg"; sourceTree = "<group>"; };
-		4378777F1868299800EA0BEA /* cureSword160x160Purple@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cureSword160x160Purple@2x.jpg"; path = "Assets/cureSword160x160Purple@2x.jpg"; sourceTree = "<group>"; };
 		4378778718682DF800EA0BEA /* diskGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diskGreen.png; path = Assets/diskGreen.png; sourceTree = "<group>"; };
 		4378778818682DF800EA0BEA /* diskOrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diskOrange.png; path = Assets/diskOrange.png; sourceTree = "<group>"; };
 		4378778918682DF800EA0BEA /* diskRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diskRed.png; path = Assets/diskRed.png; sourceTree = "<group>"; };
@@ -130,17 +105,14 @@
 		4378779918685FE500EA0BEA /* diskOrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "diskOrange@2x.png"; path = "Assets/diskOrange@2x.png"; sourceTree = "<group>"; };
 		4378779A18685FE500EA0BEA /* diskYellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "diskYellow@2x.png"; path = "Assets/diskYellow@2x.png"; sourceTree = "<group>"; };
 		4378779B18685FE500EA0BEA /* snow_texture@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "snow_texture@2x.jpg"; path = "Assets/snow_texture@2x.jpg"; sourceTree = "<group>"; };
-		4378779C18685FE500EA0BEA /* whiteTile@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "whiteTile@2x.jpg"; path = "Assets/whiteTile@2x.jpg"; sourceTree = "<group>"; };
-		437877A21868660B00EA0BEA /* cureAce.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cureAce.jpg; path = Assets/cureAce.jpg; sourceTree = "<group>"; };
-		437877A31868660B00EA0BEA /* regina.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = regina.jpg; path = Assets/regina.jpg; sourceTree = "<group>"; };
 		437877A618686DF100EA0BEA /* whiteStucco.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = whiteStucco.jpg; path = Assets/whiteStucco.jpg; sourceTree = "<group>"; };
 		437877A8186873F700EA0BEA /* snow_texturePhone@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "snow_texturePhone@2x.jpg"; path = "Assets/snow_texturePhone@2x.jpg"; sourceTree = "<group>"; };
 		437877AB1868905A00EA0BEA /* diskQuestion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diskQuestion.png; path = Assets/diskQuestion.png; sourceTree = "<group>"; };
 		437877AC1868905A00EA0BEA /* diskStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diskStop.png; path = Assets/diskStop.png; sourceTree = "<group>"; };
-		437877AF1868923800EA0BEA /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = Assets/star.png; sourceTree = "<group>"; };
 		43B6499E1863D4DB00D1396F /* USKReversi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USKReversi.h; sourceTree = "<group>"; };
 		43B6499F1863D4DB00D1396F /* USKReversi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USKReversi.m; sourceTree = "<group>"; };
 		43B649A11863EE1A00D1396F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		43CC6FE11868ADBE00421A68 /* desk_gray.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = desk_gray.jpg; path = Assets/desk_gray.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,8 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				4344B351186443C5009E28CB /* Images */,
-				430682DC186360C90038F9C8 /* RevengeReversi */,
-				430682FE186360C90038F9C8 /* RevengeReversiTests */,
+				430682DC186360C90038F9C8 /* PhotoReversi */,
+				430682FE186360C90038F9C8 /* PhotoReversiTests */,
 				430682D5186360C90038F9C8 /* Frameworks */,
 				430682D4186360C90038F9C8 /* Products */,
 			);
@@ -182,8 +154,8 @@
 		430682D4186360C90038F9C8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				430682D3186360C90038F9C8 /* RevengeReversi.app */,
-				430682F7186360C90038F9C8 /* RevengeReversiTests.xctest */,
+				430682D3186360C90038F9C8 /* Photo Reversi.app */,
+				430682F7186360C90038F9C8 /* Photo ReversiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,7 +172,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		430682DC186360C90038F9C8 /* RevengeReversi */ = {
+		430682DC186360C90038F9C8 /* PhotoReversi */ = {
 			isa = PBXGroup;
 			children = (
 				43B6499D1863D4BC00D1396F /* Model */,
@@ -209,33 +181,35 @@
 				430682F1186360C90038F9C8 /* Images.xcassets */,
 				430682DD186360C90038F9C8 /* Supporting Files */,
 			);
+			name = PhotoReversi;
 			path = RevengeReversi;
 			sourceTree = "<group>";
 		};
 		430682DD186360C90038F9C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				430682DE186360C90038F9C8 /* RevengeReversi-Info.plist */,
+				430682DE186360C90038F9C8 /* Photo Reversi-Info.plist */,
 				430682DF186360C90038F9C8 /* InfoPlist.strings */,
 				430682E2186360C90038F9C8 /* main.m */,
-				430682E4186360C90038F9C8 /* RevengeReversi-Prefix.pch */,
+				430682E4186360C90038F9C8 /* Photo Reversi-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		430682FE186360C90038F9C8 /* RevengeReversiTests */ = {
+		430682FE186360C90038F9C8 /* PhotoReversiTests */ = {
 			isa = PBXGroup;
 			children = (
-				43068304186360C90038F9C8 /* RevengeReversiTests.m */,
+				43068304186360C90038F9C8 /* PhotoReversiTests.m */,
 				430682FF186360C90038F9C8 /* Supporting Files */,
 			);
+			name = PhotoReversiTests;
 			path = RevengeReversiTests;
 			sourceTree = "<group>";
 		};
 		430682FF186360C90038F9C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				43068300186360C90038F9C8 /* RevengeReversiTests-Info.plist */,
+				43068300186360C90038F9C8 /* Photo ReversiTests-Info.plist */,
 				43068301186360C90038F9C8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -244,18 +218,16 @@
 		4344B351186443C5009E28CB /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				437877AF1868923800EA0BEA /* star.png */,
+				43035E19186995D7005DF3FD /* star.png */,
+				43CC6FE11868ADBE00421A68 /* desk_gray.jpg */,
 				437877AB1868905A00EA0BEA /* diskQuestion.png */,
 				437877AC1868905A00EA0BEA /* diskStop.png */,
 				437877A8186873F700EA0BEA /* snow_texturePhone@2x.jpg */,
 				437877A618686DF100EA0BEA /* whiteStucco.jpg */,
-				437877A21868660B00EA0BEA /* cureAce.jpg */,
-				437877A31868660B00EA0BEA /* regina.jpg */,
 				4378779818685FE500EA0BEA /* diskGreen@2x.png */,
 				4378779918685FE500EA0BEA /* diskOrange@2x.png */,
 				4378779A18685FE500EA0BEA /* diskYellow@2x.png */,
 				4378779B18685FE500EA0BEA /* snow_texture@2x.jpg */,
-				4378779C18685FE500EA0BEA /* whiteTile@2x.jpg */,
 				4378779618682F5000EA0BEA /* diskBlack@2x.png */,
 				4378779218682F1000EA0BEA /* diskRed@2x.png */,
 				4378779318682F1000EA0BEA /* diskWhite@2x.png */,
@@ -264,18 +236,6 @@
 				4378778918682DF800EA0BEA /* diskRed.png */,
 				4378778A18682DF800EA0BEA /* diskWhite.png */,
 				4378778B18682DF800EA0BEA /* diskYellow.png */,
-				4378777A1868299800EA0BEA /* cureDiamond160x160@2x.jpg */,
-				4378777B1868299800EA0BEA /* cureDiamond160x160Blue@2x.jpg */,
-				4378777C1868299800EA0BEA /* cureHeart160x160Pink@2x.jpg */,
-				4378777D1868299800EA0BEA /* cureRosetta160x160@2x.jpg */,
-				4378777E1868299800EA0BEA /* cureRosetta160x160Yellow@2x.jpg */,
-				4378777F1868299800EA0BEA /* cureSword160x160Purple@2x.jpg */,
-				437877761868261500EA0BEA /* cureHeart160x160@2x.jpg */,
-				437877771868261500EA0BEA /* cureSword160x160@2x.jpg */,
-				4378776A186823E600EA0BEA /* cureDiamond.jpg */,
-				4378776B186823E600EA0BEA /* cureHeart.jpg */,
-				4378776C186823E600EA0BEA /* cureRosetta.jpg */,
-				4378776D186823E600EA0BEA /* cureSword.jpg */,
 				437877161867CC5B00EA0BEA /* backgroundPad.jpg */,
 				437877171867CC5B00EA0BEA /* backgroundPhone.jpg */,
 				437877181867CC5B00EA0BEA /* boardFabricPad.jpg */,
@@ -330,9 +290,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		430682D2186360C90038F9C8 /* RevengeReversi */ = {
+		430682D2186360C90038F9C8 /* Photo Reversi */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43068308186360C90038F9C8 /* Build configuration list for PBXNativeTarget "RevengeReversi" */;
+			buildConfigurationList = 43068308186360C90038F9C8 /* Build configuration list for PBXNativeTarget "Photo Reversi" */;
 			buildPhases = (
 				430682CF186360C90038F9C8 /* Sources */,
 				430682D0186360C90038F9C8 /* Frameworks */,
@@ -342,14 +302,14 @@
 			);
 			dependencies = (
 			);
-			name = RevengeReversi;
+			name = "Photo Reversi";
 			productName = RevengeReversi;
-			productReference = 430682D3186360C90038F9C8 /* RevengeReversi.app */;
+			productReference = 430682D3186360C90038F9C8 /* Photo Reversi.app */;
 			productType = "com.apple.product-type.application";
 		};
-		430682F6186360C90038F9C8 /* RevengeReversiTests */ = {
+		430682F6186360C90038F9C8 /* Photo ReversiTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4306830B186360C90038F9C8 /* Build configuration list for PBXNativeTarget "RevengeReversiTests" */;
+			buildConfigurationList = 4306830B186360C90038F9C8 /* Build configuration list for PBXNativeTarget "Photo ReversiTests" */;
 			buildPhases = (
 				430682F3186360C90038F9C8 /* Sources */,
 				430682F4186360C90038F9C8 /* Frameworks */,
@@ -360,9 +320,9 @@
 			dependencies = (
 				430682FD186360C90038F9C8 /* PBXTargetDependency */,
 			);
-			name = RevengeReversiTests;
+			name = "Photo ReversiTests";
 			productName = RevengeReversiTests;
-			productReference = 430682F7186360C90038F9C8 /* RevengeReversiTests.xctest */;
+			productReference = 430682F7186360C90038F9C8 /* Photo ReversiTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -380,7 +340,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 430682CE186360C90038F9C8 /* Build configuration list for PBXProject "RevengeReversi" */;
+			buildConfigurationList = 430682CE186360C90038F9C8 /* Build configuration list for PBXProject "Photo Reversi" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -393,8 +353,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				430682D2186360C90038F9C8 /* RevengeReversi */,
-				430682F6186360C90038F9C8 /* RevengeReversiTests */,
+				430682D2186360C90038F9C8 /* Photo Reversi */,
+				430682F6186360C90038F9C8 /* Photo ReversiTests */,
 			);
 		};
 /* End PBXProject section */
@@ -404,46 +364,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43787770186823E600EA0BEA /* cureRosetta.jpg in Resources */,
 				4378771B1867CC5B00EA0BEA /* backgroundPhone.jpg in Resources */,
-				437877791868261500EA0BEA /* cureSword160x160@2x.jpg in Resources */,
-				43787771186823E600EA0BEA /* cureSword.jpg in Resources */,
 				4378779018682DF800EA0BEA /* diskWhite.png in Resources */,
 				4378779D18685FE500EA0BEA /* diskGreen@2x.png in Resources */,
 				437877A9186873F700EA0BEA /* snow_texturePhone@2x.jpg in Resources */,
 				4378778D18682DF800EA0BEA /* diskGreen.png in Resources */,
 				437877A018685FE500EA0BEA /* snow_texture@2x.jpg in Resources */,
 				4378778E18682DF800EA0BEA /* diskOrange.png in Resources */,
-				4378776F186823E600EA0BEA /* cureHeart.jpg in Resources */,
 				430682ED186360C90038F9C8 /* Main_iPad.storyboard in Resources */,
-				437877821868299800EA0BEA /* cureHeart160x160Pink@2x.jpg in Resources */,
-				4378776E186823E600EA0BEA /* cureDiamond.jpg in Resources */,
 				430682F2186360C90038F9C8 /* Images.xcassets in Resources */,
+				43035E1A186995D7005DF3FD /* star.png in Resources */,
 				4378779E18685FE500EA0BEA /* diskOrange@2x.png in Resources */,
 				437877AD1868905A00EA0BEA /* diskQuestion.png in Resources */,
 				4378779418682F1000EA0BEA /* diskRed@2x.png in Resources */,
+				43CC6FE21868ADBE00421A68 /* desk_gray.jpg in Resources */,
 				4378778F18682DF800EA0BEA /* diskRed.png in Resources */,
-				437877A41868660B00EA0BEA /* cureAce.jpg in Resources */,
-				437877A51868660B00EA0BEA /* regina.jpg in Resources */,
-				437877B01868923800EA0BEA /* star.png in Resources */,
 				4378771A1867CC5B00EA0BEA /* backgroundPad.jpg in Resources */,
 				4378771D1867CC5B00EA0BEA /* boardFabricPhone.jpg in Resources */,
-				437877A118685FE500EA0BEA /* whiteTile@2x.jpg in Resources */,
 				4378779518682F1000EA0BEA /* diskWhite@2x.png in Resources */,
-				437877841868299800EA0BEA /* cureRosetta160x160Yellow@2x.jpg in Resources */,
 				4378779F18685FE500EA0BEA /* diskYellow@2x.png in Resources */,
-				437877781868261500EA0BEA /* cureHeart160x160@2x.jpg in Resources */,
 				4378779118682DF800EA0BEA /* diskYellow.png in Resources */,
 				4378771C1867CC5B00EA0BEA /* boardFabricPad.jpg in Resources */,
-				437877851868299800EA0BEA /* cureSword160x160Purple@2x.jpg in Resources */,
 				437877A718686DF100EA0BEA /* whiteStucco.jpg in Resources */,
-				437877801868299800EA0BEA /* cureDiamond160x160@2x.jpg in Resources */,
 				430682EA186360C90038F9C8 /* Main_iPhone.storyboard in Resources */,
 				4378779718682F5000EA0BEA /* diskBlack@2x.png in Resources */,
 				437877AE1868905A00EA0BEA /* diskStop.png in Resources */,
 				430682E1186360C90038F9C8 /* InfoPlist.strings in Resources */,
-				437877811868299800EA0BEA /* cureDiamond160x160Blue@2x.jpg in Resources */,
-				437877831868299800EA0BEA /* cureRosetta160x160@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,7 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43068305186360C90038F9C8 /* RevengeReversiTests.m in Sources */,
+				43068305186360C90038F9C8 /* PhotoReversiTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,7 +431,7 @@
 /* Begin PBXTargetDependency section */
 		430682FD186360C90038F9C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 430682D2186360C90038F9C8 /* RevengeReversi */;
+			target = 430682D2186360C90038F9C8 /* Photo Reversi */;
 			targetProxy = 430682FC186360C90038F9C8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -606,9 +552,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RevengeReversi/RevengeReversi-Prefix.pch";
-				INFOPLIST_FILE = "RevengeReversi/RevengeReversi-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "RevengeReversi/Photo Reversi-Prefix.pch";
+				INFOPLIST_FILE = "RevengeReversi/Photo Reversi-Info.plist";
+				PRODUCT_NAME = "Photo Reversi";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -619,9 +565,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RevengeReversi/RevengeReversi-Prefix.pch";
-				INFOPLIST_FILE = "RevengeReversi/RevengeReversi-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "RevengeReversi/Photo Reversi-Prefix.pch";
+				INFOPLIST_FILE = "RevengeReversi/Photo Reversi-Info.plist";
+				PRODUCT_NAME = "Photo Reversi";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -642,8 +588,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "RevengeReversiTests/RevengeReversiTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "RevengeReversiTests/Photo ReversiTests-Info.plist";
+				PRODUCT_NAME = "Photo ReversiTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -661,8 +607,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RevengeReversi/RevengeReversi-Prefix.pch";
-				INFOPLIST_FILE = "RevengeReversiTests/RevengeReversiTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "RevengeReversiTests/Photo ReversiTests-Info.plist";
+				PRODUCT_NAME = "Photo ReversiTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -671,7 +617,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		430682CE186360C90038F9C8 /* Build configuration list for PBXProject "RevengeReversi" */ = {
+		430682CE186360C90038F9C8 /* Build configuration list for PBXProject "Photo Reversi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43068306186360C90038F9C8 /* Debug */,
@@ -680,7 +626,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43068308186360C90038F9C8 /* Build configuration list for PBXNativeTarget "RevengeReversi" */ = {
+		43068308186360C90038F9C8 /* Build configuration list for PBXNativeTarget "Photo Reversi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43068309186360C90038F9C8 /* Debug */,
@@ -689,7 +635,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4306830B186360C90038F9C8 /* Build configuration list for PBXNativeTarget "RevengeReversiTests" */ = {
+		4306830B186360C90038F9C8 /* Build configuration list for PBXNativeTarget "Photo ReversiTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4306830C186360C90038F9C8 /* Debug */,

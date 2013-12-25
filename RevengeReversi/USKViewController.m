@@ -16,12 +16,12 @@ typedef enum USKReversiSkin {
 	USKReversiSkinDebug
 } USKReversiSkin;
 
-@interface USKViewController () // <USKReversiDelegate>
+@interface USKViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *boardImageView;
 @property (weak, nonatomic) IBOutlet UILabel *blackScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *whiteScoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *helpLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *helpLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *player0ImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *player1ImageView;
@@ -32,17 +32,23 @@ typedef enum USKReversiSkin {
 @property NSArray *players;
 @property USKReversiSkin skin;
 
+@property UIImageView *imageViewToEdit;
+
 - (IBAction)functionButtonAction:(id)sender;
 - (IBAction)tapAction:(id)sender;
+- (IBAction)changePlayer0Image:(id)sender;
+- (IBAction)changePlayer1Image:(id)sender;
 
 @end
 
-@implementation USKViewController
+@implementation USKViewController {
+	CGFloat _diskMargin;
+}
 
 @synthesize boardImageView = _boardImageView;
 @synthesize blackScoreLabel = _blackScoreLabel;
 @synthesize whiteScoreLabel = _whiteScoreLabel;
-@synthesize helpLabel = _helpLabel;
+//@synthesize helpLabel = _helpLabel;
 @synthesize backgroundImageView = _backgroundImageView;
 @synthesize reversi = _reversi;
 @synthesize diskViews = _diskViews;
@@ -51,6 +57,7 @@ typedef enum USKReversiSkin {
 @synthesize player0ImageView = _player0ImageView;
 @synthesize player1ImageView = _player1ImageView;
 @synthesize functionButton = _functionButton;
+@synthesize imageViewToEdit = _imageViewToEdit;
 
 - (void)viewDidLoad
 {
@@ -96,11 +103,19 @@ typedef enum USKReversiSkin {
 	}
 	
 	_player0ImageView.image = [UIImage imageNamed:[(NSDictionary *)self.players[0] objectForKey:@"Image"]];
+	_player0ImageView.layer.shadowColor = [[UIColor whiteColor] CGColor];
+	_player0ImageView.layer.shadowRadius = 14.0;
+	_player0ImageView.layer.shadowOpacity = 0.0; // initially hidden
+
 	_player1ImageView.image = [UIImage imageNamed:[(NSDictionary *)self.players[1] objectForKey:@"Image"]];
+	_player1ImageView.layer.shadowColor = [[UIColor whiteColor] CGColor];
+	_player1ImageView.layer.shadowRadius = 14.0;
+	_player1ImageView.layer.shadowOpacity = 0.0; // initially hidden
 	
 	_blackScoreLabel.hidden = YES;
 	_whiteScoreLabel.hidden = YES;
 
+	_diskMargin = 1.0;
 	[self drawGrid];
 	
 	// Draw disk views.
@@ -108,11 +123,10 @@ typedef enum USKReversiSkin {
 	for (int i = 0; i < _reversi.row; i++) {
 		NSMutableArray *aRow = [NSMutableArray array];
 		for (int j = 0; j < _reversi.column; j++) {
-			CGFloat margin = self.boardImageView.frame.size.width / _reversi.column * 0.05;
-			CGRect rect = CGRectMake(self.boardImageView.frame.size.width / _reversi.column * j + margin,
-									 self.boardImageView.frame.size.height / _reversi.row * i + margin,
-									 self.boardImageView.frame.size.width / _reversi.column - 2.0 * margin,
-									 self.boardImageView.frame.size.height / _reversi.row - 2.0 * margin);
+			CGRect rect = CGRectMake(self.boardImageView.frame.size.width / _reversi.column * j + _diskMargin,
+									 self.boardImageView.frame.size.height / _reversi.row * i + _diskMargin,
+									 self.boardImageView.frame.size.width / _reversi.column - 2.0 * _diskMargin,
+									 self.boardImageView.frame.size.height / _reversi.row - 2.0 * _diskMargin);
 			UIImageView *aDiskView = [[UIImageView alloc] initWithFrame:rect];
 //			aDiskView.label.font = [UIFont fontWithName:@"Futura" size:aDiskView.frame.size.height / 2.0];
 			[self.boardImageView addSubview:aDiskView];
@@ -131,8 +145,8 @@ typedef enum USKReversiSkin {
 	UIGraphicsBeginImageContextWithOptions((self.boardImageView.frame.size), YES, 0);
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[self.boardImageView.image drawInRect:CGRectMake(0, 0, self.boardImageView.frame.size.width, self.boardImageView.frame.size.height)];
-	CGContextSetStrokeColorWithColor(context, [[UIColor grayColor] CGColor]);
-	CGContextSetLineWidth(context, 2);
+	CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
+	CGContextSetLineWidth(context, _diskMargin * 2.0);
 	for (int i = 0; i < _reversi.column + 1; i++) {
 		// Draw vertical lines.
 		CGContextMoveToPoint(context, self.boardImageView.frame.size.width / _reversi.column * i, 0.0);
@@ -191,24 +205,28 @@ typedef enum USKReversiSkin {
 	if (self.reversi.isFinished) {
 		switch (self.reversi.winner) {
 			case 0:
-				self.helpLabel.text = [NSString stringWithFormat:@"%@ Won!", [(NSDictionary *)self.players[0] objectForKey:@"Name"]];
+				self.player0ImageView.layer.shadowOpacity = 1.0;
+//				self.helpLabel.text = [NSString stringWithFormat:@"%@ Won!", [(NSDictionary *)self.players[0] objectForKey:@"Name"]];
 				break;
 			case 1:
-				self.helpLabel.text = [NSString stringWithFormat:@"%@ Won!", [(NSDictionary *)self.players[1] objectForKey:@"Name"]];
+				self.player1ImageView.layer.shadowOpacity = 1.0;
+//				self.helpLabel.text = [NSString stringWithFormat:@"%@ Won!", [(NSDictionary *)self.players[1] objectForKey:@"Name"]];
 				break;
 			case DRAW:
-				self.helpLabel.text = @"Draw!";
+//				self.helpLabel.text = @"Draw!";
 				break;
 			default:
 				break;
 		}
-		
 		self.player0ImageView.alpha = 1.0;
 		self.player1ImageView.alpha = 1.0;
 		self.blackScoreLabel.hidden = NO;
 		self.whiteScoreLabel.hidden = NO;
 		[self.functionButton setBackgroundImage:[UIImage imageNamed:@"star.png"] forState:UIControlStateNormal];
 		[self.functionButton setTitle:@"New" forState:UIControlStateNormal];
+
+		self.boardImageView.userInteractionEnabled = NO;
+		
 		return;
 	}
 //	
@@ -230,11 +248,15 @@ typedef enum USKReversiSkin {
 	self.reversi = [[USKReversi alloc] initWithRow:self.reversi.row column:self.reversi.column numberOfPlayers:self.players.count rule:self.reversi.rule];
 	[self updateBoardView];
 	[self updatePlayerInfoViews];
-	self.helpLabel.text = @"";
+//	self.helpLabel.text = @"";
 	self.blackScoreLabel.hidden = YES;
 	self.whiteScoreLabel.hidden = YES;
+	self.player0ImageView.layer.shadowOpacity = 0.0;
+	self.player1ImageView.layer.shadowOpacity = 0.0;
 	[self.functionButton setBackgroundImage:[UIImage imageNamed:@"diskRed.png"] forState:UIControlStateNormal];
 	[self.functionButton setTitle:@"Pass" forState:UIControlStateNormal];
+	
+	self.boardImageView.userInteractionEnabled = YES;
 }
 
 - (void)clearBoard
@@ -256,11 +278,13 @@ typedef enum USKReversiSkin {
 	if (self.reversi.isFinished) {
 		[self newGame];
 	} else {
-		[self.reversi pass];
-		NSLog(@"\nTurn %3d: pass (%@ passed)", self.reversi.turn + 1, [(NSDictionary *)self.players[self.reversi.attacker] objectForKey:@"Name"]);
-		[self updateBoardView];
-		[self updatePlayerInfoViews];
-		[self updateHelpLabel];
+		if ([self.reversi attemptPass]) {
+			NSLog(@"\nTurn %3d: pass (%@ passed)", self.reversi.turn + 1, [(NSDictionary *)self.players[self.reversi.attacker] objectForKey:@"Name"]);
+			[self updateBoardView];
+			[self updatePlayerInfoViews];
+			[self updateHelpLabel];
+		} else { // illegal pass
+		}
 	}
 }
 
@@ -281,6 +305,76 @@ typedef enum USKReversiSkin {
 	self.view.userInteractionEnabled = YES;
 }
 
+- (IBAction)changePlayer0Image:(id)sender {
+	self.imageViewToEdit = self.player0ImageView;
+	[self displayImageSourceSelectPanel];
+}
+
+
+- (IBAction)changePlayer1Image:(id)sender {
+	self.imageViewToEdit = self.player1ImageView;
+	[self displayImageSourceSelectPanel];
+}
+
+- (void)displayImageSourceSelectPanel
+{
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Custom Disk Image" message:@"Please select image source." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Camera", @"PhotoLibrary", nil];
+	[alert show];
+}
+
+-(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	switch (buttonIndex) {
+		case 0:
+			break;
+		case 1:
+			[self takePhoto];
+			break;
+		case 2:
+			[self selectPhoto];
+			break;
+		default:
+			break;
+	}
+}
+
+- (void)takePhoto
+{
+	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+		
+		UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+		picker.delegate = self;
+		picker.allowsEditing = YES;
+		picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+		
+		[self presentViewController:picker animated:YES completion:NULL];
+	}
+}
+
+- (void)selectPhoto
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.imageViewToEdit.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+	[self updateAllDisks];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
 - (void)updateBoardView
 {
 	for (int i = 0; i < _reversi.row; i++) {
@@ -293,7 +387,7 @@ typedef enum USKReversiSkin {
 						[UIView setAnimationDuration:duration];
 						[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 						[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.diskViews[i][j] cache:NO];
-						((UIImageView *)self.diskViews[i][j]).image = [UIImage imageNamed:[(NSDictionary *)self.players[0] objectForKey:@"Image"]];
+						((UIImageView *)self.diskViews[i][j]).image = self.player0ImageView.image;
 						[UIView commitAnimations];
 						break;
 						
@@ -302,13 +396,44 @@ typedef enum USKReversiSkin {
 						[UIView setAnimationDuration:duration];
 						[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 						[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.diskViews[i][j] cache:NO];
-						((UIImageView *)self.diskViews[i][j]).image = [UIImage imageNamed:[(NSDictionary *)self.players[1] objectForKey:@"Image"]];
+						((UIImageView *)self.diskViews[i][j]).image = self.player1ImageView.image;
 						[UIView commitAnimations];
 						break;
 						
 					default:
 						break;
 				}
+			}
+		}
+	}
+}
+
+- (void)updateAllDisks
+{
+	for (int i = 0; i < _reversi.row; i++) {
+		for (int j = 0; j < _reversi.column; j++) {
+			double duration = 0.3;
+			switch (((USKReversiDisk *)self.reversi.disks[i][j]).playerNumber) {
+				case 0:
+					[UIView beginAnimations:@"flipping view" context:nil];
+					[UIView setAnimationDuration:duration];
+					[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+					[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.diskViews[i][j] cache:NO];
+					((UIImageView *)self.diskViews[i][j]).image = self.player0ImageView.image;
+					[UIView commitAnimations];
+					break;
+					
+				case 1:
+					[UIView beginAnimations:@"flipping view" context:nil];
+					[UIView setAnimationDuration:duration];
+					[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+					[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.diskViews[i][j] cache:NO];
+					((UIImageView *)self.diskViews[i][j]).image = self.player1ImageView.image;
+					[UIView commitAnimations];
+					break;
+					
+				default:
+					break;
 			}
 		}
 	}

@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="snow_texturePhone.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dJW-PL-fbz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="desk_gray.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dJW-PL-fbz">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <constraints>
@@ -24,7 +24,7 @@
                                     <constraint firstAttribute="height" constant="568" id="Z2o-B0-qKt"/>
                                 </constraints>
                             </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteStucco.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="J9j-E4-LtH">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boardFabricPhone.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="J9j-E4-LtH">
                                 <rect key="frame" x="0.0" y="124" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
@@ -36,18 +36,69 @@
                                     <outletCollection property="gestureRecognizers" destination="1nd-OO-MUP" appends="YES" id="NLg-gw-fDj"/>
                                 </connections>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1jK-FU-sAz">
+                                <rect key="frame" x="10" y="40" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="36M-cc-oof"/>
+                                    <constraint firstAttribute="height" constant="60" id="ZDo-Tt-3bU"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3uo-y2-abC">
+                                <rect key="frame" x="250" y="40" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kv-sn-76g">
+                                <rect key="frame" x="78" y="40" width="164" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KC0-59-P1J">
+                                <rect key="frame" x="126" y="472" width="68" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="E4O-DC-6OJ"/>
+                                    <constraint firstAttribute="width" constant="68" id="aRZ-0o-4Lc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                <state key="normal" title="Pass" backgroundImage="diskRed.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="functionButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wA0-eh-dta"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="3uo-y2-abC" firstAttribute="width" secondItem="1jK-FU-sAz" secondAttribute="width" id="5IG-v5-bjL"/>
+                            <constraint firstItem="1jK-FU-sAz" firstAttribute="height" secondItem="0Kv-sn-76g" secondAttribute="height" id="67q-eo-50U"/>
+                            <constraint firstItem="3uo-y2-abC" firstAttribute="centerY" secondItem="1jK-FU-sAz" secondAttribute="centerY" id="FC2-Be-txJ"/>
+                            <constraint firstItem="1jK-FU-sAz" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="40" id="Ksz-rq-GjX"/>
+                            <constraint firstItem="1jK-FU-sAz" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="R9n-dS-3QE"/>
+                            <constraint firstItem="3uo-y2-abC" firstAttribute="leading" secondItem="0Kv-sn-76g" secondAttribute="trailing" constant="8" symbolic="YES" id="XY3-p1-hE4"/>
+                            <constraint firstItem="0Kv-sn-76g" firstAttribute="leading" secondItem="1jK-FU-sAz" secondAttribute="trailing" constant="8" symbolic="YES" id="bSP-bQ-Rpa"/>
                             <constraint firstAttribute="centerX" secondItem="J9j-E4-LtH" secondAttribute="centerX" id="bWc-if-QsI"/>
+                            <constraint firstItem="3uo-y2-abC" firstAttribute="height" secondItem="1jK-FU-sAz" secondAttribute="height" id="gd4-MH-HBH"/>
+                            <constraint firstItem="1jK-FU-sAz" firstAttribute="centerY" secondItem="0Kv-sn-76g" secondAttribute="centerY" id="hqy-Gr-y0G"/>
+                            <constraint firstAttribute="centerX" secondItem="KC0-59-P1J" secondAttribute="centerX" id="lXT-pc-Zxf"/>
                             <constraint firstAttribute="centerX" secondItem="dJW-PL-fbz" secondAttribute="centerX" id="t15-5J-CPm"/>
+                            <constraint firstItem="Irm-yo-oUu" firstAttribute="top" secondItem="KC0-59-P1J" secondAttribute="bottom" constant="28" id="voK-j8-WbZ"/>
                             <constraint firstAttribute="centerY" secondItem="dJW-PL-fbz" secondAttribute="centerY" id="wma-Zw-GpE"/>
                             <constraint firstAttribute="centerY" secondItem="J9j-E4-LtH" secondAttribute="centerY" id="xe1-7v-HaN"/>
+                            <constraint firstAttribute="trailing" secondItem="3uo-y2-abC" secondAttribute="trailing" constant="10" id="xhu-oj-9x0"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="dJW-PL-fbz" id="OQm-vd-hpx"/>
                         <outlet property="boardImageView" destination="J9j-E4-LtH" id="usv-qp-QfV"/>
+                        <outlet property="functionButton" destination="KC0-59-P1J" id="zfe-kc-sFu"/>
+                        <outlet property="helpLabel" destination="0Kv-sn-76g" id="ugT-9E-R9y"/>
+                        <outlet property="player0ImageView" destination="1jK-FU-sAz" id="KfH-5n-rrX"/>
+                        <outlet property="player1ImageView" destination="3uo-y2-abC" id="2E0-gB-x0z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -60,8 +111,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="snow_texturePhone.jpg" width="640" height="1136"/>
-        <image name="whiteStucco.jpg" width="1440" height="1440"/>
+        <image name="boardFabricPhone.jpg" width="640" height="640"/>
+        <image name="desk_gray.jpg" width="1536" height="2048"/>
+        <image name="diskRed.png" width="256" height="256"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

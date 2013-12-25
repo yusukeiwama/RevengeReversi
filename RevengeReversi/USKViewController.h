@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface USKViewController : UIViewController
+@interface USKViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end

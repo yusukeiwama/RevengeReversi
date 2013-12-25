@@ -50,7 +50,7 @@ typedef enum USKReversiRule {
 /**
  Play pass to the next player.
  */
-- (void)pass;
+- (BOOL)attemptPass;
 
 @end
 
