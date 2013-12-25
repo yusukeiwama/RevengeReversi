@@ -554,6 +554,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RevengeReversi/Photo Reversi-Prefix.pch";
 				INFOPLIST_FILE = "RevengeReversi/Photo Reversi-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Photo Reversi";
 				WRAPPER_EXTENSION = app;
 			};
@@ -567,6 +568,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RevengeReversi/Photo Reversi-Prefix.pch";
 				INFOPLIST_FILE = "RevengeReversi/Photo Reversi-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Photo Reversi";
 				WRAPPER_EXTENSION = app;
 			};

@@ -104,12 +104,12 @@ typedef enum USKReversiSkin {
 	
 	_player0ImageView.image = [UIImage imageNamed:[(NSDictionary *)self.players[0] objectForKey:@"Image"]];
 	_player0ImageView.layer.shadowColor = [[UIColor whiteColor] CGColor];
-	_player0ImageView.layer.shadowRadius = 14.0;
+	_player0ImageView.layer.shadowRadius = 24.0;
 	_player0ImageView.layer.shadowOpacity = 0.0; // initially hidden
 
 	_player1ImageView.image = [UIImage imageNamed:[(NSDictionary *)self.players[1] objectForKey:@"Image"]];
 	_player1ImageView.layer.shadowColor = [[UIColor whiteColor] CGColor];
-	_player1ImageView.layer.shadowRadius = 14.0;
+	_player1ImageView.layer.shadowRadius = 24.0;
 	_player1ImageView.layer.shadowOpacity = 0.0; // initially hidden
 	
 	_blackScoreLabel.hidden = YES;
@@ -145,7 +145,7 @@ typedef enum USKReversiSkin {
 	UIGraphicsBeginImageContextWithOptions((self.boardImageView.frame.size), YES, 0);
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[self.boardImageView.image drawInRect:CGRectMake(0, 0, self.boardImageView.frame.size.width, self.boardImageView.frame.size.height)];
-	CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
+	CGContextSetStrokeColorWithColor(context, [[UIColor colorWithWhite:0.0 alpha:1.0] CGColor]);
 	CGContextSetLineWidth(context, _diskMargin * 2.0);
 	for (int i = 0; i < _reversi.column + 1; i++) {
 		// Draw vertical lines.
@@ -318,21 +318,21 @@ typedef enum USKReversiSkin {
 
 - (void)displayImageSourceSelectPanel
 {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Custom Disk Image" message:@"Please select image source." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Camera", @"PhotoLibrary", nil];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Custom Disk Image" message:@"Please select image source." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Camera", @"Photo Library", @"Restore Default", nil];
 	[alert show];
 }
 
 -(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	switch (buttonIndex) {
-		case 0:
-			break;
 		case 1:
 			[self takePhoto];
 			break;
 		case 2:
-			[self selectPhoto];
+			[self selectImageFromPhotoLibrary];
 			break;
+		case 3:
+			[self restoreDefaultDiskImage];
 		default:
 			break;
 	}
@@ -351,7 +351,7 @@ typedef enum USKReversiSkin {
 	}
 }
 
-- (void)selectPhoto
+- (void)selectImageFromPhotoLibrary
 {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
@@ -406,6 +406,12 @@ typedef enum USKReversiSkin {
 			}
 		}
 	}
+}
+
+- (void)restoreDefaultDiskImage
+{
+	self.imageViewToEdit.image = [UIImage imageNamed:[(NSDictionary *)self.players[self.reversi.attacker] objectForKey:@"Image"]];
+	[self updateAllDisks];
 }
 
 - (void)updateAllDisks
